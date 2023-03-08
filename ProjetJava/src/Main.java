@@ -5,7 +5,7 @@ public class Main {
 	
 	public static void main(String[] args) throws SlickException {
 		
-		// début du jeu
+		//test
 		ProjetJava jeuProjet = new ProjetJava("Mon jeu");
 		AppGameContainer app= new AppGameContainer(jeuProjet);
 		app.setDisplayMode(1024, 720, false);
