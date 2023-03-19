@@ -6,17 +6,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 public class Personnage {
-	private float x,y, vx, vy, aX, aY, graviteY;
+	private float x,y, vx, vy, graviteY;
 	private int bord;
 	private int masse;
 	//Image img = new Image();
 	private Color color;
+	private int compteurDeSaut= 0;
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
 	Personnage(GameContainer gc){
-		aY = 5;
-		aX = 5;
 		masse = 100;
 		graviteY = masse*9.81f;
 		bord = 20;
@@ -86,16 +85,19 @@ public class Personnage {
 		if(mvt.isKeyDown(Input.KEY_LEFT) && x-vx >= 0 + bord) {
 			x -= vx;
 		}
-		if(mvt.isKeyPressed(Input.KEY_SPACE)) {	
-			vy = -500;	
+		if(mvt.isKeyPressed(Input.KEY_SPACE) && compteurDeSaut<1) {	
+			vy = -400;	
+			compteurDeSaut++;
 		}
 	}
 
 	public void gravite(int delta) {
 		if(y<700 - bord)
 			vy+=graviteY*delta/1000f;
-		else 
+		else {
 			vy=0;
+			compteurDeSaut = 0;
+		}
 	}
 
 	public void bouger(int delta) {
