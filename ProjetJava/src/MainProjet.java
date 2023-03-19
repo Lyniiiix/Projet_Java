@@ -1,4 +1,5 @@
 import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class MainProjet {
