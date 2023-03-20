@@ -18,6 +18,8 @@ public class ProjetJava extends StateBasedGame {
 		addState(new Niveau3());
 		addState(new Niveau4());
 		addState(new Niveau5());
+		addState(new GameOver());
+		addState(new NiveauBonus());
 		enterState(-2);
 	}
 
