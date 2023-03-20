@@ -12,6 +12,7 @@ public class Personnage {
 	//Image img = new Image();
 	private Color color;
 	private int compteurDeSaut= 0;
+	private int compteurDeMort;
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
