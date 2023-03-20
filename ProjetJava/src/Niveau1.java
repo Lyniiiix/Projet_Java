@@ -35,7 +35,7 @@ public class Niveau1 extends BasicGameState {
 
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		joueur = new Personnage(gc);
+		joueur = new Personnage();
 		img = new Image("images/bloc73.png");
 		mapNiveau1 = new Map(gc,img);
 
@@ -45,9 +45,9 @@ public class Niveau1 extends BasicGameState {
 	
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		mapNiveau1.dessiner(g,map);
 		joueur.dessiner(g);
 		g.drawString(timer/1000f+" s", 100, 100);
-		mapNiveau1.dessiner(g,map);
 	}
 
 	

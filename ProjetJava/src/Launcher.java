@@ -30,6 +30,9 @@ public class Launcher extends BasicGameState {
 		
 		g.drawRect(850, 200, 100, 100);
 		g.drawString("Monde 5", 870, 320);
+
+		g.drawRect(450, 450, 100, 100);
+		g.drawString("Monde Bonus", 450, 570);
 	}
 	
 
@@ -59,6 +62,11 @@ public class Launcher extends BasicGameState {
 			//POUR ALLER DS NIVEAU 5
 			if(inp.getMouseX()>=850 && inp.getMouseX()<=950 && inp.getMouseY()>=200 && inp.getMouseY()<=300)
 				sbg.enterState(5);
+
+
+			//POUR ALLER DS NIVEAU BONUS
+			if(inp.getMouseX()>=450 && inp.getMouseX()<=550 && inp.getMouseY()>=450 && inp.getMouseY()<=550)
+				sbg.enterState(6);
 		}
 	}
 

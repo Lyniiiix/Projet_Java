@@ -12,18 +12,22 @@ public class Niveau2 extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		joueur = new Personnage(gc);
+		joueur = new Personnage();
 		ombre = new Personnage();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		joueur.dessiner(g);
+
+		// UN 2 EME PERSO SPAWN AU BOUT DE 2S 
+		if(timer>=2000) 
+			ombre.dessiner(g);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		joueur.bouger(delta);
+		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
 		
@@ -39,6 +43,12 @@ public class Niveau2 extends BasicGameState {
 			joueur.deplacer(gc,delta);
 		}
 		
+
+		timer+=delta;
+		if(timer>=2000) {
+			ombre.sauter(delta);
+			ombre.gravite(delta);
+		}
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER))
