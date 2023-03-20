@@ -6,20 +6,37 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Niveau3 extends BasicGameState {
+	private Personnage joueur ;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		
+		joueur = new Personnage(1024-20-20, 20);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		
+		joueur.dessiner(g);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		joueur.sauterInversee(delta);
+		joueur.graviteInversee(delta);
+		
+		
+		
 		Input mvt = gc.getInput();
+		
+		if(mvt.isKeyDown(Input.KEY_SPACE) ) {
+			joueur.deplacer(gc);
+		}
+		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
+			joueur.deplacer(gc);
+		}
+		if(mvt.isKeyDown(Input.KEY_LEFT)) {
+			joueur.deplacer(gc);
+		}
+		
 		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)

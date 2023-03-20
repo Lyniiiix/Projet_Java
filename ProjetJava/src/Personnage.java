@@ -15,21 +15,52 @@ public class Personnage {
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	Personnage(GameContainer gc){
+	Personnage(){
 		masse = 100;
 		graviteY = masse*9.81f;
 		bord = 20;
 		this.x = bord;
-		this.y = gc.getHeight() - (20 + bord);
+		this.y = 720 - (20 + bord);
 		this.color = Color.white;
 		vx = 1;
 		vy = 0;
+		compteurDeMort = 0;
+	}
+
+
+	// creer un perso aux cordonnées voulues
+	Personnage(float x, float y){
+		masse = 100;
+		graviteY = masse*9.81f;
+		bord = 20;
+		vx = 1;
+		vy = 0;
+		compteurDeMort = 0;
+		this.color = Color.white;
+		
+		if(x>=bord && x<=1024-bord && y>=bord && y<=720-bord) {
+			this.x = x;
+			this.y = y;
+		}
+		else {
+			this.x=bord;
+			this.y = 720 - (20 + bord);
+		}
 	}
 	
 
 	
 	// GETTEURS ET SETTEURS
+	
+	public int getCompteurDeMort() {
+		return compteurDeMort;
+	}
 
+	public void setCompteurDeMort(int compteurDeMort) {
+		if(compteurDeMort>=0)
+			this.compteurDeMort = compteurDeMort;
+	}
+	
 	public float getGraviteY() {
 		return graviteY;
 	}
@@ -43,7 +74,8 @@ public class Personnage {
 	}
 
 	public void setBord(int bord) {
-		this.bord = bord;
+		if(bord>=0)
+			this.bord = bord;
 	}
 
 	public float getX() {
@@ -51,7 +83,8 @@ public class Personnage {
 	}
 
 	public void setX(float x) {
-		this.x = x;
+		if(x>=bord && x<=1024-bord)
+			this.x = x;
 	}
 
 	public float getY() {
@@ -59,7 +92,16 @@ public class Personnage {
 	}
 
 	public void setY(float y) {
-		this.y = y;
+		if(y>=bord && y<=720-bord)
+			this.y = y;
+	}
+
+	public float getVy() {
+		return vy;
+	}
+
+	public void setVy(float vy) {
+		this.vy = vy;
 	}
 
 
@@ -100,8 +142,30 @@ public class Personnage {
 		}
 	}
 
-	public void bouger(int delta) {
+
+	public void graviteInversee(int delta) {
+		if(y>bord) {
+			vy+=graviteY*delta/1000f;
+		}
+		else {
+			vy=0;
+			compteurDeSaut = 0;
+		}
+	}
+
+	public void sauter(int delta) {
 		x+=vx*delta/1000f;
 		y+=vy*delta/1000f;
+	}
+
+	public void sauterInversee(int delta) {
+		y-= vy*delta/1000f;
+	}
+
+
+	// COMPTE LE NOMBRE DE MORT DU PERSO
+	public int mort() {
+		compteurDeMort++;
+		return compteurDeMort;
 	}
 }
