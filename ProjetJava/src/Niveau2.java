@@ -7,11 +7,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Niveau2 extends BasicGameState {
 	private Personnage joueur ;
+	private Personnage ombre;
 	private int timer = 0;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		joueur = new Personnage(gc);
+		ombre = new Personnage();
 	}
 
 	@Override
