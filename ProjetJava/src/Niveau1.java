@@ -54,7 +54,7 @@ public class Niveau1 extends BasicGameState {
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		joueur.bouger(delta);
+		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
 		
@@ -71,7 +71,11 @@ public class Niveau1 extends BasicGameState {
 		}
 		
 		timer = timer+delta;
-		
+		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
+		if(timer>=3000) {
+			timer=0;
+			sbg.enterState(404);
+		}
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER))

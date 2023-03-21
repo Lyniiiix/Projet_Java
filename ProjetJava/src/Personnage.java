@@ -155,7 +155,6 @@ public class Personnage {
 	}
 
 	public void sauter(int delta) {
-		x+=vx*delta/1000f;
 		y+=vy*delta/1000f;
 	}
 
