@@ -12,7 +12,6 @@ public class Personnage {
 	//Image img = new Image();
 	private Color color;
 	private int compteurDeSaut= 0;
-	private int compteurDeMort;
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
@@ -25,7 +24,6 @@ public class Personnage {
 		this.color = Color.white;
 		vx = 1;
 		vy = 0;
-		compteurDeMort = 0;
 	}
 
 
@@ -36,7 +34,6 @@ public class Personnage {
 		bord = 20;
 		vx = 1;
 		vy = 0;
-		compteurDeMort = 0;
 		this.color = Color.white;
 		
 		if(x>=bord && x<=1024-bord && y>=bord && y<=720-bord) {
@@ -52,15 +49,6 @@ public class Personnage {
 
 	
 	// GETTEURS ET SETTEURS
-	
-	public int getCompteurDeMort() {
-		return compteurDeMort;
-	}
-
-	public void setCompteurDeMort(int compteurDeMort) {
-		if(compteurDeMort>=0)
-			this.compteurDeMort = compteurDeMort;
-	}
 	
 	public float getGraviteY() {
 		return graviteY;
@@ -162,10 +150,4 @@ public class Personnage {
 		y-= vy*delta/1000f;
 	}
 
-
-	// COMPTE LE NOMBRE DE MORT DU PERSO
-	public int mort() {
-		compteurDeMort++;
-		return compteurDeMort;
-	}
 }
