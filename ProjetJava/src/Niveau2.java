@@ -34,13 +34,13 @@ public class Niveau2 extends BasicGameState {
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_SPACE) ) {
-			joueur.deplacer(gc,delta);
+			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc,delta);
+			joueur.deplacer(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc,delta);
+			joueur.deplacer(gc);
 		}
 		
 

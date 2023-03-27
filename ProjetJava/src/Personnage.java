@@ -109,18 +109,27 @@ public class Personnage {
 		Input mvt = gc.getInput();
 		
 		
-		
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && x+vx <= gc.getWidth() - (bord+20)) {
 			x += vx;
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT) && x-vx >= 0 + bord) {
 			x -= vx;
 		}
+	}
+
+
+	// PERMET DE FAIRE DES SAUTS EN APPUYANTS UNE FOIS SUR LA BARRE ESPACE
+	public void sautNormal(GameContainer gc) {
+		Input mvt = gc.getInput();
+		
 		if(mvt.isKeyPressed(Input.KEY_SPACE) && compteurDeSaut<1) {	
 			vy = -400;	
 			compteurDeSaut++;
 		}
 	}
+
+	
+	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 
 	public void gravite(int delta) {
 		if(y<700 - bord)
