@@ -17,8 +17,8 @@ public class Map {
 	public void dessiner (Graphics g, int map[][])
 	{
 		
-		int mapWidth = 14;
-		int mapHeight = 10;
+		int mapWidth = 42;  // faut diviser par 3 si tu reveux tes valeurs d avant
+		int mapHeight = 30;
 		
 		int blockSize = 73;
 		

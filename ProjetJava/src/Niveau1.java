@@ -16,8 +16,8 @@ public class Niveau1 extends BasicGameState {
 	private int timer = 0;
 	
 	
-	private int mapWidth = 14;
-	private int mapHeight = 10;
+	private int mapWidth = 42;  // faut diviser par 3 si tu reveux tes valeurs d avant
+	private int mapHeight = 30;
 	private Map mapNiveau1;
 	
 	private int[][] map;
