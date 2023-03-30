@@ -14,7 +14,7 @@ public class EasterEgg extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawString("Avez vous trouvez l'easter egg ?", 360, 125);
+		g.drawString("Avez vous trouvez l'easter egg caché dans l'un des différents mondes?", 200, 125);
 		g.drawString("Tapez le nom de l'easter egg", 365, 250);
 		zone.dessiner(g);
 		g.drawString("Appuyez sur ENTREE pour valider", 380, 600);
@@ -24,15 +24,18 @@ public class EasterEgg extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.maj(gc);
 		
-		// si le mot est bon => alors on peut passer au niveau sinon non
+		// si le mot est bon => alors on peut passer au niveau sinon retour au choix des levels
 		Input input = gc.getInput();
 		
-		if(input.isKeyPressed(Input.KEY_SPACE)) {
-			zone.validation(gc);
-			if(zone.validation(gc))
+		if(input.isKeyPressed(Input.KEY_ENTER)) {
+			
+			if(zone.getTxt()=="coucou") {  // je comprends pas pq sa marche pas !!!!!
 				sbg.enterState(6);
-			else
+			}
+			else {
+				zone.resetTxt();
 				sbg.enterState(0);
+			}
 		}
 	}
 

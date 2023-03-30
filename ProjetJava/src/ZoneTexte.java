@@ -10,20 +10,14 @@ public class ZoneTexte {
 	private String txt;
 	private int coX, coY;
 	
-	// J t ai rajoute un constructeur si au debut tu veux qui y ait une phrase d explication
+
 	public ZoneTexte() {
+		//font = new TrueTypeFont(new java.awt.Font("Comic sans MS",java.awt.Font.PLAIN , 42), false);
 		txt="";
 		coX = 465;
 		coY = 300;
 	}
 	
-	public ZoneTexte(String txt) {
-		//font = new TrueTypeFont(new java.awt.Font("Comic sans MS",java.awt.Font.PLAIN , 42), false);
-		this.txt = txt;
-		coX = 100;
-		coY = 100;
-	}
-
 	
 	public String getTxt() {
 		return txt;
@@ -43,23 +37,10 @@ public class ZoneTexte {
 	}
 	
 	
-	// Permet de valider le texte et d'arreter d ecrire (!!!!! MARCHE PAS !!!!!)
-	public boolean validation(GameContainer gc) {
-		boolean cond = false;
-		if(txt == "coucou") {
-			cond = true;
-		}
-		if(cond)
-			return true;
-		else
-			return false;
-	}
-	
-	
 	public void maj(GameContainer gc) {
 		Input input = gc.getInput();
 		
-		// j ai remplacé le 2 par 1 comme ça on peut effacer tout le texte. Si tu veux pas faut remettre 2
+		// permet de supprimer le texte
 		if (txt.length() >= 1) {
 			if (input.isKeyPressed(Input.KEY_BACK)) {
 				txt = txt.substring(0,txt.length()-1);
@@ -67,17 +48,11 @@ public class ZoneTexte {
 		}
 		if (txt.length() < 20) {
 			
-			// Exemple pour les nombres si tu veux
-			if(input.isKeyPressed(Input.KEY_0) || input.isKeyPressed(Input.KEY_NUMPAD0)) {
-				txt+=0;
-			}
-			// je t ai pas fait le reste ( je savais pas si tu voulais t en servir ) 
-			
-			
 			if (input.isKeyPressed(Input.KEY_SPACE)) {
 				txt += " ";
 			}
 			
+
 			// J ai juste pas trouve la touche MAJ ( celle avec le cadenas pour faire que des majuscules ) ET POURTANT JE LES AI TOUTES FAITES LES TOUCHES, ça m enerve !!!!!!!
 			else if (input.isKeyPressed(Input.KEY_A)) {
 				if(input.isKeyDown(Input.KEY_LSHIFT) || input.isKeyDown(Input.KEY_RSHIFT))
