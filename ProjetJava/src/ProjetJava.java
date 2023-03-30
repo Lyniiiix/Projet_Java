@@ -20,6 +20,7 @@ public class ProjetJava extends StateBasedGame {
 		addState(new Niveau5());
 		addState(new GameOver());
 		addState(new NiveauBonus());
+		addState(new EasterEgg());
 		enterState(-2);
 	}
 
