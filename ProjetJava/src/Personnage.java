@@ -105,7 +105,7 @@ public class Personnage {
 	
 	
 	// DEPLACER BONHOMME
-	public void deplacer(GameContainer gc, int delta) {
+	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
 		

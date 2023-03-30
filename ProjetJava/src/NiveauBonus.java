@@ -98,12 +98,12 @@ public class NiveauBonus extends BasicGameState {
 						}
 					}
 				
-				 // PERMET DE FAIRE ALLER LE BONHOMME A DROITE QD ON VEUT ALLER A GAUCHE ET INVERSEMENT
+				 // PERMET DE FAIRE ALLER LE   A DROITE QD ON VEUT ALLER A GAUCHE ET INVERSEMENT
 					if(mvt.isKeyDown(Input.KEY_RIGHT)) {         
-						joueur.setX(joueur.getX()-2*joueur.getVx());
+						joueur.setX(joueur.getX()-2*joueur.getX());
 					}
 					if(mvt.isKeyDown(Input.KEY_LEFT)) {
-						joueur.setX(joueur.getX()+2*joueur.getVx());
+						joueur.setX(joueur.getX()+2*joueur.getX());
 					}
 					break;
 				
