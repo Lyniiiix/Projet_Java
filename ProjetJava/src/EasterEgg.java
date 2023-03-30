@@ -5,23 +5,35 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class EasterEgg extends BasicGameState {
+	private ZoneTexte zone = new ZoneTexte();
 
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		// TODO Auto-generated method stub
-
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		// TODO Auto-generated method stub
-
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawString("Avez vous trouvez l'easter egg ?", 360, 125);
+		g.drawString("Tapez le nom de l'easter egg", 365, 250);
+		zone.dessiner(g);
+		g.drawString("Appuyez sur ENTREE pour valider", 380, 600);
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		// TODO Auto-generated method stub
-
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		zone.maj(gc);
+		
+		// si le mot est bon => alors on peut passer au niveau sinon non
+		Input input = gc.getInput();
+		
+		if(input.isKeyPressed(Input.KEY_SPACE)) {
+			zone.validation(gc);
+			if(zone.validation(gc))
+				sbg.enterState(6);
+			else
+				sbg.enterState(0);
+		}
 	}
 
 	@Override

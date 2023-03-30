@@ -12,9 +12,9 @@ public class ZoneTexte {
 	
 	// J t ai rajoute un constructeur si au debut tu veux qui y ait une phrase d explication
 	public ZoneTexte() {
-		txt="Ecrivez ici";
-		coX = 100;
-		coY = 100;
+		txt="";
+		coX = 465;
+		coY = 300;
 	}
 	
 	public ZoneTexte(String txt) {
@@ -39,9 +39,22 @@ public class ZoneTexte {
 
 	public void dessiner(Graphics g) {
 		//g.setFont(font);
-		g.setColor(Color.blue);
 		g.drawString(txt, coX, coY);
 	}
+	
+	
+	// Permet de valider le texte et d'arreter d ecrire (!!!!! MARCHE PAS !!!!!)
+	public boolean validation(GameContainer gc) {
+		boolean cond = false;
+		if(txt == "coucou") {
+			cond = true;
+		}
+		if(cond)
+			return true;
+		else
+			return false;
+	}
+	
 	
 	public void maj(GameContainer gc) {
 		Input input = gc.getInput();
