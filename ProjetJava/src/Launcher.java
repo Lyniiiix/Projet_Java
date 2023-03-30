@@ -66,7 +66,7 @@ public class Launcher extends BasicGameState {
 
 			//POUR ALLER DS NIVEAU BONUS
 			if(inp.getMouseX()>=450 && inp.getMouseX()<=550 && inp.getMouseY()>=450 && inp.getMouseY()<=550)
-				sbg.enterState(6);
+				sbg.enterState(10);
 		}
 	}
 
