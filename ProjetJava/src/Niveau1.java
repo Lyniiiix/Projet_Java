@@ -7,45 +7,35 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class Niveau1 extends BasicGameState {
 	
-	private Image img;
+	private Image image_fond;
+	private TiledMap map;
 	
-	private Personnage joueur ;
-	private int timer = 0;
-	
-	
-	private int mapWidth = 42;  // faut diviser par 3 si tu reveux tes valeurs d avant
-	private int mapHeight = 30;
 	private Map mapNiveau1;
 	
-	private int[][] map;
-
-	public Niveau1() {
-		// INIT LA MAP 0=VIDE
-		map = new int[mapHeight][mapWidth];
-
-		for (int i = 0; i < mapHeight; i++) {
-		    for (int j = 0; j < mapWidth; j++) {
-		        map[i][j] = 0;
-		    }
-		}
-	}
-
+	private Personnage joueur;
+	private int timer = 0;
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		joueur = new Personnage();
-		img = new Image("images/bloc73.png");
-		mapNiveau1 = new Map(gc,img);
-
+		// coordonnées en bas a gauche
+		int x = 1;
+		int y = 18;
+		
+		joueur = new Personnage(x,y); // j'ai rajt un constructeur pour test ce que je faisais
+		
+		image_fond = new Image("res/niveau1/n1_fond.png");
+		map = new TiledMap("res/niveau1/niveau1.tmx");
+		mapNiveau1 = new Map(gc,image_fond,map);
 	}
-
-	
 	
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		mapNiveau1.dessiner(g,map);
+		g.drawImage(image_fond,0,0); //dessine image_fond
+		map.render(0, 0); //dessiner la map a partir du .tmx correspondant
+		
 		joueur.dessiner(g);
 		g.drawString(timer/1000f+" s", 100, 100);
 	}
@@ -54,11 +44,12 @@ public class Niveau1 extends BasicGameState {
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		joueur.sauter(delta);
-		joueur.gravite(delta);
-		
-		
 		Input mvt = gc.getInput();
+		
+		joueur.sauter(delta);
+		/*
+		joueur.gravite(delta);
+		*/
 		
 		if(mvt.isKeyDown(Input.KEY_SPACE) ) {
 			joueur.sautNormal(gc);
@@ -70,16 +61,20 @@ public class Niveau1 extends BasicGameState {
 			joueur.deplacer(gc);
 		}
 		
-		timer = timer+delta;
-		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer>=3000) {
-			timer=0;
-			sbg.enterState(404);
-		}
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER))
 			sbg.enterState(0);
+		
+		
+		timer = timer+delta;
+		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
+		if(timer>=30000) {
+			timer=0;
+			sbg.enterState(404);
+		}
+		
+		
 	}
 
 	@Override

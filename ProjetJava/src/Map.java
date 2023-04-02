@@ -1,39 +1,24 @@
-
+// initialise une Map
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
+import org.newdawn.slick.tiled.TiledMap;
+
 public class Map {
 	
-	private Image img;
+	private String nom;
+	
+	private Image image_fond;
+	
+	private TiledMap map;
 	
 	
-	Map(GameContainer gc,Image img){
-		this.img = img;
-	}
-	
-	public void dessiner (Graphics g, int map[][])
-	{
-		
-		int mapWidth = 42;  // faut diviser par 3 si tu reveux tes valeurs d avant
-		int mapHeight = 30;
-		
-		int blockSize = 73;
-		
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
-                if (map[i][j] == 0) {
-                    int x = j * blockSize;
-                    int y = i * blockSize;
-                    //g.setColor(Color.white);
-                    //g.drawRect(x, y, blockSize, blockSize);
-                    g.drawImage(img, x, y);
-                    g.drawImage(img, x, y);
-                }
-            }
-        }
+	Map(GameContainer gc, Image image_fond, TiledMap map){
+		this.image_fond = image_fond;
+		this.map = map;
 	}
 }
 

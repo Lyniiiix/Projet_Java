@@ -7,20 +7,23 @@ import org.newdawn.slick.Graphics;
 
 public class Personnage {
 	private float x,y, vx, vy, graviteY;
-	private int bord;
-	private int masse;
-	//Image img = new Image();
+	private int bord = 32;
+	private int masse = 100;
+	private float acc_ap = 9.81f;
+	
+	//Image image_perso = new Image();
 	private Color color;
+	
 	private int compteurDeSaut= 0;
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
 	Personnage(){
-		masse = 100;
-		graviteY = masse*9.81f;
-		bord = 20;
+		graviteY = masse * acc_ap;
+		
 		this.x = bord;
 		this.y = 720 - (20 + bord);
+		
 		this.color = Color.white;
 		vx = 1;
 		vy = 0;
@@ -28,8 +31,9 @@ public class Personnage {
 
 
 	// creer un perso aux cordonnées voulues
+	
+	/*
 	Personnage(float x, float y){
-		masse = 100;
 		graviteY = masse*9.81f;
 		bord = 20;
 		vx = 1;
@@ -45,7 +49,19 @@ public class Personnage {
 			this.y = 720 - (20 + bord);
 		}
 	}
+	*/
 	
+	Personnage(float x, float y)
+	{
+		this.x = x;
+		this.y = y;
+		
+		graviteY = masse * acc_ap;
+		
+		this.color = Color.white;
+		vx = 0.5f ;
+		vy = 0;
+	}
 
 	
 	// GETTEURS ET SETTEURS
@@ -100,7 +116,7 @@ public class Personnage {
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.setColor(color);
-		g.fillRect(x, y, 20, 20);
+		g.fillRect(x*32, y*36, 32, 36);
 	}
 	
 	
@@ -108,11 +124,10 @@ public class Personnage {
 	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && x+vx <= gc.getWidth() - (bord+20)) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx*32 <= gc.getWidth() - (bord + 20)) {
 			x += vx;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && x-vx >= 0 + bord) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx*32 >= 0 + bord) {
 			x -= vx;
 		}
 	}
@@ -132,10 +147,10 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 
 	public void gravite(int delta) {
-		if(y<700 - bord)
-			vy+=graviteY*delta/1000f;
+		if(y*32 < 700 - bord)
+			vy += 36*graviteY*delta/1000f;
 		else {
-			vy=0;
+			vy = 0;
 			compteurDeSaut = 0;
 		}
 	}
@@ -152,7 +167,7 @@ public class Personnage {
 	}
 
 	public void sauter(int delta) {
-		y+=vy*delta/1000f;
+		y += 36*vy*delta/1000f;
 	}
 
 	public void sauterInversee(int delta) {
