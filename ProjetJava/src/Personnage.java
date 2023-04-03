@@ -25,7 +25,7 @@ public class Personnage {
 		this.y = 720 - (20 + bord);
 		
 		this.color = Color.white;
-		vx = 1;
+		vx = 2;
 		vy = 0;
 	}
 
@@ -109,6 +109,13 @@ public class Personnage {
 		this.vy = vy;
 	}
 
+	public float getVx() {
+		return vx;
+	}
+
+	public void setVx(float vx) {
+		this.vx = vx;
+	
 
 	
 
