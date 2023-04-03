@@ -181,4 +181,31 @@ public class Personnage {
 		y-= vy*delta/1000f;
 	}
 
+
+	// permettrait a l ombre de suivre le bonhomme
+	public static void suivre(Personnage j1, Personnage j2, StateBasedGame sbg) {
+		// faire avancer j1 aux anciennes coordonnees de j2
+		if(j1.getX() != j2.getX() && j1.getY() != j2.getY()) {
+			j1.setX(j2.getX()-50);
+			j1.setY(j2.getY());
+		}
+		
+		// si j1 rattrape j2 => mort
+		if((j1.getX()+20 >= j2.getX() && j1.getX() < j2.getX()) && (j1.getY()+20 >= j2.getY() || j1.getY() <= j2.getY()+20)) { // SI L OMBRE LE TOUCHE PAR LA GAUCHE
+			System.out.println("t mort de la gauche");
+			sbg.enterState(404);
+		}
+		if((j1.getX() <= j2.getX()+20 && j1.getX() > j2.getX()) && (j1.getY()+20 >= j2.getY() || j1.getY() <= j2.getY()+20)) {// SI L OMBRE LE TOUCHE PAR LA DROITE
+			System.out.println("t mort de la droite");
+			sbg.enterState(404);
+		}
+		if((j1.getY()+20 >= j2.getY() && j1.getY() < j2.getY())  && (j1.getX()+20 >= j2.getX() || j1.getX() <= j2.getX()+20)) {// SI L OMBRE LE TOUCHE PAR LE HAUT
+			System.out.println("t mort d en haut");
+			sbg.enterState(404);
+		}
+		if((j1.getY() <= j2.getY()+20 && j1.getY() > j2.getY())  && (j1.getX()+20 >= j2.getX() || j1.getX() <= j2.getX()+20)) {// SI L OMBRE LE TOUCHE PAR LE BAS
+			System.out.println("t mort d en haut");
+			sbg.enterState(404);
+		}
+	}
 }

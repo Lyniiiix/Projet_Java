@@ -8,12 +8,13 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Niveau2 extends BasicGameState {
 	private Personnage joueur ;
 	private Personnage ombre;
-	private int timer = 0;
+	private int timer;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		joueur = new Personnage();
 		ombre = new Personnage();
+		timer = 0;
 	}
 
 	@Override
@@ -30,6 +31,13 @@ public class Niveau2 extends BasicGameState {
 		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
+
+		timer+=delta;
+		if(timer>=2000) {
+			Personnage.suivre(ombre, joueur, sbg);
+			/*ombre.sauter(delta);
+			ombre.gravite(delta);*/
+		}
 		
 		Input mvt = gc.getInput();
 		
@@ -43,12 +51,6 @@ public class Niveau2 extends BasicGameState {
 			joueur.deplacer(gc);
 		}
 		
-
-		timer+=delta;
-		if(timer>=2000) {
-			ombre.sauter(delta);
-			ombre.gravite(delta);
-		}
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER))
