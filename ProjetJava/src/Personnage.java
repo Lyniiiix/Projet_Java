@@ -1,8 +1,8 @@
 import java.awt.Image;
 
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,14 +21,14 @@ public class Personnage {
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	Personnage() throws SlickException{
+	Personnage(){
 		graviteY = masse * acc_ap;
 		
 		this.x = bordX;
 		this.y = 720 - (20 + bordY);
 		
 		this.color = Color.white;
-		vx = 1;
+		vx = 0.5f;
 		vy = 0;
 	}
 
@@ -62,7 +62,7 @@ public class Personnage {
 		graviteY = masse * acc_ap;
 		
 		this.color = Color.white;
-		vx = 1 ;
+		vx = 0.5f ;
 		vy = 0;
 	}
 
@@ -127,10 +127,10 @@ public class Personnage {
 	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx*32 <= gc.getWidth() - (bordX + 32)) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx <= gc.getWidth() - (bordX + 32)) {
 			x += vx;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx*32 >= bordX) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx >= bordX) {
 			x -= vx;
 		}
 	}

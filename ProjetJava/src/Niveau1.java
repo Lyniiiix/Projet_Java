@@ -29,7 +29,7 @@ public class Niveau1 extends BasicGameState {
 		
 		joueur = new Personnage(x,y); // j'ai rajt un constructeur pour test ce que je faisais
 		
-		son = new Sound("res/sons/musiquetest.wav");
+		son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
 		
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
@@ -69,14 +69,17 @@ public class Niveau1 extends BasicGameState {
 		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
-		if(mvt.isKeyPressed(Input.KEY_ENTER))
+		if(mvt.isKeyPressed(Input.KEY_ENTER)) {
+			son.stop(); // marche pas
 			sbg.enterState(0);
+		}
 		
 		
 		timer = timer+delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
 		if(timer>=30000) {
 			timer=0;
+			son.stop(); // marche pas
 			sbg.enterState(404);
 		}
 		
