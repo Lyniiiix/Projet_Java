@@ -28,9 +28,10 @@ public class EasterEgg extends BasicGameState {
 		// si le mot est bon => alors on peut passer au niveau sinon retour au choix des levels
 		Input input = gc.getInput();
 		
+		
 		if(input.isKeyPressed(Input.KEY_ENTER)) {
 			
-			if(zone.getTxt()=="coucou") {  // je comprends pas pq sa marche pas !!!!!
+			if(zone.getTxt().equals("coucou")) {  // c bon ça marche ct pas des == qu y fallait mettre
 				sbg.enterState(6);
 			}
 			else {

@@ -8,7 +8,8 @@ import org.newdawn.slick.Graphics;
 
 public class Personnage {
 	private float x,y, vx, vy, graviteY;
-	private int bord = 32;
+	private int bordX = 32;
+	private int bordY = 36;
 	private int masse = 100;
 	private float acc_ap = 9.81f;
 	
@@ -22,11 +23,11 @@ public class Personnage {
 	Personnage(){
 		graviteY = masse * acc_ap;
 		
-		this.x = bord;
-		this.y = 720 - (20 + bord);
+		this.x = bordX;
+		this.y = 720 - (20 + bordY);
 		
 		this.color = Color.white;
-		vx = 2;
+		vx = 1;
 		vy = 0;
 	}
 
@@ -60,7 +61,7 @@ public class Personnage {
 		graviteY = masse * acc_ap;
 		
 		this.color = Color.white;
-		vx = 0.5f ;
+		vx = 1 ;
 		vy = 0;
 	}
 
@@ -75,21 +76,12 @@ public class Personnage {
 		this.graviteY = sautY;
 	}
 
-	public int getBord() {
-		return bord;
-	}
-
-	public void setBord(int bord) {
-		if(bord>=0)
-			this.bord = bord;
-	}
-
 	public float getX() {
 		return x;
 	}
 
 	public void setX(float x) {
-		if(x>=bord && x<=1024-bord)
+		if(x/32>=bordX && x/32<=1024/32-bordX)
 			this.x = x;
 	}
 
@@ -98,7 +90,7 @@ public class Personnage {
 	}
 
 	public void setY(float y) {
-		if(y>=bord && y<=720-bord)
+		if(y/36>=bordY && y/36<=720/36-bordY)
 			this.y = y;
 	}
 
@@ -133,10 +125,10 @@ public class Personnage {
 	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx*32 <= gc.getWidth() - (bord + 20)) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx*32 <= gc.getWidth() - (bordX + 32)) {
 			x += vx;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx*32 >= 0 + bord) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx*32 >= bordX) {
 			x -= vx;
 		}
 	}
@@ -156,7 +148,7 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 
 	public void gravite(int delta) {
-		if(y*32 < 700 - bord)
+		if(y/36 < 700/36 - bordY)
 			vy += 36*graviteY*delta/1000f;
 		else {
 			vy = 0;
@@ -166,8 +158,8 @@ public class Personnage {
 
 
 	public void graviteInversee(int delta) {
-		if(y>bord) {
-			vy+=graviteY*delta/1000f;
+		if(y/36 > bordY) {
+			vy += graviteY*delta/1000f;
 		}
 		else {
 			vy=0;
@@ -176,11 +168,11 @@ public class Personnage {
 	}
 
 	public void sauter(int delta) {
-		y += 36*vy*delta/1000f;
+		y += vy*delta/1000f;
 	}
 
 	public void sauterInversee(int delta) {
-		y-= vy*delta/1000f;
+		y -= vy*delta/1000f;
 	}
 
 

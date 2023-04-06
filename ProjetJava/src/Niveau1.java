@@ -44,12 +44,12 @@ public class Niveau1 extends BasicGameState {
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		Input mvt = gc.getInput();
 		
 		joueur.sauter(delta);
-		/*
 		joueur.gravite(delta);
-		*/
+		
+		
+		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_SPACE) ) {
 			joueur.sautNormal(gc);

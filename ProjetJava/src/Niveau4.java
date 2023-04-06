@@ -32,7 +32,7 @@ public class Niveau4 extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		joueur.sauter(delta);
-		joueur.gravite(delta);
+		//joueur.gravite(delta);
 		
 
 		p1.deplacement(delta);
