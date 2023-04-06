@@ -1,7 +1,8 @@
 import java.awt.Image;
 
-
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,12 +16,13 @@ public class Personnage {
 	
 	//Image image_perso = new Image();
 	private Color color;
+	private Sound son = new Sound("res/sons/musiquetest.wav");
 	
 	private int compteurDeSaut= 0;
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	Personnage(){
+	Personnage() throws SlickException{
 		graviteY = masse * acc_ap;
 		
 		this.x = bordX;
@@ -53,8 +55,9 @@ public class Personnage {
 	}
 	*/
 	
-	Personnage(float x, float y)
+	Personnage(float x, float y) throws SlickException
 	{
+		son.play();
 		this.x = x;
 		this.y = y;
 		
@@ -118,6 +121,7 @@ public class Personnage {
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.setColor(color);
 		g.fillRect(x*32, y*36, 32, 36);
+		
 	}
 	
 	

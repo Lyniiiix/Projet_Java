@@ -11,7 +11,7 @@ public class Niveau4 extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		joueur = new Personnage();
+		joueur = new Personnage(1,18);
 		p1= new Plateforme(100, 650, 1000); // la 3 eme cordonnee c le temps pour le changement de direction
 		p2= new Plateforme(500, 600, 1000);
 		p3= new Plateforme(350, 500, 1000);
