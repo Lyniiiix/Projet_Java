@@ -1,5 +1,6 @@
 import java.awt.Image;
 
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -115,6 +116,7 @@ public class Personnage {
 
 	public void setVx(float vx) {
 		this.vx = vx;
+	}
 	
 
 	
@@ -183,7 +185,7 @@ public class Personnage {
 
 
 	// permettrait a l ombre de suivre le bonhomme
-	public static void suivre(Personnage j1, Personnage j2, StateBasedGame sbg) {
+	/*public static void suivre(Personnage j1, Personnage j2, StateBasedGame sbg) {
 		// faire avancer j1 aux anciennes coordonnees de j2
 		if(j1.getX() != j2.getX() && j1.getY() != j2.getY()) {
 			j1.setX(j2.getX()-50);
@@ -207,5 +209,5 @@ public class Personnage {
 			System.out.println("t mort d en haut");
 			sbg.enterState(404);
 		}
-	}
+	}*/
 }

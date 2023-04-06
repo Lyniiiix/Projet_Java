@@ -9,7 +9,7 @@ public class MainProjet {
 		AppGameContainer app= new AppGameContainer(jeuProjet);
 		app.setDisplayMode(1024, 720, false);
 		app.setTargetFrameRate(60);
-		app.setShowFPS(true);
+		app.setShowFPS(false);
 		app.start();
 	}
 }
