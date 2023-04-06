@@ -16,7 +16,6 @@ public class Personnage {
 	
 	//Image image_perso = new Image();
 	private Color color;
-	private Sound son = new Sound("res/sons/musiquetest.wav");
 	
 	private int compteurDeSaut= 0;
 	
@@ -57,7 +56,6 @@ public class Personnage {
 	
 	Personnage(float x, float y) throws SlickException
 	{
-		son.play();
 		this.x = x;
 		this.y = y;
 		

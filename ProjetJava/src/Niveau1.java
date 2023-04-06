@@ -1,13 +1,12 @@
 import org.newdawn.slick.Color;
 
-
-
 import org.newdawn.slick.Image;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -18,6 +17,7 @@ public class Niveau1 extends BasicGameState {
 	private TiledMap map;
 	
 	private Map mapNiveau1;
+	private Sound son;
 	
 	private Personnage joueur;
 	private int timer = 0;
@@ -28,6 +28,8 @@ public class Niveau1 extends BasicGameState {
 		int y = 18;
 		
 		joueur = new Personnage(x,y); // j'ai rajt un constructeur pour test ce que je faisais
+		
+		son = new Sound("res/sons/musiquetest.wav");
 		
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
@@ -47,6 +49,7 @@ public class Niveau1 extends BasicGameState {
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		son.play();
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
