@@ -20,11 +20,14 @@ public class Presentation extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawString("Bienvenue dans notre monde,", 390, 50);
 		// LA ON MET LE NOM DU JEU
-		g.drawString("Vous incarnerez un personnage élémentaire de type feu ou eau en fonction des épreuves", 120, 150);
-		g.drawString("Les niveaux que vous traverserez seront assez alambiqués, votre patience mise à rude épreuve", 100, 180);
-		g.drawString("pourra céder à tout moment", 390, 210);
-		g.drawString("Vous apprendrez ici la dure loi du 'Alt F4'.", 300, 240);
-		g.drawString("Mesdames, messieurs, nous vous souhaitons un agréable gameplay", 240, 350);
+		g.drawString("Angry Jump", 465, 150);
+		
+		g.drawString("Vous incarnerez ici un personnage ayant de gros cuissots et dont le seul objectif dans la vie est de grimper.", 20, 250);
+		g.drawString("Manque de pot, pas mal de choses vont essayer de vous empecher d'accomplir votre passion favorite.", 80, 280);
+		g.drawString("Les niveaux que vous traverserez seront assez alambiqués, votre patience mise à rude épreuve", 100, 310);
+		g.drawString("pourra céder à tout moment", 390, 340);
+		g.drawString("Vous apprendrez ici la dure loi du 'Alt F4'.", 300, 440);
+		g.drawString("Mesdames, messieurs, nous vous souhaitons un agréable gameplay", 240, 490);
 		g.drawString("Appuyer sur ENTREE pour continuer", 380, 600);
 	}
 
