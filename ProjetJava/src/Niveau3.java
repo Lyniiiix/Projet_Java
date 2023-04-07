@@ -10,7 +10,7 @@ public class Niveau3 extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		joueur = new Personnage(1024-2*32, 36);
+		joueur = new Personnage(30, 1);
 	}
 
 	@Override

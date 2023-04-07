@@ -25,10 +25,10 @@ public class Personnage {
 		graviteY = masse * acc_ap;
 		
 		this.x = bordX;
-		this.y = 720 - (20 + bordY);
+		this.y = 720 - (36 + bordY);
 		
 		this.color = Color.white;
-		vx = 0.5f;
+		vx = 2;
 		vy = 0;
 	}
 
@@ -54,7 +54,7 @@ public class Personnage {
 	}
 	*/
 	
-	Personnage(float x, float y) throws SlickException
+	Personnage(float x, float y)
 	{
 		this.x = x;
 		this.y = y;
@@ -62,7 +62,7 @@ public class Personnage {
 		graviteY = masse * acc_ap;
 		
 		this.color = Color.white;
-		vx = 0.5f ;
+		vx = 2 ;
 		vy = 0;
 	}
 
@@ -128,10 +128,10 @@ public class Personnage {
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx <= gc.getWidth() - (bordX + 32)) {
-			x += vx;
+			x += vx/32;
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx >= bordX) {
-			x -= vx;
+			x -= vx/32;
 		}
 	}
 
@@ -150,8 +150,8 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 
 	public void gravite(int delta) {
-		if(y/36 < 700/36 - bordY)
-			vy += 36*graviteY*delta/1000f;
+		if(y < 20 - 2)  // pour la bordure + la hauteur du bonhomme
+			vy += graviteY*delta/1000f;
 		else {
 			vy = 0;
 			compteurDeSaut = 0;
@@ -170,7 +170,7 @@ public class Personnage {
 	}
 
 	public void sauter(int delta) {
-		y += vy*delta/1000f;
+		y += (vy*delta/1000f)/36;
 	}
 
 	public void sauterInversee(int delta) {
