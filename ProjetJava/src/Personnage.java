@@ -35,25 +35,6 @@ public class Personnage {
 
 	// creer un perso aux cordonnées voulues
 	
-	/*
-	Personnage(float x, float y){
-		graviteY = masse*9.81f;
-		bord = 20;
-		vx = 1;
-		vy = 0;
-		this.color = Color.white;
-		
-		if(x>=bord && x<=1024-bord && y>=bord && y<=720-bord) {
-			this.x = x;
-			this.y = y;
-		}
-		else {
-			this.x=bord;
-			this.y = 720 - (20 + bord);
-		}
-	}
-	*/
-	
 	Personnage(float x, float y)
 	{
 		if(x>=1 && x<=32-1 && y>=1 && y<=20-1) {  // pasque c une grille de 32 par 20
@@ -134,10 +115,10 @@ public class Personnage {
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx <= gc.getWidth() - (bordX + 32)) {
-			x += vx/32;
+			x += vx/20;
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx >= bordX) {
-			x -= vx/32;
+			x -= vx/20;
 		}
 	}
 
@@ -185,29 +166,26 @@ public class Personnage {
 
 
 	// permettrait a l ombre de suivre le bonhomme
-	/*public static void suivre(Personnage j1, Personnage j2, StateBasedGame sbg) {
+	public static void suivre(Personnage j1, Personnage j2) {
 		// faire avancer j1 aux anciennes coordonnees de j2
 		if(j1.getX() != j2.getX() && j1.getY() != j2.getY()) {
-			j1.setX(j2.getX()-50);
+			j1.setX(j2.getX()-2);
 			j1.setY(j2.getY());
 		}
 		
 		// si j1 rattrape j2 => mort
-		if((j1.getX()+20 >= j2.getX() && j1.getX() < j2.getX()) && (j1.getY()+20 >= j2.getY() || j1.getY() <= j2.getY()+20)) { // SI L OMBRE LE TOUCHE PAR LA GAUCHE
+		
+		if((j1.getX()+1 >= j2.getX() && j1.getX() < j2.getX()) && (j1.getY()+1 >= j2.getY() || j1.getY() <= j2.getY()+1)) { // SI L OMBRE LE TOUCHE PAR LA GAUCHE
 			System.out.println("t mort de la gauche");
-			sbg.enterState(404);
 		}
-		if((j1.getX() <= j2.getX()+20 && j1.getX() > j2.getX()) && (j1.getY()+20 >= j2.getY() || j1.getY() <= j2.getY()+20)) {// SI L OMBRE LE TOUCHE PAR LA DROITE
+		if((j1.getX() <= j2.getX()+1 && j1.getX() > j2.getX()) && (j1.getY()+1 >= j2.getY() || j1.getY() <= j2.getY()+1)) {// SI L OMBRE LE TOUCHE PAR LA DROITE
 			System.out.println("t mort de la droite");
-			sbg.enterState(404);
 		}
-		if((j1.getY()+20 >= j2.getY() && j1.getY() < j2.getY())  && (j1.getX()+20 >= j2.getX() || j1.getX() <= j2.getX()+20)) {// SI L OMBRE LE TOUCHE PAR LE HAUT
+		if((j1.getY()+1 >= j2.getY() && j1.getY() < j2.getY())  && (j1.getX()+1 >= j2.getX() || j1.getX() <= j2.getX()+1)) {// SI L OMBRE LE TOUCHE PAR LE HAUT
 			System.out.println("t mort d en haut");
-			sbg.enterState(404);
 		}
-		if((j1.getY() <= j2.getY()+20 && j1.getY() > j2.getY())  && (j1.getX()+20 >= j2.getX() || j1.getX() <= j2.getX()+20)) {// SI L OMBRE LE TOUCHE PAR LE BAS
+		if((j1.getY() <= j2.getY()+1 && j1.getY() > j2.getY())  && (j1.getX()+1 >= j2.getX() || j1.getX() <= j2.getX()+1)) {// SI L OMBRE LE TOUCHE PAR LE BAS
 			System.out.println("t mort d en haut");
-			sbg.enterState(404);
 		}
-	}*/
+	}
 }

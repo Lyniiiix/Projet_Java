@@ -34,7 +34,7 @@ public class Niveau2 extends BasicGameState {
 
 		timer+=delta;
 		if(timer>=2000) {
-			//Personnage.suivre(ombre, joueur, sbg);
+			Personnage.suivre(ombre, joueur);
 			/*ombre.sauter(delta);
 			ombre.gravite(delta);*/
 		}
