@@ -21,7 +21,7 @@ public class Niveau3 extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		joueur.sauterInversee(delta);
-		//joueur.graviteInversee(delta);
+		joueur.graviteInversee(delta);
 		
 		
 		

@@ -12,7 +12,7 @@ public class Niveau2 extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		joueur = new Personnage(1,18);
+		joueur = new Personnage();
 		ombre = new Personnage();
 		timer = 0;
 	}
@@ -29,7 +29,7 @@ public class Niveau2 extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		joueur.sauter(delta);
-		//joueur.gravite(delta);
+		joueur.gravite(delta);
 		
 
 		timer+=delta;

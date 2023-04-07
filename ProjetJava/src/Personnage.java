@@ -11,7 +11,7 @@ public class Personnage {
 	private float x,y, vx, vy, graviteY;
 	private int bordX = 32;
 	private int bordY = 36;
-	private int masse = 100;
+	private int masse = 70;
 	private float acc_ap = 9.81f;
 	
 	//Image image_perso = new Image();
@@ -24,8 +24,8 @@ public class Personnage {
 	Personnage(){
 		graviteY = masse * acc_ap;
 		
-		this.x = bordX;
-		this.y = 720 - (36 + bordY);
+		this.x = 1;
+		this.y = 18;
 		
 		this.color = Color.white;
 		vx = 2;
@@ -56,8 +56,14 @@ public class Personnage {
 	
 	Personnage(float x, float y)
 	{
-		this.x = x;
-		this.y = y;
+		if(x>=1 && x<=32-1 && y>=1 && y<=20-1) {  // pasque c une grille de 32 par 20
+			this.x = x;
+			this.y = y;
+		}
+		else {
+			this.x=1;
+			this.y = 20-1;
+		}
 		
 		graviteY = masse * acc_ap;
 		
@@ -82,7 +88,7 @@ public class Personnage {
 	}
 
 	public void setX(float x) {
-		if(x/32>=bordX && x/32<=1024/32-bordX)
+		if(x>=1 && x<=32-1)
 			this.x = x;
 	}
 
@@ -91,7 +97,7 @@ public class Personnage {
 	}
 
 	public void setY(float y) {
-		if(y/36>=bordY && y/36<=720/36-bordY)
+		if(y>=1 && y<=20-1)
 			this.y = y;
 	}
 
@@ -160,7 +166,7 @@ public class Personnage {
 
 
 	public void graviteInversee(int delta) {
-		if(y/36 > bordY) {
+		if(y > 1) {
 			vy += graviteY*delta/1000f;
 		}
 		else {
@@ -174,7 +180,7 @@ public class Personnage {
 	}
 
 	public void sauterInversee(int delta) {
-		y -= vy*delta/1000f;
+		y -= (vy*delta/1000f)/36;
 	}
 
 
