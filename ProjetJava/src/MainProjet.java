@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 public class MainProjet {
 
 	public static void main(String[] args) throws SlickException {
-		ProjetJava jeuProjet = new ProjetJava("Projet Java");
+		ProjetJava jeuProjet = new ProjetJava("Elden Wings ou Angry Jump");
 		AppGameContainer app= new AppGameContainer(jeuProjet);
 		app.setDisplayMode(1024, 720, false);
 		app.setTargetFrameRate(60);

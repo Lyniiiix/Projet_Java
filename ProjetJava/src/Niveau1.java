@@ -1,7 +1,8 @@
 import org.newdawn.slick.Color;
 
-import org.newdawn.slick.Image;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -31,7 +32,7 @@ public class Niveau1 extends BasicGameState {
 		
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
-		mapNiveau1 = new Map(gc,image_fond,map);
+		mapNiveau1 = new Map(gc,image_fond,map);  
 	}
 	
 	@Override
@@ -68,7 +69,8 @@ public class Niveau1 extends BasicGameState {
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER)) {
-			son.stop(); // marche pas
+			//System.out.println(son.getClass());
+			//son.play(son.length()); // marche pas g tout tester 
 			sbg.enterState(0);
 		}
 		
