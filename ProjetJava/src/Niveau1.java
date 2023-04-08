@@ -23,6 +23,7 @@ public class Niveau1 extends BasicGameState {
 	private Personnage joueur;
 	private int timer = 0;
 	
+	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		// coordonnées en bas a gauche
 		
@@ -61,9 +62,13 @@ public class Niveau1 extends BasicGameState {
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
 			joueur.deplacer(gc);
+			/*if(joueur.rebond())
+				joueur.setVx(joueur.getVx()-5);*/
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc);
+			/*if(joueur.rebond())
+				joueur.setVx(joueur.getVx()+5);*/
 		}
 		
 		

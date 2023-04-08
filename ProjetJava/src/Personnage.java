@@ -188,4 +188,12 @@ public class Personnage {
 			System.out.println("t mort d en haut");
 		}
 	}
+	
+	/*
+	public boolean rebond() {
+		if(x==32 || x==1)
+			return true;
+		else
+			return false;
+	}*/
 }
