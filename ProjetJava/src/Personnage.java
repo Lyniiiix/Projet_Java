@@ -165,7 +165,7 @@ public class Personnage {
 	}
 
 
-	// permettrait a l ombre de suivre le bonhomme
+	// permettrait a l ombre de suivre le bonhomme                  !!!!! MARCHE PAS !!!!
 	public static void suivre(Personnage j1, Personnage j2) {
 		// faire avancer j1 aux anciennes coordonnees de j2
 		if(j1.getX() != j2.getX() && j1.getY() != j2.getY()) {
@@ -189,11 +189,11 @@ public class Personnage {
 		}
 	}
 	
-	/*
+	
 	public boolean rebond() {
 		if(x==32 || x==1)
 			return true;
 		else
 			return false;
-	}*/
+	}
 }

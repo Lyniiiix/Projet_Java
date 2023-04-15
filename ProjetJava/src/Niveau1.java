@@ -63,7 +63,7 @@ public class Niveau1 extends BasicGameState {
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
 			joueur.deplacer(gc);
 			/*if(joueur.rebond())
-				joueur.setVx(joueur.getVx()-5);*/
+				joueur.setX(10);*/
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc);
