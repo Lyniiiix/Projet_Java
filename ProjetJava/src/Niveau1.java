@@ -25,9 +25,8 @@ public class Niveau1 extends BasicGameState {
 	
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		// coordonnées en bas a gauche
 		
-		joueur = new Personnage(); // j'ai rajt un constructeur pour test ce que je faisais
+		joueur = new Personnage(); 
 		
 		son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
 		

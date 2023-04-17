@@ -168,7 +168,7 @@ public class Personnage {
 	// permettrait a l ombre de suivre le bonhomme                  !!!!! MARCHE PAS !!!!
 	public static void suivre(Personnage j1, Personnage j2) {
 		// faire avancer j1 aux anciennes coordonnees de j2
-		if(j1.getX() != j2.getX() && j1.getY() != j2.getY()) {
+		if(j1.getX() != j2.getX() || j1.getY() != j2.getY()) {
 			j1.setX(j2.getX()-2);
 			j1.setY(j2.getY());
 		}
@@ -195,5 +195,10 @@ public class Personnage {
 			return true;
 		else
 			return false;
+	}
+	
+	
+	public void glisser() {
+		// permettra de faire glisser le perso sur la glace du niveau 5
 	}
 }
