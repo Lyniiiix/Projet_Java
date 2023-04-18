@@ -1,7 +1,8 @@
 import org.newdawn.slick.Color;
 
+import java.io.IOException;
 
-
+import javax.sound.sampled.*;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,19 +19,44 @@ public class Niveau1 extends BasicGameState {
 	private TiledMap map;
 	
 	private Map mapNiveau1;
-	private Sound son;
+	//private Sound son;
+	private Clip son;
 	
 	private Personnage joueur;
 	private int timer = 0;
 	private boolean mort = false;
 	
 	
+	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
 		joueur = new Personnage(); 
+
+		// son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
 		
-		son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
 		
+		// TOUT CA C POUR LA MUSIQUE MAIS CA MARCHE PAS  !!!!
+		/*
+		AudioInputStream audioInputStream;
+		try {
+			// Ouvrir le fichier audio
+			audioInputStream = AudioSystem.getAudioInputStream(Niveau1.class.getResourceAsStream("musiquetest.wav"));
+			
+			// Obtenir le format audio du fichier
+			AudioFormat format = audioInputStream.getFormat();
+			
+			// Créer un DataLine pour la lecture audio
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			son = (Clip) AudioSystem.getLine(info);
+			
+			// Ouvrir le flux audio et le charger dans le Clip
+			son.open(audioInputStream);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		*/
+		 
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
 		mapNiveau1 = new Map(gc,image_fond,map);  
@@ -50,7 +76,17 @@ public class Niveau1 extends BasicGameState {
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		son.play();
+		//son.play();
+		
+		
+		/*
+		if (!son.isActive()) {
+            // Si la musique est terminée, la jouer à nouveau
+            son.setFramePosition(0);
+            son.start();
+        }
+		*/
+		
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
@@ -85,7 +121,8 @@ public class Niveau1 extends BasicGameState {
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
 		if(timer>=3000) {
 			timer=0;
-			son.stop(); // marche pas
+			//son.stop(); // marche pas
+			
 			mort = true;
 			sbg.enterState(404);
 		}
