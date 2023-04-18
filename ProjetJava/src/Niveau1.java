@@ -1,13 +1,13 @@
 import org.newdawn.slick.Color;
 
 
+
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
+//import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -22,6 +22,7 @@ public class Niveau1 extends BasicGameState {
 	
 	private Personnage joueur;
 	private int timer = 0;
+	private boolean mort = false;
 	
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -42,13 +43,14 @@ public class Niveau1 extends BasicGameState {
 		
 		joueur.dessiner(g);
 		g.drawString(timer/1000f+" s", 100, 100);
+		
 	}
 
 	
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		//son.play();
+		son.play();
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
@@ -81,13 +83,19 @@ public class Niveau1 extends BasicGameState {
 		
 		timer = timer+delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer>=30000) {
+		if(timer>=3000) {
 			timer=0;
 			son.stop(); // marche pas
+			mort = true;
 			sbg.enterState(404);
 		}
 		
 		
+		// refait spawn le perso au début et pas la ou il était
+		if(mort) {
+			mort = false;
+			joueur = new Personnage();
+		}
 	}
 
 	@Override
