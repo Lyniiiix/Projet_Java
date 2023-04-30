@@ -7,11 +7,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Niveau5 extends BasicGameState {
 	private Personnage joueur;
+	private int timer;
 	
+	private Pieges Laser = new Laser(10,50);
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		joueur = new Personnage();
+		timer =0;
 	}
 
 	@Override
@@ -21,7 +24,8 @@ public class Niveau5 extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-				
+		timer += delta;		
+		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
