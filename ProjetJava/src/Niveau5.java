@@ -9,7 +9,7 @@ public class Niveau5 extends BasicGameState {
 	private Personnage joueur;
 	private int timer;
 	
-	private Pieges Laser = new Laser(10,50);
+	private Pieges laser = new Laser();
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {

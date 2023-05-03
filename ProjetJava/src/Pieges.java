@@ -21,13 +21,18 @@ public class Pieges {
 			}
 		}
 		
+		Laser(){
+			this.x=10;
+			this.y = 50;
+		}
+		
 		public void dessiner(Graphics g) {
 			g.setColor(Color.white);
 			g.drawOval(x, y, 5, 5);
 			g.drawOval(x+50, y, 5, 5);
-			if(active(delta)) {
+			/*if(active(delta)) {
 				g.drawLine(x, y, x+50, y);
-			}
+			}*/
 		}
 		
 		public boolean active(int delta) {
@@ -66,9 +71,9 @@ public class Pieges {
 		public void dessiner(Graphics g) {
 			g.setColor(Color.red);
 			g.drawRect(x, y, 10, 10);
-			if(active(delta)) {
+			/*if(active(delta)) {
 				g.drawLine(x, y, x+50, y);
-			}
+			}*/
 		}
 		
 		
