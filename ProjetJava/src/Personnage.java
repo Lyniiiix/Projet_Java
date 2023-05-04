@@ -14,6 +14,9 @@ public class Personnage {
 	private int masse = 70;
 	private float acc_ap = 9.81f;
 	
+	private int case_MatX = 32;
+	private int case_MatY = 23;
+	
 	//Image image_perso = new Image();
 	private Color color;
 	
@@ -37,13 +40,13 @@ public class Personnage {
 	
 	Personnage(float x, float y)
 	{
-		if(x>=1 && x<=32-1 && y>=1 && y<=20-1) {  // pasque c une grille de 32 par 20
+		if(x>=1 && x<=case_MatX-1 && y>=1 && y<=case_MatY-1) {  // pasque c une grille de 32 par 20
 			this.x = x;
 			this.y = y;
 		}
 		else {
 			this.x=1;
-			this.y = 20-1;
+			this.y = case_MatY-1;
 		}
 		
 		graviteY = masse * acc_ap;
@@ -69,7 +72,7 @@ public class Personnage {
 	}
 
 	public void setX(float x) {
-		if(x>=1 && x<=32-1)
+		if(x>=1 && x<=case_MatX-1)
 			this.x = x;
 	}
 
@@ -78,7 +81,7 @@ public class Personnage {
 	}
 
 	public void setY(float y) {
-		if(y>=1 && y<=20-1)
+		if(y>=1 && y<=case_MatX-1)
 			this.y = y;
 	}
 
@@ -115,10 +118,10 @@ public class Personnage {
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx <= gc.getWidth() - (bordX + 32)) {
-			x += vx/20;
+			x += vx/case_MatY;
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx >= bordX) {
-			x -= vx/20;
+			x -= vx/case_MatY;
 		}
 	}
 
@@ -137,7 +140,7 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 
 	public void gravite(int delta) {
-		if(y < 20 - 2)  // pour la bordure + la hauteur du bonhomme
+		if(y < case_MatY - 2)  // pour la bordure + la hauteur du bonhomme
 			vy += graviteY*delta/1000f;
 		else {
 			vy = 0;

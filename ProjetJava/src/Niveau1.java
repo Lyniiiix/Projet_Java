@@ -68,6 +68,11 @@ public class Niveau1 extends BasicGameState {
 		map.render(0, 0); //dessiner la map a partir du .tmx correspondant
 		
 		joueur.dessiner(g);
+		
+		int posX = (int)(Math.floor(joueur.getX()));
+		int posY = (int)(Math.floor(joueur.getY()));
+		System.out.println(String.format("Perso posX : %s , poxY : %s",posX*32,posY*36));
+		
 		g.drawString(timer/1000f+" s", 100, 100);
 		
 	}
@@ -119,7 +124,7 @@ public class Niveau1 extends BasicGameState {
 		
 		timer = timer+delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer>=3000) {
+		if(timer>=300000) { //augmenter pour test
 			timer=0;
 			//son.stop(); // marche pas
 			

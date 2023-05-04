@@ -7,7 +7,7 @@ public class MainProjet {
 	public static void main(String[] args) throws SlickException {
 		ProjetJava jeuProjet = new ProjetJava("Angry Jump");
 		AppGameContainer app= new AppGameContainer(jeuProjet);
-		app.setDisplayMode(1024, 720, false);
+		app.setDisplayMode(1024, 828, false);
 		app.setTargetFrameRate(60);
 		app.setShowFPS(false);
 		app.start();
