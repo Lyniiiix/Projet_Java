@@ -8,6 +8,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameOver extends BasicGameState {
 	private float timer;
 	private int compteurDeMort;
+	
+	private TrackingNiveau retry = new TrackingNiveau();
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {

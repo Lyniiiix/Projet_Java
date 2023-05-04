@@ -9,7 +9,8 @@ public class Niveau5 extends BasicGameState {
 	private Personnage joueur;
 	private int timer;
 	
-	private Pieges laser = new Laser();
+	/*private Pieges laser = new Laser();
+	private Pieges chasseur = new Chasseur();*/
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -20,6 +21,12 @@ public class Niveau5 extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		joueur.dessiner(g);
+		
+		/*
+		laser.dessiner(g);
+		chasseur.dessinerBalles(g);
+		chasseur.dessiner(g);
+		*/
 	}
 
 	@Override
@@ -29,6 +36,11 @@ public class Niveau5 extends BasicGameState {
 		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
+		/*
+		laser.setTimer(delta);
+		chasseur.setTimer(delta);
+		chasseur.tirer();
+		*/
 		
 		Input mvt = gc.getInput();
 		
