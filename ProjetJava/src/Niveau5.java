@@ -1,21 +1,24 @@
 import org.newdawn.slick.GameContainer;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+
 public class Niveau5 extends BasicGameState {
 	private Personnage joueur;
 	private int timer;
 	
-	/*private Pieges laser = new Laser();
+	/*private Pieges laser;
 	private Pieges chasseur = new Chasseur();*/
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		joueur = new Personnage();
 		timer =0;
+		//laser = new Laser(10,50);
 	}
 
 	@Override
