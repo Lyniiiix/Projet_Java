@@ -12,13 +12,16 @@ public class Niveau5 extends BasicGameState {
 	private int timer;
 	
 	/*private Pieges laser;
-	private Pieges chasseur = new Chasseur();*/
+	 */
+
+	private Chasseur chasseur;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		joueur = new Personnage();
 		timer =0;
 		//laser = new Laser(10,50);
+		chasseur = new Chasseur(250, 500);
 	}
 
 	@Override
@@ -27,9 +30,10 @@ public class Niveau5 extends BasicGameState {
 		
 		/*
 		laser.dessiner(g);
+		*/
 		chasseur.dessinerBalles(g);
 		chasseur.dessiner(g);
-		*/
+		
 	}
 
 	@Override
@@ -41,12 +45,12 @@ public class Niveau5 extends BasicGameState {
 		
 		/*
 		laser.setTimer(delta);
-		
-		if(joueur.getX() >= chasseur.getX() - chasseur.getDistanceTir()+10 && joueur.getX() <= chasseur.getX() + chasseur.getDistanceTir()+10 && joueur.getY() >= chasseur.getY() - chasseur.getDistanceTir()+10 && joueur.getY() <= chasseur.getY() + chasseur.getDistanceTir()+10) {
+		*/
+		if(joueur.getX() >= chasseur.getX() - chasseur.getDistanceTir() && joueur.getX() <= chasseur.getX() + chasseur.getDistanceTir() || joueur.getY() >= chasseur.getY() - chasseur.getDistanceTir() && joueur.getY() <= chasseur.getY() + chasseur.getDistanceTir()) {
 			chasseur.setTimer(delta);
 			chasseur.tirer();
 		}
-		*/
+		
 		
 		
 		Input mvt = gc.getInput();
