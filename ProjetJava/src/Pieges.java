@@ -80,6 +80,19 @@ public class Pieges {
 		public int getTimer() {
 			return timer;
 		}
+		
+		public int getDistanceTir() {
+			return distanceTir;
+		}
+		
+		public float getX() {
+			return x;
+		}
+		
+		public float getY() {
+			return y;
+		}
+		
 
 		Chasseur(float x, float y) {
 			if (x >= 0 && x <= 1024 && y >= 0 && y <= 720) {
@@ -94,6 +107,7 @@ public class Pieges {
 		public void dessiner(Graphics g) {
 			g.setColor(Color.red);
 			g.fillRect(x, y, 20, 20);
+			g.drawOval(x-distanceTir+10, y-distanceTir+10, distanceTir*2, distanceTir*2);
 		}
 
 		public void dessinerBalles(Graphics g) {

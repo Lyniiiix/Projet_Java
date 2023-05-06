@@ -41,9 +41,13 @@ public class Niveau5 extends BasicGameState {
 		
 		/*
 		laser.setTimer(delta);
-		chasseur.setTimer(delta);
-		chasseur.tirer();
+		
+		if(joueur.getX() >= chasseur.getX() - chasseur.getDistanceTir()+10 && joueur.getX() <= chasseur.getX() + chasseur.getDistanceTir()+10 && joueur.getY() >= chasseur.getY() - chasseur.getDistanceTir()+10 && joueur.getY() <= chasseur.getY() + chasseur.getDistanceTir()+10) {
+			chasseur.setTimer(delta);
+			chasseur.tirer();
+		}
 		*/
+		
 		
 		Input mvt = gc.getInput();
 		
