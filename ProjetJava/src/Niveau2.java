@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Niveau2 extends BasicGameState {
+public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	private Personnage joueur ;
 	private Personnage ombre;
 	private int timer;

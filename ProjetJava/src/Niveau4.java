@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Niveau4 extends BasicGameState {
+public class Niveau4 extends BasicGameState {   // niveau glace
 	private Personnage joueur ;
 	private Plateforme p1, p2, p3, p4, p5;
 

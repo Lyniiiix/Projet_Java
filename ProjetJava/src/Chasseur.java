@@ -32,11 +32,22 @@ public class Chasseur extends Pieges {
 			return y;
 		}
 		
+		public float getXBalle2() {
+			return xBalle2;
+		}
+		
 
 		Chasseur(float x, float y) {
 			if (x >= 0 && x <= 1024 && y >= 0 && y <= 720) {
 				this.x = x;
 				this.y = y;
+				xBalle1 = x;
+				xBalle2 = x;
+				xBalle3 = x;
+				yBalle1 = y;
+				yBalle2 = y;
+				yBalle3 = y;
+				
 			} else {
 				this.x = 250;
 				this.y = 400;
@@ -46,7 +57,8 @@ public class Chasseur extends Pieges {
 		public void dessiner(Graphics g) {
 			g.setColor(Color.red);
 			g.fillRect(x, y, 20, 20);
-			g.drawOval(x-distanceTir+10, y-distanceTir+10, distanceTir*2, distanceTir*2);
+			g.drawRect(x-distanceTir+10, y-distanceTir+10, distanceTir*2, distanceTir*2);
+			g.setColor(Color.white); // permet d éviter que tout le reste devienne rouge apres
 		}
 
 		public void dessinerBalles(Graphics g) {

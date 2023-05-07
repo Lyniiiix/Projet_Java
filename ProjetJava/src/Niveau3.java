@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Niveau3 extends BasicGameState {
+public class Niveau3 extends BasicGameState {   
 	private Personnage joueur ;
 
 	@Override

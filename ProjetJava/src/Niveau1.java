@@ -13,7 +13,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class Niveau1 extends BasicGameState {
+public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	private Image image_fond;
 	private TiledMap map;

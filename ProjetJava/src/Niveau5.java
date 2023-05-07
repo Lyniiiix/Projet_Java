@@ -7,7 +7,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class Niveau5 extends BasicGameState {
+public class Niveau5 extends BasicGameState {   // niveau plage
 	private Personnage joueur;
 	private int timer;
 	
@@ -46,10 +46,12 @@ public class Niveau5 extends BasicGameState {
 		/*
 		laser.setTimer(delta);
 		*/
-		if(joueur.getX() >= chasseur.getX() - chasseur.getDistanceTir() && joueur.getX() <= chasseur.getX() + chasseur.getDistanceTir() || joueur.getY() >= chasseur.getY() - chasseur.getDistanceTir() && joueur.getY() <= chasseur.getY() + chasseur.getDistanceTir()) {
+		if(joueur.getX()*32 >= chasseur.getX() - chasseur.getDistanceTir() && joueur.getX()*32 <= chasseur.getX() + chasseur.getDistanceTir() +20 && joueur.getY()*36 >= chasseur.getY() - chasseur.getDistanceTir() && joueur.getY()*36 <= chasseur.getY() + chasseur.getDistanceTir() +20) {
 			chasseur.setTimer(delta);
 			chasseur.tirer();
 		}
+		else
+			chasseur.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
 		
 		
 		
