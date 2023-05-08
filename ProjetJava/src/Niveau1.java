@@ -114,10 +114,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_SPACE) ) {
+		if(mvt.isKeyDown(Input.KEY_SPACE)) {
 			joueur.setPosY_avant_saut((int)(Math.floor(joueur.getY())));
 			joueur.setStatus("saut");
-			joueur.sautNormal(gc);
+			joueur.sautNormal(gc, collisionsNiveau1.collisionSelonPos(posX, posY,"saut"));
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsNiveau1.collisionSelonPos(posX, posY,"droite")) {
 			joueur.deplacer(gc);

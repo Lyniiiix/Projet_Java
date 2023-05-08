@@ -165,13 +165,18 @@ public class Personnage {
 
 
 	// PERMET DE FAIRE DES SAUTS EN APPUYANTS UNE FOIS SUR LA BARRE ESPACE
-	public void sautNormal(GameContainer gc) {
+	public void sautNormal(GameContainer gc, boolean enCollision) {
 		Input mvt = gc.getInput();
 		
+		if (enCollision)
+		{
+			vy -= vy;
+		}
 		if(mvt.isKeyPressed(Input.KEY_SPACE) && compteurDeSaut<1) {	
 			vy = -400;	
 			compteurDeSaut++;
 		}
+		
 	}
 
 	

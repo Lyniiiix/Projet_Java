@@ -43,6 +43,9 @@ public class Collisions {
 		case "gauche": {
 			return map.getTileId(posX, posY, map.getLayerIndex("bloc")) == 1;
 		}
+		case "saut": {
+			return map.getTileId(posX, posY - 1, map.getLayerIndex("bloc")) == 1;
+		}
 		default:
 			return true;
 		}
