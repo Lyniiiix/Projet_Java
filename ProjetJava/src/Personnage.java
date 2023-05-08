@@ -17,6 +17,11 @@ public class Personnage {
 	private int case_MatX = 32;
 	private int case_MatY = 23;
 	
+	private String direct_pers; // droite - gauche
+	private String status_pers; // sol - vol
+	
+	private int posY_avant_saut;
+	
 	//Image image_perso = new Image();
 	private Color color;
 	
@@ -33,6 +38,9 @@ public class Personnage {
 		this.color = Color.white;
 		vx = 2;
 		vy = 0;
+		
+		this.direct_pers = "droite";
+		this.status_pers = "sol";
 	}
 
 
@@ -54,6 +62,9 @@ public class Personnage {
 		this.color = Color.white;
 		vx = 2 ;
 		vy = 0;
+		
+		this.direct_pers = "droite";
+		this.status_pers = "sol";
 	}
 
 	
@@ -101,8 +112,35 @@ public class Personnage {
 		this.vx = vx;
 	}
 	
-
+	public String getStatus()
+	{
+		return status_pers;
+	}
 	
+	public void setStatus(String status)
+	{
+		status_pers = status;
+	}
+	
+	public String getDirect()
+	{
+		return direct_pers;
+	}
+	
+	public void setDirect(String direct_pers)
+	{
+		this.direct_pers = direct_pers;
+	}
+	
+	public int getPosY_avant_saut()
+	{
+		return posY_avant_saut;
+	}
+	
+	public void setPosY_avant_saut(int posY_avant_saut)
+	{
+		this.posY_avant_saut = this.posY_avant_saut;
+	}
 
 
 	// DESSINER BONHOMME
