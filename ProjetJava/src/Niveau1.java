@@ -105,11 +105,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		int posX = (int)(Math.floor(joueur.getX()));
 		int posY = (int)(Math.floor(joueur.getY()));
 		System.out.println(String.format("Perso posX : %s , poxY : %s",posX,posY));
-		//collisionsNiveau1.estEnCollision(posX,posY);
 		
 		
-		System.out.println(joueur.getStatus());
-		System.out.println(joueur.getDirect());
+		//System.out.println(joueur.getStatus());
+		//System.out.println(joueur.getDirect());
 		
 		
 		Input mvt = gc.getInput();
@@ -117,7 +116,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		if(mvt.isKeyDown(Input.KEY_SPACE)) {
 			joueur.setPosY_avant_saut((int)(Math.floor(joueur.getY())));
 			joueur.setStatus("saut");
-			joueur.sautNormal(gc, collisionsNiveau1.collisionSelonPos(posX, posY,"saut"));
+			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsNiveau1.collisionSelonPos(posX, posY,"droite")) {
 			joueur.deplacer(gc);

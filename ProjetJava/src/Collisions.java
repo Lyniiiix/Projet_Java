@@ -14,6 +14,7 @@ public class Collisions {
 		this.mapHeight = map.getHeight();
 	}
 	
+	/*
 	public void estEnCollision(int posX, int posY)
 	{
 		for (int y = 0; y < mapHeight; y++) {
@@ -30,10 +31,11 @@ public class Collisions {
 		
 		//return map.getTileId(posX + 1, posY + 1, map.getLayerIndex("bloc"));
 	}
+	*/
 	
 	public boolean collisionSelonPos(int posX, int posY, String status_perso)
 	{
-		System.out.println(map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1);
+		//System.out.println(map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1);
 		
 		
 		switch (status_perso) {
@@ -44,12 +46,30 @@ public class Collisions {
 			return map.getTileId(posX, posY, map.getLayerIndex("bloc")) == 1;
 		}
 		case "saut": {
-			return map.getTileId(posX, posY - 1, map.getLayerIndex("bloc")) == 1;
+			if (map.getTileId(posX, posY - 1, map.getLayerIndex("bloc")) == 1) { // Si la case au-dessus est un bloc solide
+                return true; // Collision avec le plafond
+            } else {
+                // Vérifier la présence de blocs solides sur les côtés
+                boolean collisionGauche = map.getTileId(posX, posY, map.getLayerIndex("bloc")) == 1;
+                boolean collisionDroite = map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1;
+                return collisionGauche || collisionDroite;
+            }
 		}
 		default:
 			return true;
 		}
 	}
+	
+	public static boolean detecterCollisionSaut(int posX, int posY, TiledMap map)
+	{
+	    int tileId = map.getTileId(posX, posY - 2, map.getLayerIndex("bloc"));
+	    if (tileId == 1) {
+	        // il y a collision, faire rebondir le joueur
+	        return true;
+	    }
+	    return false;
+	}
+
 
 	
 }
