@@ -1,7 +1,10 @@
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class Chasseur extends Pieges {
+		private Image image;
 		private float x = 250;
 		private float y = 400;
 		private int timer = 2000; // en ms   // on initialise le timer a 2s pour que le chasseur puisse tirer direct et pas attendre 2s avant de tirer
@@ -37,7 +40,8 @@ public class Chasseur extends Pieges {
 		}
 		
 
-		Chasseur(float x, float y) {
+		Chasseur(float x, float y) throws SlickException {
+			image = new Image("res/images/chasseur.png");
 			if (x >= 0 && x <= 1024 && y >= 0 && y <= 720) {
 				this.x = x;
 				this.y = y;
@@ -55,8 +59,7 @@ public class Chasseur extends Pieges {
 		}
 
 		public void dessiner(Graphics g) {
-			g.setColor(Color.red);
-			g.fillRect(x, y, 20, 20);
+			g.drawImage(image,x,y);
 			g.drawRect(x-distanceTir+10, y-distanceTir+10, distanceTir*2, distanceTir*2);
 			g.setColor(Color.white); // permet d éviter que tout le reste devienne rouge apres
 		}

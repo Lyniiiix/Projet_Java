@@ -1,17 +1,22 @@
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
+	private Image image_fond;
+	
 	private Personnage joueur ;
 	private Personnage ombre;
 	private int timer;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		image_fond = new Image("res/niveau2/n2_fond.png");
+		
 		joueur = new Personnage();
 		ombre = new Personnage();
 		timer = 0;
@@ -19,6 +24,8 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawImage(image_fond,0,0);
+		
 		joueur.dessiner(g);
 
 		// UN 2 EME PERSO SPAWN AU BOUT DE 2S 

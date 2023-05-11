@@ -1,16 +1,21 @@
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Niveau4 extends BasicGameState {   // niveau glace
+	private Image image_fond;
+	
 	private Personnage joueur ;
 	private Plateforme p1, p2, p3, p4, p5;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		image_fond = new Image("res/niveau4/n4_fond.png");
+		
 		joueur = new Personnage();
 		p1= new Plateforme(100, 580, 1000); // la 3 eme cordonnee c le temps pour le changement de direction
 		p2= new Plateforme(500, 480, 1000);
@@ -21,6 +26,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawImage(image_fond,0,0);
+		
 		joueur.dessiner(g);
 		p1.draw(g);
 		p2.draw(g);
