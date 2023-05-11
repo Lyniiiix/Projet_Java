@@ -59,7 +59,7 @@ public class Chasseur extends Pieges {
 		}
 
 		public void dessiner(Graphics g) {
-			g.drawImage(image,x,y);
+			g.drawImage(image, x-32, y-36, x+32, y+36, 0, 0, image.getWidth(), image.getHeight());
 			g.drawRect(x-distanceTir+10, y-distanceTir+10, distanceTir*2, distanceTir*2);
 			g.setColor(Color.white); // permet d éviter que tout le reste devienne rouge apres
 		}
