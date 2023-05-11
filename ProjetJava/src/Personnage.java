@@ -10,34 +10,33 @@ import org.newdawn.slick.Graphics;
 
 public class Personnage {
 	private float x,y, vx, vy, graviteY;
-	private int bordX = 32;
-	private int bordY = 36;
-	private int masse = 70;
-	private float acc_ap = 9.81f;
+	private int bordX = 32; // largeur perso
+	private int bordY = 36; // longueur perso
+	private int masse = 70; // masse (varier gravite)
+	private float acc_p = 9.81f; // acceleration de la pesanteur
 	
-	private int case_MatX = 32;
-	private int case_MatY = 23;
+	private int case_MatX = 32; // nb colonnes
+	private int case_MatY = 23; // nb lignes
 	
 	private String direct_pers; // droite - gauche
 	private String status_pers; // sol - vol
 	
-	private int posY_avant_saut;
+	private int posY_avant_saut; // juste test
 	
 	//Image image_perso = new Image();
 	private Color color;
 	
-	private int compteurDeSaut= 0;
-	
+	private int compteurDeSaut = 0;	
 	
 	// CONSTRUCTEUR PAR DEFAUT
 	Personnage(){
-		graviteY = masse * acc_ap;
+		graviteY = masse * acc_p;
 		
-		this.x = 1;
+		this.x = 1; // on place au debut en bas a gauche
 		this.y = 18;
 		
 		this.color = Color.white;
-		vx = 2;
+		vx = 2; // vitesse horizontale
 		vy = 0;
 		
 		this.direct_pers = "droite";
@@ -49,7 +48,7 @@ public class Personnage {
 	
 	Personnage(float x, float y)
 	{
-		if(x>=1 && x<=case_MatX-1 && y>=1 && y<=case_MatY-1) {  // pasque c une grille de 32 par 20
+		if(x>=1 && x<=case_MatX-1 && y>=1 && y<=case_MatY-1) {  // grille de 32 par 23
 			this.x = x;
 			this.y = y;
 		}
@@ -58,7 +57,7 @@ public class Personnage {
 			this.y = case_MatY-1;
 		}
 		
-		graviteY = masse * acc_ap;
+		graviteY = masse * acc_p;
 		
 		this.color = Color.white;
 		vx = 2 ;
@@ -140,14 +139,14 @@ public class Personnage {
 	
 	public void setPosY_avant_saut(int posY_avant_saut)
 	{
-		this.posY_avant_saut = this.posY_avant_saut;
+		this.posY_avant_saut = posY_avant_saut;
 	}
 
 
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.setColor(color);
-		g.fillRect(x*32, y*36, 32, 36);
+		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)
 		
 	}
 	
@@ -156,10 +155,10 @@ public class Personnage {
 	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*32 + vx <= gc.getWidth() - (bordX + 32)) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*case_MatX + vx <= gc.getWidth() - (bordX + 32)) {
 			x += vx/case_MatY;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && x*32 - vx >= bordX) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && x*case_MatX - vx >= bordX) {
 			x -= vx/case_MatY;
 		}
 	}

@@ -15,10 +15,45 @@ public class Map {
 	
 	private TiledMap map;
 	
+	private int[][] matrice_map = new int[23][32];	
 	
-	Map(GameContainer gc, Image image_fond, TiledMap map){
+	public Map(GameContainer gc, Image image_fond, TiledMap map){
 		this.image_fond = image_fond;
 		this.map = map;
+		this.genererMatrice(); // 0 vide / 1 bloc bloquant
 	}
+	
+	public void toArray()
+	{
+		for (int y = 0; y < Constantes.MAP_Y; y++) {
+		    for (int x = 0; x < Constantes.MAP_X; x++) {
+		        int tileId = map.getTileId(x, y, map.getLayerIndex("bloc")); // layer d'index 1
+		        if (tileId == 0) {
+		            System.out.print("0 ");
+		        } else {
+		            System.out.print("1 ");
+		        }
+		    }
+		    System.out.println();
+		}
+		System.out.println();
+
+	}
+	
+	public void genererMatrice()
+	{
+		for (int y = 0; y < 23; y++) {
+		    for (int x = 0; x < 32; x++) {
+		        int tileId = map.getTileId(x, y, map.getLayerIndex("bloc"));
+		        if (tileId == 0) {
+		        	matrice_map[y][x] = 0;
+		        } else {
+		        	matrice_map[y][x] = 1;
+		        }
+		    }
+		}
+	}
+	
+	
 }
 

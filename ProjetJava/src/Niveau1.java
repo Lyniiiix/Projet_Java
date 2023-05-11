@@ -1,3 +1,4 @@
+
 import org.newdawn.slick.Color;
 
 import java.io.IOException;
@@ -18,7 +19,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	private Image image_fond;
 	private TiledMap map;
 	
-	private Map mapNiveau1;
+	public Map mapN1;
+	
 	//private Sound son;
 	private Clip son;
 	
@@ -26,15 +28,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	private int timer = 0;
 	private boolean mort = false;
 	
-	private Collisions collisionsNiveau1;
+	private Collisions collisionsN1;
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
 		joueur = new Personnage(); 
 
 		// son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
-		
-		
 		// TOUT CA C POUR LA MUSIQUE MAIS CA MARCHE PAS  !!!!
 		/*
 		AudioInputStream audioInputStream;
@@ -56,18 +56,18 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			e.printStackTrace();
 		}
 		*/
-		 
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
-		mapNiveau1 = new Map(gc,image_fond,map);
 		
-		collisionsNiveau1 = new Collisions(map);
+		mapN1 = new Map(gc, image_fond, map);
+		
+		collisionsN1 = new Collisions(map);
 	}
 	
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(image_fond,0,0); //dessine image_fond
-		map.render(0, 0); //dessiner la map a partir du .tmx correspondant
+		g.drawImage(image_fond,0,0); // dessiner image_fond
+		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
 		
 		joueur.dessiner(g);
 		
@@ -96,35 +96,34 @@ public class Niveau1 extends BasicGameState {    // niveau foret
         }
 		*/
 		
-		
+		/* Calculs */
 		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
 		
 		
-		int posX = (int)(Math.floor(joueur.getX()));
-		int posY = (int)(Math.floor(joueur.getY()));
-		System.out.println(String.format("Perso posX : %s , poxY : %s",posX,posY));
-		
-		
 		//System.out.println(joueur.getStatus());
 		//System.out.println(joueur.getDirect());
+		int posX = (int)(Math.floor(joueur.getX())); // posX en index X
+		int posY = (int)(Math.floor(joueur.getY())); // posY en index Y
+		//System.out.println(String.format("Perso posX : %s , poxY : %s",posX,posY));
+		
+		//Collisions.detecterSol(posX, posY, map);
 		
 		
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_SPACE)) {
-			joueur.setPosY_avant_saut((int)(Math.floor(joueur.getY())));
 			joueur.setStatus("saut");
 			joueur.sautNormal(gc);
 		}
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsNiveau1.collisionSelonPos(posX, posY,"droite")) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsN1.collisionSelonPos(posX, posY,"droite")) {
 			joueur.deplacer(gc);
 			joueur.setStatus("droite");
 			/*if(joueur.rebond())
 				joueur.setX(10);*/
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionsNiveau1.collisionSelonPos(posX, posY,"gauche")) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionsN1.collisionSelonPos(posX, posY,"gauche")) {
 			joueur.deplacer(gc);
 			joueur.setStatus("gauche");
 			/*if(joueur.rebond())

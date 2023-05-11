@@ -4,34 +4,11 @@ public class Collisions {
 	
 	private TiledMap map;
 	
-	private int mapWidth;
-	private int mapHeight;
-	
 	public Collisions (TiledMap map)
 	{
 		this.map = map;
-		this.mapWidth = map.getWidth();
-		this.mapHeight = map.getHeight();
 	}
 	
-	/*
-	public void estEnCollision(int posX, int posY)
-	{
-		for (int y = 0; y < mapHeight; y++) {
-		    for (int x = 0; x < mapWidth; x++) {
-		        int tileId = map.getTileId(x, y, map.getLayerIndex("bloc")); // layer d'index 1
-		        if (tileId == 0) {
-		            System.out.print("0 ");
-		        } else {
-		            System.out.print("1 ");
-		        }
-		    }
-		    System.out.println();
-		}
-		
-		//return map.getTileId(posX + 1, posY + 1, map.getLayerIndex("bloc"));
-	}
-	*/
 	
 	public boolean collisionSelonPos(int posX, int posY, String status_perso)
 	{
@@ -60,16 +37,59 @@ public class Collisions {
 		}
 	}
 	
-	public static boolean detecterCollisionSaut(int posX, int posY, TiledMap map)
+	public static void detecterCollisionSaut(TiledMap map)
 	{
-	    int tileId = map.getTileId(posX, posY - 2, map.getLayerIndex("bloc"));
-	    if (tileId == 1) {
-	        // il y a collision, faire rebondir le joueur
-	        return true;
-	    }
-	    return false;
+		for (int y = 0; y < Constantes.LARGEUR_ECRAN; y++) {
+		    for (int x = 0; x < Constantes.HAUTEUR_ECRAN; x++) {
+		        int tileId = map.getTileId(x, y, map.getLayerIndex("bloc")); // layer d'index 1
+		        if (tileId == 0) // si c'est le premier layer
+		        {
+		            System.out.print("0 ");
+		        } else {
+		            System.out.print("1 ");
+		        }
+		    }
+		    System.out.println();
+		}
+	}
+	
+	
+	
+	public static void detecterSol(int posX, int posY, TiledMap map)
+	{
+		if (map.getTileId(posX, posY +1, map.getLayerIndex("bloc")) == 1)
+		{
+			System.out.println("Sol");
+		} else {
+			System.out.println("Pas Sol");
+		}
 	}
 
-
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	public void estEnCollision(int posX, int posY)
+	{
+		for (int y = 0; y < mapHeight; y++) {
+		    for (int x = 0; x < mapWidth; x++) {
+		        int tileId = map.getTileId(x, y, map.getLayerIndex("bloc")); // layer d'index 1
+		        if (tileId == 0) {
+		            System.out.print("0 ");
+		        } else {
+		            System.out.print("1 ");
+		        }
+		    }
+		    System.out.println();
+		}
+		
+		//return map.getTileId(posX + 1, posY + 1, map.getLayerIndex("bloc"));
+	}
+	*/
 	
 }
