@@ -2,41 +2,51 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Collisions {
 	
-	private TiledMap map;
+	private Map map;
+	private TiledMap mapTMX;
+	private int[][] matriceMap;
+	private Objet[] objetsMap;
 	
-	public Collisions (TiledMap map)
+	public Collisions (Map map)
 	{
 		this.map = map;
+		this.mapTMX = map.getMapTMX();
+		this.matriceMap = map.getMatrice();
+		this.objetsMap = map.getObjets();
 	}
 	
 	
-	public boolean collisionSelonPos(int posX, int posY, String status_perso)
+	public boolean collisionX(int posX, int posY, String status_perso)
 	{
 		//System.out.println(map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1);
 		
 		
 		switch (status_perso) {
 		case "droite": {
-			return map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1;
+			return mapTMX.getTileId(posX + 1, posY, mapTMX.getLayerIndex("bloc")) == 1;
 		}
 		case "gauche": {
-			return map.getTileId(posX, posY, map.getLayerIndex("bloc")) == 1;
-		}
-		case "saut": {
-			if (map.getTileId(posX, posY - 1, map.getLayerIndex("bloc")) == 1) { // Si la case au-dessus est un bloc solide
-                return true; // Collision avec le plafond
-            } else {
-                // Vérifier la présence de blocs solides sur les côtés
-                boolean collisionGauche = map.getTileId(posX, posY, map.getLayerIndex("bloc")) == 1;
-                boolean collisionDroite = map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1;
-                return collisionGauche || collisionDroite;
-            }
+			return mapTMX.getTileId(posX, posY, mapTMX.getLayerIndex("bloc")) == 1;
 		}
 		default:
 			return true;
 		}
 	}
 	
+	// pour tracker le bloc sous le Perso
+	public void detecterSol(float posX, float posY)
+	{
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	/*
+	// marche pas je pense
 	public static void detecterCollisionSaut(TiledMap map)
 	{
 		for (int y = 0; y < Constantes.LARGEUR_ECRAN; y++) {
@@ -52,26 +62,7 @@ public class Collisions {
 		    System.out.println();
 		}
 	}
-	
-	
-	
-	public static void detecterSol(int posX, int posY, TiledMap map)
-	{
-		if (map.getTileId(posX, posY +1, map.getLayerIndex("bloc")) == 1)
-		{
-			System.out.println("Sol");
-		} else {
-			System.out.println("Pas Sol");
-		}
-	}
-
-	
-	
-	
-	
-	
-	
-	
+	*/
 	
 	/*
 	public void estEnCollision(int posX, int posY)
@@ -89,6 +80,22 @@ public class Collisions {
 		}
 		
 		//return map.getTileId(posX + 1, posY + 1, map.getLayerIndex("bloc"));
+	}
+	*/
+	
+	
+	/*
+	// pour tracker le bloc sous le Perso
+	public void detecterSol(float posX, float posY)
+	{
+		if (mapTMX.getTileId(posX, posY +1, mapTMX.getLayerIndex("bloc")) == 1)
+		{
+			System.out.println("Sol");
+		} else {
+			System.out.println("Pas Sol");
+		}
+		
+		
 	}
 	*/
 	

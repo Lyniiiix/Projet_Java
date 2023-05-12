@@ -16,10 +16,10 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Niveau1 extends BasicGameState {    // niveau foret
 	
-	private Image image_fond;
-	private TiledMap map;
+	private Image image_fond; // image fond map
+	private TiledMap map; // schéma TMX map
 	
-	public Map mapN1;
+	public Map mapN1; // instance d'une map
 	
 	//private Sound son;
 	private Clip son;
@@ -28,7 +28,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	private int timer = 0;
 	private boolean mort = false;
 	
-	private Collisions collisionsN1;
+	private Collisions collisionsN1; // instance Collisions
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
@@ -61,7 +61,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		mapN1 = new Map(gc, image_fond, map);
 		
-		collisionsN1 = new Collisions(map);
+		
+		// parcour les objets bloquant de la map
+		for (int i = 0; i < mapN1.getObjets().length; i++)
+			System.out.println( mapN1.getObjets()[i] );
+			
+		
+		collisionsN1 = new Collisions(mapN1);
 	}
 	
 	@Override
@@ -106,9 +112,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		//System.out.println(joueur.getDirect());
 		int posX = (int)(Math.floor(joueur.getX())); // posX en index X
 		int posY = (int)(Math.floor(joueur.getY())); // posY en index Y
-		//System.out.println(String.format("Perso posX : %s , poxY : %s",posX,posY));
-		
-		//Collisions.detecterSol(posX, posY, map);
+		//System.out.println(String.format("Perso posX : %s , poxY : %s",joueur.getPosX_px(),joueur.getPosY_px()));
 		
 		
 		Input mvt = gc.getInput();
@@ -117,13 +121,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			joueur.setStatus("saut");
 			joueur.sautNormal(gc);
 		}
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsN1.collisionSelonPos(posX, posY,"droite")) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsN1.collisionX(posX, posY,"droite")) {
 			joueur.deplacer(gc);
 			joueur.setStatus("droite");
 			/*if(joueur.rebond())
 				joueur.setX(10);*/
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionsN1.collisionSelonPos(posX, posY,"gauche")) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionsN1.collisionX(posX, posY,"gauche")) {
 			joueur.deplacer(gc);
 			joueur.setStatus("gauche");
 			/*if(joueur.rebond())

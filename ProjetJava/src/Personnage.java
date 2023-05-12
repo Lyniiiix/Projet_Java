@@ -142,6 +142,14 @@ public class Personnage {
 		this.posY_avant_saut = posY_avant_saut;
 	}
 
+	public float getPosX_px()
+	{
+		return x * 32;
+	}
+	public float getPosY_px()
+	{
+		return y * 36;
+	}
 
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
