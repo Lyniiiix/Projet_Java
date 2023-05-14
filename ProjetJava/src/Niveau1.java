@@ -61,32 +61,14 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		mapN1 = new Map(gc, image_fond, map);
 		
-		
+		/*
 		// parcour les objets bloquant de la map
 		for (int i = 0; i < mapN1.getObjets().length; i++)
 			System.out.println( mapN1.getObjets()[i] );
-			
+		*/
 		
 		collisionsN1 = new Collisions(mapN1);
 	}
-	
-	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(image_fond,0,0); // dessiner image_fond
-		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
-		
-		joueur.dessiner(g);
-		
-		/*
-		int posXpx = (int)(Math.floor(joueur.getX()));
-		int posYpx = (int)(Math.floor(joueur.getY()));
-		System.out.println(String.format("Perso posX : %s , poxY : %s",posXpx*32,posYpx*36));
-		*/
-		
-		g.drawString(timer/1000f+" s", 100, 100);
-		
-	}
-
 	
 	
 	@Override
@@ -107,12 +89,14 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		joueur.gravite(delta);
 		
 		
+		int posX = (int)(Math.floor(joueur.getX())); // posX en index X de matrice
+		int posY = (int)(Math.floor(joueur.getY())); // posY en index Y de matrice
+		System.out.println(String.format("Coord. perso : posXpx : %s , poxYpx : %s",joueur.getPosX_px(),joueur.getPosY_px()));
+		System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
 		
-		//System.out.println(joueur.getStatus());
-		//System.out.println(joueur.getDirect());
-		int posX = (int)(Math.floor(joueur.getX())); // posX en index X
-		int posY = (int)(Math.floor(joueur.getY())); // posY en index Y
-		//System.out.println(String.format("Perso posX : %s , poxY : %s",joueur.getPosX_px(),joueur.getPosY_px()));
+		
+		
+		//System.out.println(collisionsN1.enCollision(joueur.getX(), joueur.getY()));
 		
 		
 		Input mvt = gc.getInput();
@@ -121,13 +105,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			joueur.setStatus("saut");
 			joueur.sautNormal(gc);
 		}
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionsN1.collisionX(posX, posY,"droite")) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
 			joueur.deplacer(gc);
 			joueur.setStatus("droite");
 			/*if(joueur.rebond())
 				joueur.setX(10);*/
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionsN1.collisionX(posX, posY,"gauche")) {
+		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc);
 			joueur.setStatus("gauche");
 			/*if(joueur.rebond())
@@ -142,7 +126,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			sbg.enterState(0);
 		}
 		
-		
+		// timer
 		timer = timer+delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
 		if(timer>=300000) { //augmenter pour test
@@ -159,6 +143,17 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			mort = false;
 			joueur = new Personnage();
 		}
+	}
+	
+	@Override
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawImage(image_fond,0,0); // dessiner image_fond
+		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
+		
+		joueur.dessiner(g);
+		
+		g.drawString(timer/1000f+" s", 100, 100);
+		
 	}
 
 	@Override

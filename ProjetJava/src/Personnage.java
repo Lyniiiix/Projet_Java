@@ -48,7 +48,7 @@ public class Personnage {
 	
 	Personnage(float x, float y)
 	{
-		if(x>=1 && x<=case_MatX-1 && y>=1 && y<=case_MatY-1) {  // grille de 32 par 23
+		if(x >= 1 && x <= case_MatX - 1 && y >= 1 && y <= case_MatY - 1) {  // grille de 32 par 23
 			this.x = x;
 			this.y = y;
 		}

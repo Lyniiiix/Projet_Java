@@ -16,6 +16,39 @@ public class Collisions {
 	}
 	
 	
+	public boolean enCollision(float posX, float posY) {
+		/*
+		// Vérifier si le joueur est en dehors de la carte
+	    if (posX < 0 || posX + Constantes.LARGEUR_PERSO > Constantes.MAP_X * Constantes.LARGEUR_PERSO || posY < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_CASE || posY + Constantes.HAUTEUR_PERSO > Constantes.MAP_Y * Constantes.HAUTEUR_PERSO) {
+	        return true;
+	    }
+	    */
+	    
+	    // Vérifier si le joueur est en collision avec un objet
+	    for (Objet objet : objetsMap) {
+	        if (posX + Constantes.LARGEUR_PERSO > objet.getx1() && posX < objet.getx2() && posY + Constantes.HAUTEUR_PERSO > objet.gety1() && posY < objet.gety2()) {
+	            return true;
+	        }
+	    }
+	    
+	    // Aucune collision détectée
+	    return false;
+	}
+
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	public boolean collisionX(int posX, int posY, String status_perso)
 	{
 		//System.out.println(map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1);
@@ -40,7 +73,7 @@ public class Collisions {
 	}
 
 	
-	
+	*/
 	
 	
 	
@@ -98,5 +131,3 @@ public class Collisions {
 		
 	}
 	*/
-	
-}

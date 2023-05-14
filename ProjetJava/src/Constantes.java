@@ -11,4 +11,7 @@ public class Constantes {
 	
 	public static final int LARGEUR_CASE = 32;
 	public static final int HAUTEUR_CASE = 36;
+	
+	public static final int LARGEUR_PERSO = 32;
+	public static final int HAUTEUR_PERSO = 36;
 }
