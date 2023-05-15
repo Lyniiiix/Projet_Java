@@ -24,14 +24,19 @@ public class Collisions {
 	    }
 	    */
 	    
-	    // Vérifier si le joueur est en collision avec un objet
 	    for (Objet objet : objetsMap) {
-	        if (posX + Constantes.LARGEUR_PERSO > objet.getx1() && posX < objet.getx2() && posY + Constantes.HAUTEUR_PERSO > objet.gety1() && posY < objet.gety2()) {
+	    	System.out.println("posX : " + posX + " , " + "posY : " + posY);
+		    System.out.println(objet);
+	        if ((posX + Constantes.LARGEUR_PERSO) <= objet.getx1() &&
+	        	posX >= (objet.getx1() + Constantes.LARGEUR_CASE) &&
+	        	posY >= (objet.gety1() + Constantes.HAUTEUR_CASE) &&
+	        	(posY + Constantes.HAUTEUR_PERSO) >= objet.gety1()
+	        )
+	        {
 	            return true;
 	        }
 	    }
 	    
-	    // Aucune collision détectée
 	    return false;
 	}
 

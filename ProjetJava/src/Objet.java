@@ -1,19 +1,19 @@
 
 public class Objet {
-	private static int compteur_objets = 1;
+	private int id_objet;
 	
 	private String nom;
 	
 	private int id_tuile;
 	
-	private int x1; // pt x en px de depart
-	private int y1; // pt y en px d'arrivee
+	private int x1; // pt x (px) de depart
+	private int y1; // pt y (px) d'arrivee
  	private int x2;
 	private int y2;
 	
-	public Objet(String nom, int x1, int y1)
+	public Objet(String nom,int id_objet, int x1, int y1)
 	{
-		compteur_objets ++;
+		this.id_objet = id_objet;
 		this.nom = nom;
 		this.x1 = x1;
 		this.y1 = y1;
@@ -48,6 +48,6 @@ public class Objet {
 	
 	public String toString()
 	{
-		return String.format("Objet %s : %s , x1: %s , x2 %s | y1: %s , y2: %s ",compteur_objets,nom,x1,x2,y1,y2);
+		return String.format("Objet %s : %s , x1: %s , x2 %s | y1: %s , y2: %s ",id_objet,nom,x1,x2,y1,y2);
 	}
 }

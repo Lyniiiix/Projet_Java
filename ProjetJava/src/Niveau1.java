@@ -91,12 +91,11 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		int posX = (int)(Math.floor(joueur.getX())); // posX en index X de matrice
 		int posY = (int)(Math.floor(joueur.getY())); // posY en index Y de matrice
-		System.out.println(String.format("Coord. perso : posXpx : %s , poxYpx : %s",joueur.getPosX_px(),joueur.getPosY_px()));
-		System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
+		//System.out.println(String.format("Coord. perso : posXpx : %s , poxYpx : %s",joueur.getPosX_px(),joueur.getPosY_px()));
+		//System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
 		
-		
-		
-		//System.out.println(collisionsN1.enCollision(joueur.getX(), joueur.getY()));
+	
+		System.out.println(collisionsN1.enCollision(joueur.getPosX_px(), joueur.getPosY_px()));
 		
 		
 		Input mvt = gc.getInput();
@@ -123,10 +122,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		}
 		
 		// timer
-		timer = timer+delta;
+		timer = timer + delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer>=3000) { //augmenter pour test
-			timer=0;
+		if(timer >= 30000) { //augmenter pour test
+			timer = 0;
 			//son.stop(); // marche pas
 			
 			mort = true;
@@ -143,7 +142,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(image_fond,0,0); // dessiner image_fond
+		g.drawImage(image_fond, 0, 0); // dessiner image_fond
 		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
 		
 		joueur.dessiner(g);

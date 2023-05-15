@@ -9,13 +9,8 @@ import org.newdawn.slick.Graphics;
 public class Personnage {
 	private Image image;
 	private float x,y, vx, vy, graviteY;
-	private int bordX = 32; // largeur perso
-	private int bordY = 36; // longueur perso
 	private int masse = 70; // masse (varier gravite)
 	private float acc_p = 9.81f; // acceleration de la pesanteur
-	
-	private int case_MatX = 32; // nb colonnes
-	private int case_MatY = 23; // nb lignes
 	
 	private String direct_pers; // droite - gauche
 	private String status_pers; // sol - vol
@@ -45,16 +40,15 @@ public class Personnage {
 
 
 	// creer un perso aux cordonnées voulues
-	
 	Personnage(float x, float y) throws SlickException
 	{
-		if(x >= 1 && x <= case_MatX - 1 && y >= 1 && y <= case_MatY - 1) {  // grille de 32 par 23
+		if(x >= 1 && x <= Constantes.MAP_X - 1 && y >= 1 && y <= Constantes.MAP_Y - 1) {  // grille de 32 par 23
 			this.x = x;
 			this.y = y;
 		}
 		else {
-			this.x=1;
-			this.y = case_MatY-1;
+			this.x = 1;
+			this.y = Constantes.MAP_Y - 1;
 		}
 		
 		graviteY = masse * acc_p;
@@ -71,7 +65,8 @@ public class Personnage {
 
 	
 	// GETTEURS ET SETTEURS
-	
+	// *********************************************** //
+	// Gravité
 	public float getGraviteY() {
 		return graviteY;
 	}
@@ -79,14 +74,23 @@ public class Personnage {
 	public void setGraviteY(float sautY) {
 		this.graviteY = sautY;
 	}
-
+	// *********************************************** //
+	// Coordonnées float
 	public float getX() {
 		return x;
 	}
 
 	public void setX(float x) {
-		if(x>=1 && x<=case_MatX-1)
+		if(x >= 1 && x <= Constantes.MAP_X - 1)
 			this.x = x;
+	}
+	
+	public float getVx() {
+		return vx;
+	}
+
+	public void setVx(float vx) {
+		this.vx = vx;
 	}
 
 	public float getY() {
@@ -94,7 +98,7 @@ public class Personnage {
 	}
 
 	public void setY(float y) {
-		if(y>=1 && y<=case_MatX-1)
+		if(y >= 1 && y <= Constantes.MAP_X - 1)
 			this.y = y;
 	}
 
@@ -105,15 +109,16 @@ public class Personnage {
 	public void setVy(float vy) {
 		this.vy = vy;
 	}
-
-	public float getVx() {
-		return vx;
+	public float getPosX_px()
+	{
+		return x * 32;
 	}
-
-	public void setVx(float vx) {
-		this.vx = vx;
+	public float getPosY_px()
+	{
+		return y * 36;
 	}
-	
+	// *********************************************** //
+	// status personnage
 	public String getStatus()
 	{
 		return status_pers;
@@ -143,21 +148,17 @@ public class Personnage {
 	{
 		this.posY_avant_saut = posY_avant_saut;
 	}
-
-	public float getPosX_px()
-	{
-		return x * 32;
-	}
-	public float getPosY_px()
-	{
-		return y * 36;
-	}
-
+	
+	// *********************************************** //
+	
+	
+	
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.drawImage(image, x-32, y-36, x+32, y+36, 0, 0, image.getWidth(), image.getHeight());
-		/*g.setColor(color);
-		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)*/
+		
+		g.setColor(color);
+		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)
 		
 	}
 	
@@ -166,11 +167,11 @@ public class Personnage {
 	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && x*case_MatX + vx <= gc.getWidth() - (bordX + 32)) {
-			x += vx/case_MatY;
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && x * Constantes.MAP_X + vx <= gc.getWidth() - (Constantes.LARGEUR_PERSO + 32)) {
+			x += vx / Constantes.MAP_Y;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && x*case_MatX - vx >= bordX) {
-			x -= vx/case_MatY;
+		if(mvt.isKeyDown(Input.KEY_LEFT) && x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO) {
+			x -= vx / Constantes.MAP_Y;
 		}
 	}
 
@@ -186,13 +187,11 @@ public class Personnage {
 		
 	}
 
-
 	
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
-
 	public void gravite(int delta) {
-		if(y < case_MatY - 2)  // pour la bordure + la hauteur du bonhomme
-			vy += graviteY*delta/1000f;
+		if(y < Constantes.MAP_Y - 2)  // pour la bordure + la hauteur du bonhomme
+			vy += graviteY * delta / 1000f;
 		else {
 			vy = 0;
 			compteurDeSaut = 0;
@@ -202,7 +201,7 @@ public class Personnage {
 
 	public void graviteInversee(int delta) {
 		if(y > 1) {
-			vy += graviteY*delta/1000f;
+			vy += graviteY * delta / 1000f;
 		}
 		else {
 			vy=0;
@@ -211,14 +210,23 @@ public class Personnage {
 	}
 
 	public void sauter(int delta) {
-		y += (vy*delta/1000f)/36;
+		y += (vy * delta / 1000f) / 36;
 	}
 
 	public void sauterInversee(int delta) {
-		y -= (vy*delta/1000f)/36;
+		y -= (vy * delta / 1000f) / 36;
 	}
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// permettrait a l ombre de suivre le bonhomme                  !!!!! MARCHE PAS !!!!
 	public static void suivre(Personnage j1, Personnage j2) {
 		// faire avancer j1 aux anciennes coordonnees de j2

@@ -72,14 +72,20 @@ public class Map {
 	    objetsMap = new Objet[count];
 	    
 	    count = 0;
+	    
 	    for (int y = 0; y < 23; y++) {
 	        for (int x = 0; x < 32; x++) {
 	            if (matrice_map[y][x] == 1) {
-	                objetsMap[count] = new Objet("bloc", x * 32, y * 36);
+	                objetsMap[count] = new Objet("bloc",count + 1 ,x * 32, y * 36);
 	                count++;
 	            }
 	        }
 	    }
+	}
+	
+	public int getNbObjets()
+	{
+		return objetsMap.length;
 	}
 
 	
