@@ -1,14 +1,13 @@
-import java.awt.Image;
-
-
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 public class Personnage {
+	private Image image;
 	private float x,y, vx, vy, graviteY;
 	private int bordX = 32; // largeur perso
 	private int bordY = 36; // longueur perso
@@ -29,7 +28,8 @@ public class Personnage {
 	private int compteurDeSaut = 0;	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	Personnage(){
+	Personnage() throws SlickException{
+		image = new Image("res/images/perso.png");
 		graviteY = masse * acc_p;
 		
 		this.x = 1; // on place au debut en bas a gauche
@@ -46,7 +46,7 @@ public class Personnage {
 
 	// creer un perso aux cordonnées voulues
 	
-	Personnage(float x, float y)
+	Personnage(float x, float y) throws SlickException
 	{
 		if(x >= 1 && x <= case_MatX - 1 && y >= 1 && y <= case_MatY - 1) {  // grille de 32 par 23
 			this.x = x;
@@ -65,6 +65,8 @@ public class Personnage {
 		
 		this.direct_pers = "droite";
 		this.status_pers = "sol";
+		
+		image = new Image("res/images/perso.png");
 	}
 
 	
@@ -153,8 +155,9 @@ public class Personnage {
 
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
-		g.setColor(color);
-		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)
+		g.drawImage(image, x-32, y-36, x+32, y+36, 0, 0, image.getWidth(), image.getHeight());
+		/*g.setColor(color);
+		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)*/
 		
 	}
 	
@@ -240,13 +243,6 @@ public class Personnage {
 		}
 	}
 	
-	
-	public boolean rebond() {
-		if(x==32 || x==1)
-			return true;
-		else
-			return false;
-	}
 	
 	
 	public void glisser() {

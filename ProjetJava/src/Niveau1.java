@@ -108,14 +108,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
 			joueur.deplacer(gc);
 			joueur.setStatus("droite");
-			/*if(joueur.rebond())
-				joueur.setX(10);*/
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc);
 			joueur.setStatus("gauche");
-			/*if(joueur.rebond())
-				joueur.setVx(joueur.getVx()+5);*/
 		}
 		
 		
@@ -129,7 +125,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// timer
 		timer = timer+delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer>=300000) { //augmenter pour test
+		if(timer>=3000) { //augmenter pour test
 			timer=0;
 			//son.stop(); // marche pas
 			
