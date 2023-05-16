@@ -1,9 +1,15 @@
+package niveaux;
+
+import javax.swing.DefaultBoundedRangeModel;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import main.*;
 
 public class EasterEgg extends BasicGameState {
 	private ZoneTexte zone = new ZoneTexte();

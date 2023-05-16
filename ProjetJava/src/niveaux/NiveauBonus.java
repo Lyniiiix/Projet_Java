@@ -1,11 +1,17 @@
+package niveaux;
+
+import objets.*;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class NiveauBonus extends BasicGameState {
+	private Image porteSortie;
 	private Personnage joueur ;
 	private float timer =0;
 	private int compteurChangements =0; // PERMET DE COMPTER LES NMB DE CHANGEMENTS DEPUIS LE DEBUT
@@ -13,11 +19,14 @@ public class NiveauBonus extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		
 		joueur.dessiner(g);
 		
 	}

@@ -1,3 +1,4 @@
+package main;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class TrackingNiveau {

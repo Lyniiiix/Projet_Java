@@ -1,3 +1,4 @@
+package main;
 
 public class Constantes {
 	public static final String NOM_JEU = "Angry Jump";

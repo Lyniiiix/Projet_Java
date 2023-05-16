@@ -1,3 +1,4 @@
+package niveaux;
 
 import org.newdawn.slick.Color;
 
@@ -14,9 +15,14 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import objets.*;
+import main.*;
+
 public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	private Image image_fond; // image fond map
+	private Image porteSortie; // porte de fin du niveau
+	
 	private TiledMap map; // schéma TMX map
 	
 	public Map mapN1; // instance d'une map
@@ -56,6 +62,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			e.printStackTrace();
 		}
 		*/
+		porteSortie = new Image("res/images/porte fermee.png");
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
 		
@@ -94,8 +101,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		//System.out.println(String.format("Coord. perso : posXpx : %s , poxYpx : %s",joueur.getPosX_px(),joueur.getPosY_px()));
 		//System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
 		
-	
-		System.out.println(collisionsN1.enCollision(joueur.getPosX_px(), joueur.getPosY_px()));
+		
+		boolean collisionX =  collisionsN1.enCollisionX(joueur.getPosX_px(), joueur.getPosY_px());
 		
 		
 		Input mvt = gc.getInput();
@@ -105,11 +112,11 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc,collisionX);
 			joueur.setStatus("droite");
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc,collisionX);
 			joueur.setStatus("gauche");
 		}
 		
@@ -124,7 +131,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// timer
 		timer = timer + delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer >= 30000) { //augmenter pour test
+		if(timer >= 3000000) { //augmenter pour test
 			timer = 0;
 			//son.stop(); // marche pas
 			
@@ -144,6 +151,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(image_fond, 0, 0); // dessiner image_fond
 		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
+		
+		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
 		joueur.dessiner(g);
 		

@@ -1,4 +1,7 @@
+package main;
 import org.newdawn.slick.tiled.TiledMap;
+
+import objets.*;
 
 public class Collisions {
 	
@@ -16,25 +19,17 @@ public class Collisions {
 	}
 	
 	
-	public boolean enCollision(float posX, float posY) {
-		/*
-		// Vérifier si le joueur est en dehors de la carte
-	    if (posX < 0 || posX + Constantes.LARGEUR_PERSO > Constantes.MAP_X * Constantes.LARGEUR_PERSO || posY < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_CASE || posY + Constantes.HAUTEUR_PERSO > Constantes.MAP_Y * Constantes.HAUTEUR_PERSO) {
-	        return true;
-	    }
-	    */
+	public boolean enCollisionX(float posX, float posY) {
 	    
 	    for (Objet objet : objetsMap) {
 	    	System.out.println("posX : " + posX + " , " + "posY : " + posY);
-		    System.out.println(objet);
-	        if ((posX + Constantes.LARGEUR_PERSO) <= objet.getx1() &&
-	        	posX >= (objet.getx1() + Constantes.LARGEUR_CASE) &&
-	        	posY >= (objet.gety1() + Constantes.HAUTEUR_CASE) &&
-	        	(posY + Constantes.HAUTEUR_PERSO) >= objet.gety1()
-	        )
+		    //System.out.println(objet);
+	        if ((posX + Constantes.LARGEUR_PERSO) <= objet.getx1() ||
+	        	posX >= (objet.getx1() + Constantes.LARGEUR_CASE))
 	        {
-	            return true;
+	        	return true;
 	        }
+	        
 	    }
 	    
 	    return false;

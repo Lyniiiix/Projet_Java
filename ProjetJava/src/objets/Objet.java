@@ -1,3 +1,4 @@
+package objets;
 
 public class Objet {
 	private int id_objet;

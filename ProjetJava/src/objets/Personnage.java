@@ -1,3 +1,5 @@
+package objets;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
@@ -5,6 +7,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+
+import main.*;
 
 public class Personnage {
 	private Image image;
@@ -23,7 +27,7 @@ public class Personnage {
 	private int compteurDeSaut = 0;	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	Personnage() throws SlickException{
+	public Personnage() throws SlickException{
 		image = new Image("res/images/perso.png");
 		graviteY = masse * acc_p;
 		
@@ -40,7 +44,7 @@ public class Personnage {
 
 
 	// creer un perso aux cordonnées voulues
-	Personnage(float x, float y) throws SlickException
+	public Personnage(float x, float y) throws SlickException
 	{
 		if(x >= 1 && x <= Constantes.MAP_X - 1 && y >= 1 && y <= Constantes.MAP_Y - 1) {  // grille de 32 par 23
 			this.x = x;
@@ -163,14 +167,19 @@ public class Personnage {
 	}
 	
 	
+	public void deplacer(GameContainer gc)
+	{
+		
+	}
+	
 	// DEPLACER BONHOMME
-	public void deplacer(GameContainer gc) {
+	public void deplacer(GameContainer gc, boolean collisionX) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && x * Constantes.MAP_X + vx <= gc.getWidth() - (Constantes.LARGEUR_PERSO + 32)) {
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionX) { //&& x * Constantes.MAP_X + vx <= gc.getWidth() - (Constantes.LARGEUR_PERSO + 32)
 			x += vx / Constantes.MAP_Y;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO) {
+		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionX) { //&& x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO
 			x -= vx / Constantes.MAP_Y;
 		}
 	}

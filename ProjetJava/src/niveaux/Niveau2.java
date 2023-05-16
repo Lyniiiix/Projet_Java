@@ -1,3 +1,7 @@
+package niveaux;
+
+import objets.*;
+import main.*;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	private Image image_fond;
 	
+	private Image porteSortie;
 	private Personnage joueur ;
 	private Personnage ombre;
 	private int timer;
@@ -18,6 +23,7 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		image_fond = new Image("res/niveau2/n2_fond.png");
 		
+		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage();
 		ombre = new Personnage();
 		timer = 0;
@@ -26,6 +32,8 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(image_fond,0,0);
+		
+		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
 		joueur.dessiner(g);
 

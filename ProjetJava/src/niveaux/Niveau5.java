@@ -1,3 +1,7 @@
+package niveaux;
+
+import main.*;
+import objets.*;
 
 import org.newdawn.slick.GameContainer;
 
@@ -12,6 +16,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Niveau5 extends BasicGameState {   // niveau plage
 	private Image image_fond;
 	
+	private Image porteSortie;
+	
 	private Personnage joueur;
 	private int timer;
 	
@@ -24,6 +30,8 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		image_fond = new Image("res/niveau5/n5_fond.png");
 		
+		porteSortie = new Image("res/images/porte fermee.png");
+		
 		joueur = new Personnage();
 		timer =0;
 		//laser = new Laser(10,50);
@@ -33,6 +41,8 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(image_fond,0,0);
+		
+		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
 		joueur.dessiner(g);
 		
