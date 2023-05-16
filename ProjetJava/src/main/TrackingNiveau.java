@@ -2,7 +2,7 @@ package main;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class TrackingNiveau {
-	private int precedent=0, actuel;
+	private int precedent=0, actuel=0;
 	
 	
 	public int getPrecedent() {

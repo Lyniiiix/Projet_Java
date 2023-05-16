@@ -68,13 +68,15 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		mapN1 = new Map(gc, image_fond, map);
 		
-		/*
+		
 		// parcour les objets bloquant de la map
 		for (int i = 0; i < mapN1.getObjets().length; i++)
 			System.out.println( mapN1.getObjets()[i] );
-		*/
+		
 		
 		collisionsN1 = new Collisions(mapN1);
+		
+		mapN1.toArray();
 	}
 	
 	
@@ -128,6 +130,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			sbg.enterState(0);
 		}
 		
+		
+		
+		
 		// timer
 		timer = timer + delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
@@ -138,6 +143,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			mort = true;
 			sbg.enterState(404);
 		}
+		
+		
 		
 		
 		// refait spawn le perso au début et pas la ou il était

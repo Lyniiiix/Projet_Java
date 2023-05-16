@@ -159,11 +159,12 @@ public class Personnage {
 	
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
-		g.drawImage(image, x-32, y-36, x+32, y+36, 0, 0, image.getWidth(), image.getHeight());
+		g.drawImage(image, x*32, y*36, x*32+32, y*36+36, 0, 0, image.getWidth(), image.getHeight());
 		
+		/*
 		g.setColor(color);
 		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)
-		
+		*/
 	}
 	
 	

@@ -12,7 +12,7 @@ public class Objet {
  	private int x2;
 	private int y2;
 	
-	public Objet(String nom,int id_objet, int x1, int y1)
+	public Objet(String nom, int id_objet, int x1, int y1)
 	{
 		this.id_objet = id_objet;
 		this.nom = nom;
@@ -42,13 +42,8 @@ public class Objet {
 		return y2;
 	}
 	
-	public void afficherDepartPX()
-	{
-		System.out.println(String.format("%s : x1 : %s ; y1 : %s", nom,x1,y1));
-	}
-	
 	public String toString()
 	{
-		return String.format("Objet %s : %s , x1: %s , x2 %s | y1: %s , y2: %s ",id_objet,nom,x1,x2,y1,y2);
+		return String.format("Objet %s : %s , x1: %s , x2: %s | y1: %s , y2: %s",id_objet,nom,x1,x2,y1,y2);
 	}
 }
