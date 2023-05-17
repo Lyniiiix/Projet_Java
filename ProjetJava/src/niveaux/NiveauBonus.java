@@ -16,6 +16,7 @@ public class NiveauBonus extends BasicGameState {
 	private float timer =0;
 	private int compteurChangements =0; // PERMET DE COMPTER LES NMB DE CHANGEMENTS DEPUIS LE DEBUT
 	private int changement = 0; // 
+	private boolean peutTourner = false;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -25,9 +26,15 @@ public class NiveauBonus extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		
 		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
+		if(peutTourner)
+			g.rotate(400, 400, 90);
+		
 		joueur.dessiner(g);
+		
+		
 		
 	}
 
@@ -53,7 +60,7 @@ public class NiveauBonus extends BasicGameState {
 		
 		timer+=delta;
 		
-		if(timer>=3000) {
+		if(timer>=5000) {
 			compteurChangements++;
 			timer=0;
 			
@@ -72,13 +79,13 @@ public class NiveauBonus extends BasicGameState {
 								joueur.setGraviteY(joueur.getGraviteY()/2);
 								break;
 							case(3):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(4):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(5):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 						}	
 					}
@@ -96,13 +103,13 @@ public class NiveauBonus extends BasicGameState {
 								joueur.setGraviteY(joueur.getGraviteY()/2);
 								break;
 							case(3):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(4):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(5):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 						}
 					}
@@ -126,18 +133,18 @@ public class NiveauBonus extends BasicGameState {
 								joueur.setGraviteY(joueur.getGraviteY()/2);
 								break;
 							case(3):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(4):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(5):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 						}
 					}
 				
-					joueur.setGraviteY(joueur.getGraviteY()*2);
+					peutTourner = true;
 					break;
 				
 				case(4) :
@@ -150,18 +157,18 @@ public class NiveauBonus extends BasicGameState {
 								joueur.setGraviteY(joueur.getGraviteY()/2);
 								break;
 							case(3):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(4):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(5):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 						}
 					}
 				
-					joueur.setGraviteY(joueur.getGraviteY()*2);
+					peutTourner = true;
 					break;
 				
 				case(5) :
@@ -174,18 +181,18 @@ public class NiveauBonus extends BasicGameState {
 								joueur.setGraviteY(joueur.getGraviteY()/2);
 								break;
 							case(3):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(4):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 							case(5):
-								joueur.setGraviteY(joueur.getGraviteY()/2);
+								peutTourner = false;
 								break;
 						}
 					}
 				
-					joueur.setGraviteY(joueur.getGraviteY()*2);
+					peutTourner = true;
 					break;
 			}
 			
