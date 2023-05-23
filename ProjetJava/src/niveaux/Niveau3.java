@@ -14,17 +14,20 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Niveau3 extends BasicGameState {   
 	private Personnage joueur ;
 	private Image porteSortie;
+	private Laser laser;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage(30, 1);
+		laser = new Laser();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		
 		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		laser.dessiner(g);
 		joueur.dessiner(g);
 	}
 
@@ -33,7 +36,7 @@ public class Niveau3 extends BasicGameState {
 		joueur.sauterInversee(delta);
 		joueur.graviteInversee(delta);
 		
-		
+		laser.setTimer(delta);
 		
 		Input mvt = gc.getInput();
 		

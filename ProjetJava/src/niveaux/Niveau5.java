@@ -21,10 +21,6 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	private Personnage joueur;
 	private int timer;
 	
-	/*private Pieges laser;
-	 */
-
-	private Chasseur chasseur;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -34,8 +30,6 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		joueur = new Personnage();
 		timer =0;
-		//laser = new Laser(10,50);
-		chasseur = new Chasseur(250, 500);
 	}
 
 	@Override
@@ -49,8 +43,6 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		/*
 		laser.dessiner(g);
 		*/
-		chasseur.dessinerBalles(g);
-		chasseur.dessiner(g);
 		
 	}
 
@@ -60,17 +52,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
-		
-		/*
-		laser.setTimer(delta);
-		*/
-		if(joueur.getX()*32 >= chasseur.getX() - chasseur.getDistanceTir() && joueur.getX()*32 <= chasseur.getX() + chasseur.getDistanceTir() +20 && joueur.getY()*36 >= chasseur.getY() - chasseur.getDistanceTir() && joueur.getY()*36 <= chasseur.getY() + chasseur.getDistanceTir() +20) {
-			chasseur.setTimer(delta);
-			chasseur.tirer();
-		}
-		else
-			chasseur.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
-		
+
 		
 		
 		Input mvt = gc.getInput();

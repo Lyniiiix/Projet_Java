@@ -30,7 +30,11 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	//private Sound son;
 	private Clip son;
 	
+	
 	private Personnage joueur;
+	private Chasseur chasseur;
+	
+	
 	private int timer = 0;
 	private boolean mort = false;
 	
@@ -39,6 +43,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
 		joueur = new Personnage(); 
+		chasseur = new Chasseur(250, 500);
 
 		// son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
 		// TOUT CA C POUR LA MUSIQUE MAIS CA MARCHE PAS  !!!!
@@ -94,9 +99,27 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		*/
 		
 		/* Calculs */
+		
+		if(joueur.getX()*32 >= chasseur.getX() - chasseur.getDistanceTir() && joueur.getX()*32 <= chasseur.getX() + chasseur.getDistanceTir() +20 && joueur.getY()*36 >= chasseur.getY() - chasseur.getDistanceTir() && joueur.getY()*36 <= chasseur.getY() + chasseur.getDistanceTir() +20) {
+			chasseur.setTimer(delta);
+			chasseur.tirer();
+		}
+		else
+			chasseur.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
+		
+		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
+		
+		if(chasseur.getXBalle1()+20>=joueur.getX() && chasseur.getXBalle1()<=joueur.getX()+32 && chasseur.getYBalle1()+20>=joueur.getY() && chasseur.getYBalle1()<=joueur.getY()+36 ||
+				chasseur.getXBalle2()+20>=joueur.getX() && chasseur.getXBalle2()<=joueur.getX()+32 && chasseur.getYBalle2()+20>=joueur.getY() && chasseur.getYBalle2()<=joueur.getY()+36 ||
+				chasseur.getXBalle3()+20>=joueur.getX() && chasseur.getXBalle3()<=joueur.getX()+32 && chasseur.getYBalle3()+20>=joueur.getY() && chasseur.getYBalle3()<=joueur.getY()+36 )
+			sbg.enterState(404);
+		
+		
+		
+		/*!!!!! COLLISION !!!!!*/
 		
 		int posX = (int)(Math.floor(joueur.getX())); // posX en index X de matrice
 		int posY = (int)(Math.floor(joueur.getY())); // posY en index Y de matrice
@@ -160,6 +183,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
 		
 		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		
+		chasseur.dessinerBalles(g);
+		chasseur.dessiner(g);
 		
 		joueur.dessiner(g);
 		

@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Chasseur extends Pieges {
+public class Chasseur {
 		private Image image;
 		private float x = 250;
 		private float y = 400;
@@ -37,8 +37,28 @@ public class Chasseur extends Pieges {
 			return y;
 		}
 		
+		public float getXBalle1() {
+			return xBalle1;
+		}
+		
+		public float getYBalle1() {
+			return yBalle1;
+		}
+		
 		public float getXBalle2() {
 			return xBalle2;
+		}
+		
+		public float getYBalle2() {
+			return yBalle2;
+		}
+		
+		public float getXBalle3() {
+			return xBalle3;
+		}
+		
+		public float getYBalle3() {
+			return xBalle3;
 		}
 		
 

@@ -1,6 +1,7 @@
 package niveaux;
 
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 
 import org.newdawn.slick.Graphics;
@@ -13,15 +14,17 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Sommaire extends BasicGameState {
 	
-	private Image img;
+	private Image img_fond;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		//img = new Image("res/images/deplacement.png");
+		img_fond = new Image("res/images/parchemin.png");
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawImage(img_fond, 0, 0);
+		//g.setColor(Color.white);
 		g.drawString("Avant de commencer,", 440, 50);
 		g.drawString("voici la liste des commandes qui vous aideront à survivre lors de ces épreuves", 170, 80);
 		// LISTE DES COMMANDES A METTRE
