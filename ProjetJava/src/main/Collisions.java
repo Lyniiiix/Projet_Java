@@ -38,32 +38,32 @@ public class Collisions {
 	    
 	    return false;
 	}
-
-}
-	
-
-
-
-
-
-
 	
 	/*
-	public boolean collisionX(int posX, int posY, String status_perso)
-	{
-		//System.out.println(map.getTileId(posX + 1, posY, map.getLayerIndex("bloc")) == 1);
-		
-		
-		switch (status_perso) {
-		case "droite": {
-			return mapTMX.getTileId(posX + 1, posY, mapTMX.getLayerIndex("bloc")) == 1;
-		}
-		case "gauche": {
-			return mapTMX.getTileId(posX, posY, mapTMX.getLayerIndex("bloc")) == 1;
-		}
-		default:
-			return true;
-		}
+	public void afficherObjetsLigne(int posY) {
+	    for (Objet objet : objetsMap) {
+	        if (objet.gety1() < posY && posY < objet.gety2()) {
+	            return true;
+	        }
+	    }
 	}
 	*/
+	
+	public boolean autoriserDeplacementX(float new_x, float new_y) {
+	    for (Objet objet : objetsMap) {
+	        if (new_y >= objet.gety1() && new_y <= objet.gety2()) {
+	            if (new_x <= objet.getx1() && (new_x + Constantes.LARGEUR_PERSO) >= objet.getx1()) {
+	                return false; // Collision à gauche de l'objet
+	            }
+	            if (new_x >= objet.getx2() && new_x <= (objet.getx2() + Constantes.LARGEUR_PERSO)) {
+	                return false; // Collision à droite de l'objet
+	            }
+	        }
+	    }
+	    return true; // Aucune collision
+	}
+
+
+
+}
 

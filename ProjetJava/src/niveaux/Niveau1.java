@@ -73,13 +73,15 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		mapN1 = new Map(gc, image_fond, map);
 		
-		
+		/*
 		// parcour les objets bloquant de la map
 		for (int i = 0; i < mapN1.getObjets().length; i++)
 			System.out.println( mapN1.getObjets()[i] );
+		*/
 		
 		
 		collisionsN1 = new Collisions(mapN1);
+
 		
 		mapN1.toArray();
 	}
@@ -127,8 +129,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		//System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
 		
 		
-		boolean collisionX =  collisionsN1.enCollisionX(joueur.getPosX_px(), joueur.getPosY_px());
-		
+		boolean collisionX =  collisionsN1.autoriserDeplacementX(joueur.getPosX_px(), joueur.getPosY_px());
+		System.out.println(collisionX);
+		System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
 		
 		Input mvt = gc.getInput();
 		

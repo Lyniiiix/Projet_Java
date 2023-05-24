@@ -17,6 +17,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private Image porteSortie;
 	
 	private Personnage joueur ;
+	private OursPolaire ours;
+	
 	private Plateforme p1, p2, p3, p4, p5;
 
 	@Override
@@ -26,6 +28,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		porteSortie = new Image("res/images/porte fermee.png");
 		
 		joueur = new Personnage();
+		ours = new OursPolaire(500,400);
+		
 		p1= new Plateforme(100, 580, 1000); // la 3 eme cordonnee c le temps pour le changement de direction
 		p2= new Plateforme(500, 480, 1000);
 		p3= new Plateforme(350, 380, 1000);
@@ -39,6 +43,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		
 		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
+		ours.dessiner(g);
 		joueur.dessiner(g);
 		p1.draw(g);
 		p2.draw(g);
@@ -52,6 +57,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		joueur.sauter(delta);
 		joueur.gravite(delta);
 		
+		ours.deplacer(delta);
+		ours.attaquer(delta);
 
 		p1.deplacement(delta);
 		p2.deplacement(delta);

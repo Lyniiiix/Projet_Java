@@ -7,7 +7,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-
 import main.*;
 
 public class Personnage {
@@ -21,50 +20,38 @@ public class Personnage {
 	
 	private int posY_avant_saut; // juste test
 	
-	//Image image_perso = new Image();
-	private Color color;
-	
 	private int compteurDeSaut = 0;	
+	
+	
 	
 	// CONSTRUCTEUR PAR DEFAUT
 	public Personnage() throws SlickException{
 		image = new Image("res/images/perso.png");
+		
 		graviteY = masse * acc_p;
 		
-		this.x = 1; // on place au debut en bas a gauche
+		// on place au debut en bas a gauche
+		this.x = 1;
 		this.y = 18;
 		
-		this.color = Color.white;
 		vx = 2; // vitesse horizontale
 		vy = 0;
-		
-		this.direct_pers = "droite";
-		this.status_pers = "sol";
 	}
 
 
-	// creer un perso aux cordonnées voulues
+	
+	// creer un perso aux cooordonnées voulues
 	public Personnage(float x, float y) throws SlickException
 	{
-		if(x >= 1 && x <= Constantes.MAP_X - 1 && y >= 1 && y <= Constantes.MAP_Y - 1) {  // grille de 32 par 23
-			this.x = x;
-			this.y = y;
-		}
-		else {
-			this.x = 1;
-			this.y = Constantes.MAP_Y - 1;
-		}
+		image = new Image("res/images/perso.png");
 		
 		graviteY = masse * acc_p;
 		
-		this.color = Color.white;
+		this.x = x;
+		this.y = y;
+		
 		vx = 2 ;
 		vy = 0;
-		
-		this.direct_pers = "droite";
-		this.status_pers = "sol";
-		
-		image = new Image("res/images/perso.png");
 	}
 
 	
@@ -74,25 +61,25 @@ public class Personnage {
 	public float getGraviteY() {
 		return graviteY;
 	}
-
 	public void setGraviteY(float sautY) {
 		this.graviteY = sautY;
 	}
-	// *********************************************** //
+	
 	// Coordonnées float
 	public float getX() {
 		return x;
 	}
-
+	public float getPosX_px()
+	{
+		return x * 32;
+	}
 	public void setX(float x) {
 		if(x >= 1 && x <= Constantes.MAP_X - 1)
 			this.x = x;
 	}
-	
 	public float getVx() {
 		return vx;
 	}
-
 	public void setVx(float vx) {
 		this.vx = vx;
 	}
@@ -100,63 +87,40 @@ public class Personnage {
 	public float getY() {
 		return y;
 	}
-
-	public void setY(float y) {
-		if(y >= 1 && y <= Constantes.MAP_X - 1)
-			this.y = y;
-	}
-
-	public float getVy() {
-		return vy;
-	}
-
-	public void setVy(float vy) {
-		this.vy = vy;
-	}
-	public float getPosX_px()
-	{
-		return x * 32;
-	}
 	public float getPosY_px()
 	{
 		return y * 36;
 	}
-	// *********************************************** //
+	public void setY(float y) {
+		if(y >= 1 && y <= Constantes.MAP_X - 1)
+			this.y = y;
+	}
+	public float getVy() {
+		return vy;
+	}
+	public void setVy(float vy) {
+		this.vy = vy;
+	}
+	
 	// status personnage
 	public String getStatus()
 	{
 		return status_pers;
 	}
-	
 	public void setStatus(String status)
 	{
 		status_pers = status;
 	}
-	
 	public String getDirect()
 	{
 		return direct_pers;
 	}
-	
 	public void setDirect(String direct_pers)
 	{
 		this.direct_pers = direct_pers;
 	}
 	
-	public int getPosY_avant_saut()
-	{
-		return posY_avant_saut;
-	}
-	
-	public void setPosY_avant_saut(int posY_avant_saut)
-	{
-		this.posY_avant_saut = posY_avant_saut;
-	}
-	
 	// *********************************************** //
-	
-	
-	
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.drawImage(image, x*32, y*36, x*32+32, y*36+36, 0, 0, image.getWidth(), image.getHeight());
@@ -177,10 +141,10 @@ public class Personnage {
 	public void deplacer(GameContainer gc, boolean collisionX) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && !collisionX) { //&& x * Constantes.MAP_X + vx <= gc.getWidth() - (Constantes.LARGEUR_PERSO + 32)
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && collisionX) { //&& x * Constantes.MAP_X + vx <= gc.getWidth() - (Constantes.LARGEUR_PERSO + 32)
 			x += vx / Constantes.MAP_Y;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && !collisionX) { //&& x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO
+		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX) { //&& x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO
 			x -= vx / Constantes.MAP_Y;
 		}
 	}
