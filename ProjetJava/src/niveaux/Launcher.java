@@ -2,6 +2,7 @@ package niveaux;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -10,10 +11,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import main.*;
 
 public class Launcher extends BasicGameState {
+	private Image porte;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		
+		porte = new Image("res/niveau2/porteNiv2.png");
 	}
 
 	@Override
@@ -23,6 +25,7 @@ public class Launcher extends BasicGameState {
 		g.drawRect(50, 200, 100, 100);
 		g.drawString("Monde 1", 70, 320);
 		
+		g.drawImage(porte, 250, 200, 350, 300, 0, 0, porte.getWidth(), porte.getHeight());
 		g.drawRect(250, 200, 100, 100);
 		g.drawString("Monde 2", 270, 320);
 		
