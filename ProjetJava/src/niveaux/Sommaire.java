@@ -23,8 +23,8 @@ public class Sommaire extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(img_fond, 0, 0);
-		//g.setColor(Color.white);
+		//g.drawImage(img_fond, 0, 0);
+		//g.setColor(Color.black);
 		g.drawString("Avant de commencer,", 440, 50);
 		g.drawString("voici la liste des commandes qui vous aideront à survivre lors de ces épreuves", 170, 80);
 		// LISTE DES COMMANDES A METTRE

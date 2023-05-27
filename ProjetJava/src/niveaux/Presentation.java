@@ -19,7 +19,7 @@ public class Presentation extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(img_fond, 0, 0);
+		//g.drawImage(img_fond, 0, 0);
 		g.drawString("Bienvenue dans notre monde,", 390, 50);
 		// LA ON MET LE NOM DU JEU
 		g.drawString("Angry Jump", 465, 150);

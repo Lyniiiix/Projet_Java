@@ -13,7 +13,7 @@ public class Chasseur {
 
 		private float xBalle1 = x, yBalle1 = y, xBalle2 = x, yBalle2 = y, xBalle3 = x, yBalle3 = y;
 		private float vitesseBalles = 3;
-		private int cadenceTir = 2000; // en milisecondes
+		private int cadenceTir = 1000; // en milisecondes
 		private int distanceTir = 200;
 		private boolean peutTirer = false;
 
@@ -83,7 +83,6 @@ public class Chasseur {
 		public void dessiner(Graphics g) {
 			g.drawImage(image, x-32, y-36, x+32, y+36, 0, 0, image.getWidth(), image.getHeight());
 			g.drawRect(x-distanceTir+10, y-distanceTir+10, distanceTir*2, distanceTir*2);
-			g.setColor(Color.white); // permet d éviter que tout le reste devienne rouge apres
 		}
 
 		public void dessinerBalles(Graphics g) {

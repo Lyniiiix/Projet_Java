@@ -25,7 +25,7 @@ public class Launcher extends BasicGameState {
 		g.drawRect(50, 200, 100, 150);
 		g.drawString("Monde 1", 70, 370);
 		
-		g.drawImage(porte, 250, 200, 350, 350, 0, 0, porte.getWidth(), porte.getHeight());
+		//g.drawImage(porte, 250, 200, 350, 350, 0, 0, porte.getWidth(), porte.getHeight());
 		g.drawRect(250, 200, 100, 150);
 		g.drawString("Monde 2", 270, 370);
 		
