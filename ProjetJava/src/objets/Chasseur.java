@@ -58,7 +58,7 @@ public class Chasseur {
 		}
 		
 		public float getYBalle3() {
-			return xBalle3;
+			return yBalle3;
 		}
 		
 

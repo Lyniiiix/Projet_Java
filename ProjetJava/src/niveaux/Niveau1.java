@@ -88,6 +88,23 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	
 	@Override
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.drawImage(image_fond, 0, 0); // dessiner image_fond
+		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
+		
+		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		
+		chasseur.dessinerBalles(g);
+		chasseur.dessiner(g);
+		
+		joueur.dessiner(g);
+		
+		g.drawString(timer/1000f+" s", 100, 100);
+		
+	}
+	
+	
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		//son.play();
 		
@@ -114,10 +131,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		joueur.gravite(delta);
 		
 		
-		if(chasseur.getXBalle1()+20>=joueur.getX() && chasseur.getXBalle1()<=joueur.getX()+32 && chasseur.getYBalle1()+20>=joueur.getY() && chasseur.getYBalle1()<=joueur.getY()+36 ||
-				chasseur.getXBalle2()+20>=joueur.getX() && chasseur.getXBalle2()<=joueur.getX()+32 && chasseur.getYBalle2()+20>=joueur.getY() && chasseur.getYBalle2()<=joueur.getY()+36 ||
-				chasseur.getXBalle3()+20>=joueur.getX() && chasseur.getXBalle3()<=joueur.getX()+32 && chasseur.getYBalle3()+20>=joueur.getY() && chasseur.getYBalle3()<=joueur.getY()+36 )
+		if(chasseur.getXBalle1()+20>=joueur.getPosX_px() && chasseur.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur.getYBalle1()+20>=joueur.getPosY_px() && chasseur.getYBalle1()<=joueur.getPosY_px()+36 ||
+				chasseur.getXBalle2()+20>=joueur.getPosX_px() && chasseur.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur.getYBalle2()+20>=joueur.getPosY_px() && chasseur.getYBalle2()<=joueur.getPosY_px()+36 ||
+				chasseur.getXBalle3()+20>=joueur.getPosX_px() && chasseur.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur.getYBalle3()+20>=joueur.getPosY_px() && chasseur.getYBalle3()<=joueur.getPosY_px()+36 ) {
+			mort=true;
 			sbg.enterState(404);
+		}
+			
 		
 		
 		
@@ -172,6 +192,11 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		
+		// sortir du niveau mode joueur
+		if(joueur.getX()>=896 && joueur.getX()<=896+3*32 && joueur.getY()>=36 && joueur.getY()<=36+3*36) {
+			sbg.enterState(0);
+		}
+		
 		
 		// refait spawn le perso au début et pas la ou il était
 		if(mort) {
@@ -180,21 +205,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		}
 	}
 	
-	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(image_fond, 0, 0); // dessiner image_fond
-		map.render(0, 0); // dessiner la map a partir du .tmx correspondant
-		
-		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
-		
-		chasseur.dessinerBalles(g);
-		chasseur.dessiner(g);
-		
-		joueur.dessiner(g);
-		
-		g.drawString(timer/1000f+" s", 100, 100);
-		
-	}
+
 
 	@Override
 	public int getID() {

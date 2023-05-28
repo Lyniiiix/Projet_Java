@@ -27,7 +27,7 @@ public class NiveauBonus extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		
-		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
 		if(peutTourner)
 			g.rotate(400, 400, 90);
@@ -199,6 +199,15 @@ public class NiveauBonus extends BasicGameState {
 			// PERMET DE RETENIR LE RANDOM D AVANT
 			changement = random;
 		}
+		
+		
+		
+		
+		// sortir du niveau mode joueur
+		if(joueur.getX()>=896 && joueur.getX()<=896+3*32 && joueur.getY()>=36 && joueur.getY()<=36+3*36) {
+			sbg.enterState(0);
+		}
+		
 		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)

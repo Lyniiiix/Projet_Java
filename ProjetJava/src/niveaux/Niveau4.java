@@ -41,7 +41,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(image_fond,0,0);
 		
-		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
 		ours.dessiner(g);
 		joueur.dessiner(g);
@@ -77,6 +77,11 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc);
+		}
+		
+		// sortir du niveau mode joueur
+		if(joueur.getX()>=896 && joueur.getX()<=896+3*32 && joueur.getY()>=36 && joueur.getY()<=36+3*36) {
+			sbg.enterState(0);
 		}
 		
 		

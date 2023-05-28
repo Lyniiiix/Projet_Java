@@ -26,7 +26,7 @@ public class Niveau3 extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		
-		g.drawImage(porteSortie, 800, 20, 800+3*36, 20+3*32, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		g.drawImage(porteSortie, 32, 684, 32+3*32, 684+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		laser.dessiner(g);
 		joueur.dessiner(g);
 	}
@@ -50,6 +50,12 @@ public class Niveau3 extends BasicGameState {
 			joueur.deplacer(gc);
 		}
 		
+		
+
+		// sortir du niveau mode joueur
+		if(joueur.getX()>=32 && joueur.getX()<=32+3*32 && joueur.getY()>=684 && joueur.getY()<=684+3*36) {
+			sbg.enterState(0);
+		}
 		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
