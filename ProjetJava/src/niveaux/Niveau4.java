@@ -80,7 +80,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		}
 		
 		// sortir du niveau mode joueur
-		if(joueur.getX()>=896 && joueur.getX()<=896+3*32 && joueur.getY()>=36 && joueur.getY()<=36+3*36) {
+		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
 			sbg.enterState(0);
 		}
 		

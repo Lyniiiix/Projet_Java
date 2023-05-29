@@ -53,7 +53,7 @@ public class Niveau3 extends BasicGameState {
 		
 
 		// sortir du niveau mode joueur
-		if(joueur.getX()>=32 && joueur.getX()<=32+3*32 && joueur.getY()>=684 && joueur.getY()<=684+3*36) {
+		if(joueur.getPosX_px()>=32 && joueur.getPosX_px()<=32+3*32 && joueur.getPosY_px()>=684 && joueur.getPosY_px()<=684+3*36) {
 			sbg.enterState(0);
 		}
 		
