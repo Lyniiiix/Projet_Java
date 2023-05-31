@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -18,8 +19,11 @@ public class GameOver extends BasicGameState {
 	
 	private TrackingNiveau retry = new TrackingNiveau();  // c pareil avec le traqueur de niveau ça marche pas !!!!!
 
+	private Sound son;
+	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		son = new Sound("res/gameOver/intro.wav");
 		image_fond = new Image("res/images/mort.jpg");
 		timer =0;
 		compteurDeMort =0;
@@ -40,9 +44,12 @@ public class GameOver extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		
+		
 		timer+=delta;
 		if(timer<=delta+1) {
 			compteurDeMort++;
+			son.play();
 		}
 		
 		Input mvt = gc.getInput();

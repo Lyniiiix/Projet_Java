@@ -28,7 +28,6 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	public Map mapN1; // instance d'une map
 	
 	//private Sound son;
-	private Clip son;
 	
 	
 	private Personnage joueur;
@@ -153,7 +152,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// timer
 		timer = timer + delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer >= 3000000) { //augmenter pour test
+		if(timer >= 3000) { //augmenter pour test
 			timer = 0;
 			//son.stop(); // marche pas
 			
