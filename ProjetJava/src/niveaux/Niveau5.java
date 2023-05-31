@@ -51,7 +51,10 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		timer += delta;		
 		
 		joueur.sauter(delta);
-		joueur.gravite(delta);
+		
+		boolean CollisionY = true;
+		
+		joueur.gravite(delta,CollisionY);
 
 		
 		

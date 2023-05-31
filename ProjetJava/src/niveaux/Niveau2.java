@@ -10,6 +10,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	private Image image_fond;
@@ -18,6 +19,12 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	private Personnage joueur ;
 	private Personnage ombre;
 	private int timer;
+	
+	private TiledMap map; // schéma TMX map
+	
+	public Map mapN2; // instance d'une map
+	
+	private Collisions collisionsN2; // instance Collisions
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -27,6 +34,12 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		joueur = new Personnage();
 		ombre = new Personnage();
 		timer = 0;
+		
+		map = new TiledMap("res/niveau2/niveau2.tmx");
+		mapN2 = new Map(gc, image_fond, map);
+		
+		collisionsN2 = new Collisions(mapN2);
+		
 	}
 
 	@Override
@@ -34,6 +47,8 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		g.drawImage(image_fond,0,0,1024,828,0,0,image_fond.getWidth(), image_fond.getHeight());
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		
+		map.render(0, 0); // dessiner la map a partir du .tmx correspondant 
 		
 		joueur.dessiner(g);
 
@@ -45,7 +60,10 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		joueur.sauter(delta);
-		joueur.gravite(delta);
+		
+		boolean CollisionY = true;
+		
+		joueur.gravite(delta, CollisionY);
 		
 
 		timer+=delta;

@@ -55,7 +55,10 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		joueur.sauter(delta);
-		joueur.gravite(delta);
+		
+		boolean CollisionY = true;
+		
+		joueur.gravite(delta, CollisionY);
 		
 		ours.deplacer(delta);
 		ours.attaquer(delta);

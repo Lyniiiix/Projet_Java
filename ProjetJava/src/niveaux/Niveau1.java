@@ -45,28 +45,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		joueur = new Personnage(); 
 		chasseur = new Chasseur(250, 500);
 
-		// son = new Sound("res/sons/musiquetest.wav"); // met la musique qd le niveau se lance
-		// TOUT CA C POUR LA MUSIQUE MAIS CA MARCHE PAS  !!!!
-		/*
-		AudioInputStream audioInputStream;
-		try {
-			// Ouvrir le fichier audio
-			audioInputStream = AudioSystem.getAudioInputStream(Niveau1.class.getResourceAsStream("musiquetest.wav"));
-			
-			// Obtenir le format audio du fichier
-			AudioFormat format = audioInputStream.getFormat();
-			
-			// Créer un DataLine pour la lecture audio
-			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			son = (Clip) AudioSystem.getLine(info);
-			
-			// Ouvrir le flux audio et le charger dans le Clip
-			son.open(audioInputStream);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
+		
 		porteSortie = new Image("res/images/porte fermee.png");
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
@@ -106,16 +85,6 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		//son.play();
-		
-		
-		/*
-		if (!son.isActive()) {
-            // Si la musique est terminée, la jouer à nouveau
-            son.setFramePosition(0);
-            son.start();
-        }
-		*/
 		
 		/* Calculs */
 		
@@ -126,9 +95,11 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		else
 			chasseur.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
 		
+		//boolean CollisionY = collisionsN1.autoriserDeplacementY(joueur.getPosX_px(), joueur.getPosY_px());
+		boolean CollisionY = true;
 		
 		joueur.sauter(delta);
-		joueur.gravite(delta);
+		joueur.gravite(delta, CollisionY);
 		
 		
 		if(chasseur.getXBalle1()+20>=joueur.getPosX_px() && chasseur.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur.getYBalle1()+20>=joueur.getPosY_px() && chasseur.getYBalle1()<=joueur.getPosY_px()+36 ||

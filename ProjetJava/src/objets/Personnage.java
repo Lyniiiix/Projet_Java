@@ -147,6 +147,8 @@ public class Personnage {
 		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX) { //&& x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO
 			x -= vx / Constantes.MAP_Y;
 		}
+		
+		
 	}
 
 
@@ -154,7 +156,7 @@ public class Personnage {
 	public void sautNormal(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyPressed(Input.KEY_SPACE) && compteurDeSaut<1) {	
+		if(mvt.isKeyPressed(Input.KEY_SPACE) && compteurDeSaut <1 ) {	
 			vy = -400;	
 			compteurDeSaut++;
 		}
@@ -163,7 +165,8 @@ public class Personnage {
 
 	
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
-	public void gravite(int delta) {
+	public void gravite(int delta, boolean collisionY) {
+		
 		if(y < Constantes.MAP_Y - 2)  // pour la bordure + la hauteur du bonhomme
 			vy += graviteY * delta / 1000f;
 		else {

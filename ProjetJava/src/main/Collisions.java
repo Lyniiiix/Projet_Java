@@ -62,6 +62,28 @@ public class Collisions {
 	    }
 	    return true; // Aucune collision
 	}
+	
+	/*
+	public boolean autoriserDeplacementY(float new_x, float new_y) {
+	    for (Objet objet : objetsMap) {
+	        if (new_x >= objet.getx1() && new_x <= objet.getx2()) {
+	            if (new_y <= objet.gety1() && (new_y + Constantes.HAUTEUR_PERSO) >= objet.gety1()) {
+	                // Collision en haut de l'objet
+	                // Appliquer la gravité pour arrêter le mouvement vertical
+	                return false;
+	            }
+	            if (new_y >= objet.gety2() && new_y <= (objet.gety2() + Constantes.HAUTEUR_PERSO)) {
+	                // Collision en bas de l'objet
+	                // Appliquer la gravité pour arrêter le mouvement vertical
+	                // Réinitialiser la vitesse verticale du personnage
+	                return false;
+	            }
+	        }
+	    }
+	    return true; // Aucune collision
+	   
+	}
+	*/
 
 
 
