@@ -31,8 +31,8 @@ public class Sommaire extends BasicGameState {
 		// LISTE DES COMMANDES A METTRE
 		g.setColor(Color.red);
 		g.drawString("- Fleches droite et gauche", 400, 150);
-		g.drawString("- Barre espace : sauter",450 , 170);
-		g.drawString("Peut être une touche mystère ;)", 400, 190);
+		g.drawString("- Barre espace : sauter",417 , 180);
+		g.drawString("Peut être une touche mystère ;)", 383, 210);
 		g.setColor(Color.white);
 		
 		

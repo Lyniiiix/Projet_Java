@@ -55,6 +55,8 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		// UN 2 EME PERSO SPAWN AU BOUT DE 2S 
 		if(timer>=2000) 
 			ombre.dessiner(g);
+		
+		g.drawString("o", 90, 100);  // 2 eme lettre de l easter egg
 	}
 
 	@Override

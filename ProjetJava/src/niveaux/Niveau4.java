@@ -35,6 +35,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p3= new Plateforme(350, 380, 1000);
 		p4= new Plateforme(200, 280, 1000);
 		p5= new Plateforme(600, 80, 1000);
+		
 	}
 
 	@Override
@@ -50,6 +51,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p3.draw(g);
 		p4.draw(g);
 		p5.draw(g);
+		
+		g.drawString("c",505 , 10);
 	}
 
 	@Override

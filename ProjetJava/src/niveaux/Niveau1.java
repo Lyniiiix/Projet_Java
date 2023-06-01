@@ -88,7 +88,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		joueur.dessiner(g);
 		
+		
 		g.drawString(timer/1000f+" s", 100, 100);
+		
+		g.drawString("c", 1000, 810);  // 1 ere lettre de l easter egg 
 		
 	}
 	

@@ -29,6 +29,8 @@ public class Niveau3 extends BasicGameState {
 		g.drawImage(porteSortie, 32, 684, 32+3*32, 684+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		laser.dessiner(g);
 		joueur.dessiner(g);
+		
+		g.drawString("u",100 , 100);  // 3 eme lettre de l easter egg
 	}
 
 	@Override
