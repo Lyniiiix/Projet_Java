@@ -1,6 +1,7 @@
 package objets;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Color;
@@ -124,6 +125,7 @@ public class Personnage {
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.drawImage(image, x*32, y*36, x*32+32, y*36+36, 0, 0, image.getWidth(), image.getHeight());
+		g.drawRect(x*32-32, y*36-36, 3*32, 2*36);
 		
 		/*
 		g.setColor(color);
@@ -167,7 +169,8 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 	public void gravite(int delta, boolean collisionY) {
 		
-		if(y < Constantes.MAP_Y - 2)  // pour la bordure + la hauteur du bonhomme
+		if(y < Constantes.MAP_Y - 2
+				)  // pour la bordure + la hauteur du bonhomme
 			vy += graviteY * delta / 1000f;
 		else {
 			vy = 0;
@@ -230,7 +233,7 @@ public class Personnage {
 	
 	
 	
-	public void glisser() {
-		// permettra de faire glisser le perso sur la glace du niveau 5
+	public static int niveauMort(StateBasedGame sbg){
+		return sbg.getCurrentStateID();
 	}
 }

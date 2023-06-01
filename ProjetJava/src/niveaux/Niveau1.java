@@ -55,12 +55,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		mapN1 = new Map(gc, image_fond, map);
 		
-		/*
+		
 		// parcour les objets bloquant de la map
 		for (int i = 0; i < mapN1.getObjets().length; i++)
 			System.out.println( mapN1.getObjets()[i] );
-		*/
 		
+		System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
+
 		
 		collisionsN1 = new Collisions(mapN1);
 
@@ -102,8 +103,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			chasseur1.tirer();
 		}
 		else
-			chasseur1.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
-		
+			chasseur1.tirer();  
+			
 		//boolean CollisionY = collisionsN1.autoriserDeplacementY(joueur.getPosX_px(), joueur.getPosY_px());
 		boolean CollisionY = true;
 		
@@ -115,6 +116,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 				chasseur1.getXBalle2()+20>=joueur.getPosX_px() && chasseur1.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle2()+20>=joueur.getPosY_px() && chasseur1.getYBalle2()<=joueur.getPosY_px()+36 ||
 				chasseur1.getXBalle3()+20>=joueur.getPosX_px() && chasseur1.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle3()+20>=joueur.getPosY_px() && chasseur1.getYBalle3()<=joueur.getPosY_px()+36 ) {
 			mort=true;
+			Personnage.niveauMort(sbg);
 			sbg.enterState(404);
 		}
 			
@@ -130,8 +132,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		boolean collisionX =  collisionsN1.autoriserDeplacementX(joueur.getPosX_px(), joueur.getPosY_px());
-		System.out.println(collisionX);
-		System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
+		//System.out.println(collisionX);
+		//System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
 		
 		Input mvt = gc.getInput();
 		

@@ -27,12 +27,15 @@ public class Sommaire extends BasicGameState {
 		//g.setColor(Color.black);
 		g.drawString("Avant de commencer,", 440, 50);
 		g.drawString("voici la liste des commandes qui vous aideront à survivre lors de ces épreuves", 170, 80);
+		
 		// LISTE DES COMMANDES A METTRE
 		g.setColor(Color.red);
-		g.drawString("-Fleches droite et gauche", 400, 150);
+		g.drawString("- Fleches droite et gauche", 400, 150);
+		g.drawString("- Barre espace : sauter",450 , 170);
+		g.drawString("Peut être une touche mystère ;)", 400, 190);
 		g.setColor(Color.white);
 		
-		//g.drawImage(img, 200, 100);
+		
 		g.drawString("J'espère que vous saurez vous en servir.", 340, 300);
 		g.drawString("Et, un conseil, ouvrez l'oeil et le bon,", 340, 400);
 		g.drawString(" il est possible que vous passiez à côté de quelque chose d'important ;)", 200, 430);

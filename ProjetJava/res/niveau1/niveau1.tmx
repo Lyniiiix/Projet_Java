@@ -5,7 +5,7 @@
  </tileset>
  <layer id="1" name="bloc" width="32" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACt2WSw6AMAhEab3/nd24IASYEdLWOAkxqXUen1SdIjJBDBVoL+uj/U7pj3zb87f86mzF8ULa0f8o1138TJaP+huJmQ3D362v8FGfqnPJntd8b+8qIT7rkXl33j+ej13v5on4XXXrjzxZf9ZT87O5MevedwCdm5X919dIiF897zaPKp/x7+Q3Gmwk5p/B46Oa2DpZfnb/eoLxqsYN92FVO4ALAAA=
+   H4sIAAAAAAAACt2W2wqAMAxDq/7/P/uiUEYvMV2nGCiCzpyZYtkuIntSm6psLeqj/d7SH/lj5k/5bG/F8Mq0In9vr6v4kUZ+lq8npDcIf7W+ws9yYvsSva/51touZfwZ3pX5Y/lY99H9MPyqqt/veaL+qKfmR31jc8/+m8789dVT9/xB+FV/Zh7N4kdCz4Osbyf/fn5chXixdQK8LIVMgAsAAA==
   </data>
  </layer>
 </map>

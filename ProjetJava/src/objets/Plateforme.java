@@ -33,7 +33,7 @@ public class Plateforme {
 	
 	public void draw(Graphics g) {
 		g.setColor(c);
-		g.fillRect(x, y, 100, 20);
+		g.fillRect(x, y, 3*32, 36);
 	}
 	
 	public void deplacement(int delta) {

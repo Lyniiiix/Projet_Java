@@ -16,8 +16,6 @@ public class GameOver extends BasicGameState {
 	
 	private float timer;
 	private int compteurDeMort;
-	
-	private TrackingNiveau retry = new TrackingNiveau();  // c pareil avec le traqueur de niveau ça marche pas !!!!!
 
 	private Sound son;
 	
@@ -58,7 +56,7 @@ public class GameOver extends BasicGameState {
 			//BOUTON POUR RETRY LE NIVEAU
 			if(mvt.getMouseX()>=150 && mvt.getMouseX()<=350 && mvt.getMouseY()>=500 && mvt.getMouseY()<=550){
 				timer=0;
-				sbg.enterState(retry.getPrecedent());
+				//sbg.enterState(retry.getPrecedent());
 			}
 			
 			// BOUTON POUR REVENIR AU LAUNCHER

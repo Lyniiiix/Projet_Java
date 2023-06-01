@@ -2,20 +2,32 @@ package main;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class TrackingNiveau {
-	private int precedent=0, actuel=0;
+	
+	public final int IDNiv1 = 1;
+	public final int IDNiv2 = 2;
+	public final int IDNiv3 = 3;
+	public final int IDNiv4 = 4;
+	public final int IDNiv5 = 5;
+	
+	private int actuel =0;
+	private int precedent =0;
 	
 	
-	public int getPrecedent() {
+	public int getPrecedent(){
 		return precedent;
 	}
 	
-	public void pagePrecedente(StateBasedGame sbg) {
-		if(precedent != actuel) {
+	public void IDActuel(StateBasedGame sbg){
+		if(sbg.getCurrentStateID() != actuel){
 			precedent = actuel;
+			actuel = sbg.getCurrentStateID();
 		}
 	}
 	
-	public void pageActuelle(StateBasedGame sbg) {
-		actuel = sbg.getCurrentStateID();
+	public void retry(StateBasedGame sbg){
+		sbg.enterState(precedent);
 	}
+	
+	
 }
+

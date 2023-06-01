@@ -19,72 +19,21 @@ public class Collisions {
 		this.matriceMap = map.getMatrice();
 		this.objetsMap = map.getObjets();
 	}
-	
-	public boolean enCollisionX(float posX, float posY) {
-	    
-	    for (Objet objet : objetsMap) {
-	    	/*
-	    	System.out.println("posX : " + posX + " , " + "posY : " + posY);
-		    System.out.println(objet);
-		    System.out.println();*/
-		   
-		    
-	        if (posY < objet.gety1() + Constantes.HAUTEUR_CASE ||
-	        	posY + Constantes.HAUTEUR_PERSO > objet.gety1())
-	        {
-	        	return true;
-	        }
-	    }
-	    
-	    return false;
-	}
-	
-	/*
-	public void afficherObjetsLigne(int posY) {
-	    for (Objet objet : objetsMap) {
-	        if (objet.gety1() < posY && posY < objet.gety2()) {
-	            return true;
-	        }
-	    }
-	}
-	*/
-	
-	public boolean autoriserDeplacementX(float new_x, float new_y) {
-	    for (Objet objet : objetsMap) {
-	        if (new_y >= objet.gety1() && new_y <= objet.gety2()) {
-	            if (new_x <= objet.getx1() && (new_x + Constantes.LARGEUR_PERSO) >= objet.getx1()) {
-	                return false; // Collision à gauche de l'objet
-	            }
-	            if (new_x >= objet.getx2() && new_x <= (objet.getx2() + Constantes.LARGEUR_PERSO)) {
-	                return false; // Collision à droite de l'objet
-	            }
-	        }
-	    }
-	    return true; // Aucune collision
-	}
-	
-	/*
-	public boolean autoriserDeplacementY(float new_x, float new_y) {
-	    for (Objet objet : objetsMap) {
-	        if (new_x >= objet.getx1() && new_x <= objet.getx2()) {
-	            if (new_y <= objet.gety1() && (new_y + Constantes.HAUTEUR_PERSO) >= objet.gety1()) {
-	                // Collision en haut de l'objet
-	                // Appliquer la gravité pour arrêter le mouvement vertical
-	                return false;
-	            }
-	            if (new_y >= objet.gety2() && new_y <= (objet.gety2() + Constantes.HAUTEUR_PERSO)) {
-	                // Collision en bas de l'objet
-	                // Appliquer la gravité pour arrêter le mouvement vertical
-	                // Réinitialiser la vitesse verticale du personnage
-	                return false;
-	            }
-	        }
-	    }
-	    return true; // Aucune collision
-	   
-	}
-	*/
 
+	public boolean autoriserDeplacementX(float new_x, float new_y)
+	{
+		for (Objet objet : objetsMap)
+		{
+			
+			if (objet.getx2() >= (new_x-32) || objet.getx1() <= (new_x+64) ||
+				objet.gety2() > (new_y-36) || objet.gety1() < (new_y+36)
+				)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 
 }
