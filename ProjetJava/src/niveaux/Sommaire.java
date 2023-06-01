@@ -28,6 +28,8 @@ public class Sommaire extends BasicGameState {
 		g.drawString("Avant de commencer,", 440, 50);
 		g.drawString("voici la liste des commandes qui vous aideront à survivre lors de ces épreuves", 170, 80);
 		// LISTE DES COMMANDES A METTRE
+		g.drawString("-Fleches droite et gauche", 200, );
+		
 		//g.drawImage(img, 200, 100);
 		g.drawString("J'espère que vous saurez vous en servir.", 340, 300);
 		g.drawString("Et, un conseil, ouvrez l'oeil et le bon,", 340, 400);

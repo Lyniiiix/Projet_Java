@@ -31,7 +31,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	
 	private Personnage joueur;
-	private Chasseur chasseur;
+	private Chasseur chasseur1;
+	private Chasseur chasseur2;
+	private Chasseur chasseur3;
 	
 	
 	private int timer = 0;
@@ -42,7 +44,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
 		joueur = new Personnage(); 
-		chasseur = new Chasseur(250, 500);
+		chasseur1 = new Chasseur(4*32, 15*36);
+		chasseur2 = new Chasseur(20*32, 6*36);
+		chasseur3 = new Chasseur(14*32, 14*36);
 
 		
 		porteSortie = new Image("res/images/porte fermee.png");
@@ -72,8 +76,14 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
-		chasseur.dessinerBalles(g);
-		chasseur.dessiner(g);
+		chasseur1.dessinerBalles(g);
+		chasseur1.dessiner(g);
+		
+		chasseur2.dessinerBalles(g);
+		chasseur2.dessiner(g);
+		
+		chasseur3.dessinerBalles(g);
+		chasseur3.dessiner(g);
 		
 		joueur.dessiner(g);
 		
@@ -87,12 +97,12 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		/* Calculs */
 		
-		if(joueur.getX()*32 >= chasseur.getX() - chasseur.getDistanceTir() && joueur.getX()*32 <= chasseur.getX() + chasseur.getDistanceTir() +20 && joueur.getY()*36 >= chasseur.getY() - chasseur.getDistanceTir() && joueur.getY()*36 <= chasseur.getY() + chasseur.getDistanceTir() +20) {
-			chasseur.setTimer(delta);
-			chasseur.tirer();
+		if(joueur.getX()*32 >= chasseur1.getX() - chasseur1.getDistanceTir() && joueur.getX()*32 <= chasseur1.getX() + chasseur1.getDistanceTir() +20 && joueur.getY()*36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getY()*36 <= chasseur1.getY() + chasseur1.getDistanceTir() +20) {
+			chasseur1.setTimer(delta);
+			chasseur1.tirer();
 		}
 		else
-			chasseur.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
+			chasseur1.tirer();  // y a un pb qui fait que le chasseur arrete de tirer si j enleve le "else" et qd y a le "else" y a un pb avec le temps de tir
 		
 		//boolean CollisionY = collisionsN1.autoriserDeplacementY(joueur.getPosX_px(), joueur.getPosY_px());
 		boolean CollisionY = true;
@@ -101,9 +111,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		joueur.gravite(delta, CollisionY);
 		
 		
-		if(chasseur.getXBalle1()+20>=joueur.getPosX_px() && chasseur.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur.getYBalle1()+20>=joueur.getPosY_px() && chasseur.getYBalle1()<=joueur.getPosY_px()+36 ||
-				chasseur.getXBalle2()+20>=joueur.getPosX_px() && chasseur.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur.getYBalle2()+20>=joueur.getPosY_px() && chasseur.getYBalle2()<=joueur.getPosY_px()+36 ||
-				chasseur.getXBalle3()+20>=joueur.getPosX_px() && chasseur.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur.getYBalle3()+20>=joueur.getPosY_px() && chasseur.getYBalle3()<=joueur.getPosY_px()+36 ) {
+		if(chasseur1.getXBalle1()+20>=joueur.getPosX_px() && chasseur1.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle1()+20>=joueur.getPosY_px() && chasseur1.getYBalle1()<=joueur.getPosY_px()+36 ||
+				chasseur1.getXBalle2()+20>=joueur.getPosX_px() && chasseur1.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle2()+20>=joueur.getPosY_px() && chasseur1.getYBalle2()<=joueur.getPosY_px()+36 ||
+				chasseur1.getXBalle3()+20>=joueur.getPosX_px() && chasseur1.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle3()+20>=joueur.getPosY_px() && chasseur1.getYBalle3()<=joueur.getPosY_px()+36 ) {
 			mort=true;
 			sbg.enterState(404);
 		}
@@ -152,7 +162,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// timer
 		timer = timer + delta;
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
-		if(timer >= 3000) { //augmenter pour test
+		if(timer >= 300000) { //augmenter pour test
 			timer = 0;
 			//son.stop(); // marche pas
 			
