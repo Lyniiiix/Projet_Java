@@ -40,6 +40,8 @@ public class Launcher extends BasicGameState {
 
 		g.drawRect(450, 450, 100, 150);
 		g.drawString("Monde Bonus", 450, 620);
+		
+		g.drawString("u",200 , 800);
 	}
 	
 

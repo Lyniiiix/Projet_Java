@@ -47,7 +47,6 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		joueur.dessiner(g);
 		
 		g.drawString("o",100 , 100);
-		g.drawString("u",200 , 100);
 	}
 
 	@Override

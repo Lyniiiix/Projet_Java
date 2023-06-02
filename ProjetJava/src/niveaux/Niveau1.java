@@ -99,8 +99,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		
-		/* Calculs */
 		
+		// chasseur 1 tirer
 		if(joueur.getX()*32 >= chasseur1.getX() - chasseur1.getDistanceTir() && joueur.getX()*32 <= chasseur1.getX() + chasseur1.getDistanceTir() +20 && joueur.getY()*36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getY()*36 <= chasseur1.getY() + chasseur1.getDistanceTir() +20) {
 			chasseur1.setTimer(delta);
 			chasseur1.tirer();
@@ -108,13 +108,36 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		else
 			chasseur1.tirer();  
 			
+			
+			
+		// chasseur 2 tirer
+		if(joueur.getX()*32 >= chasseur2.getX() - chasseur2.getDistanceTir() && joueur.getX()*32 <= chasseur2.getX() + chasseur2.getDistanceTir() +20 && joueur.getY()*36 >= chasseur2.getY() - chasseur2.getDistanceTir() && joueur.getY()*36 <= chasseur2.getY() + chasseur2.getDistanceTir() +20) {
+			chasseur2.setTimer(delta);
+			chasseur2.tirer();
+		}
+		else
+			chasseur2.tirer();  
+			
+			
+			
+		// chasseur 3 tirer
+		if(joueur.getX()*32 >= chasseur3.getX() - chasseur3.getDistanceTir() && joueur.getX()*32 <= chasseur3.getX() + chasseur3.getDistanceTir() +20 && joueur.getY()*36 >= chasseur3.getY() - chasseur3.getDistanceTir() && joueur.getY()*36 <= chasseur3.getY() + chasseur3.getDistanceTir() +20) {
+			chasseur3.setTimer(delta);
+			chasseur3.tirer();
+		}
+		else
+			chasseur3.tirer();  
+			
+			
+			
+			
 		//boolean CollisionY = collisionsN1.autoriserDeplacementY(joueur.getPosX_px(), joueur.getPosY_px());
 		boolean CollisionY = true;
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta, CollisionY);
 		
-		
+		// chasseur 1 mort
 		if(chasseur1.getXBalle1()+20>=joueur.getPosX_px() && chasseur1.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle1()+20>=joueur.getPosY_px() && chasseur1.getYBalle1()<=joueur.getPosY_px()+36 ||
 				chasseur1.getXBalle2()+20>=joueur.getPosX_px() && chasseur1.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle2()+20>=joueur.getPosY_px() && chasseur1.getYBalle2()<=joueur.getPosY_px()+36 ||
 				chasseur1.getXBalle3()+20>=joueur.getPosX_px() && chasseur1.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle3()+20>=joueur.getPosY_px() && chasseur1.getYBalle3()<=joueur.getPosY_px()+36 ) {
@@ -124,6 +147,24 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		}
 			
 		
+		// chasseur 2 mort
+		if(chasseur2.getXBalle1()+20>=joueur.getPosX_px() && chasseur2.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur2.getYBalle1()+20>=joueur.getPosY_px() && chasseur2.getYBalle1()<=joueur.getPosY_px()+36 ||
+				chasseur2.getXBalle2()+20>=joueur.getPosX_px() && chasseur2.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur2.getYBalle2()+20>=joueur.getPosY_px() && chasseur2.getYBalle2()<=joueur.getPosY_px()+36 ||
+				chasseur2.getXBalle3()+20>=joueur.getPosX_px() && chasseur2.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur2.getYBalle3()+20>=joueur.getPosY_px() && chasseur2.getYBalle3()<=joueur.getPosY_px()+36 ) {
+			mort=true;
+			Personnage.niveauMort(sbg);
+			sbg.enterState(404);
+		}
+		
+		
+		// chasseur 3 mort
+		if(chasseur3.getXBalle1()+20>=joueur.getPosX_px() && chasseur3.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle1()+20>=joueur.getPosY_px() && chasseur3.getYBalle1()<=joueur.getPosY_px()+36 ||
+				chasseur3.getXBalle2()+20>=joueur.getPosX_px() && chasseur3.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle2()+20>=joueur.getPosY_px() && chasseur3.getYBalle2()<=joueur.getPosY_px()+36 ||
+				chasseur3.getXBalle3()+20>=joueur.getPosX_px() && chasseur3.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle3()+20>=joueur.getPosY_px() && chasseur3.getYBalle3()<=joueur.getPosY_px()+36 ) {
+			mort=true;
+			Personnage.niveauMort(sbg);
+			sbg.enterState(404);
+		}
 		
 		
 		/*!!!!! COLLISION !!!!!*/

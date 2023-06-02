@@ -32,7 +32,7 @@ public class Personnage {
 		this.x = 1;
 		this.y = 18;
 		
-		vx = 2; // vitesse horizontale
+		vx = 3; // vitesse horizontale
 		vy = 0;
 	}
 
@@ -48,7 +48,7 @@ public class Personnage {
 		this.x = x;
 		this.y = y;
 		
-		vx = 2;
+		vx = 3;
 		vy = 0;
 	}
 
