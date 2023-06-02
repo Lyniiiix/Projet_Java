@@ -135,22 +135,17 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		boolean collisionX =  collisionsN1.autoriserDeplacementX(joueur.getPosX_px(), joueur.getPosY_px());
-		//System.out.println(collisionX);
-		//System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
 		
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_SPACE)) {
-			joueur.setStatus("saut");
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
 			joueur.deplacer(gc,collisionX);
-			joueur.setStatus("droite");
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc,collisionX);
-			joueur.setStatus("gauche");
 		}
 		
 		

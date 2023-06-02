@@ -12,21 +12,18 @@ import main.*;
 
 public class Personnage {
 	private Image image;
+	
 	private float x,y, vx, vy, graviteY;
 	private int masse = 70; // masse (varier gravite)
 	private float acc_p = 9.81f; // acceleration de la pesanteur
-	
-	private String direct_pers; // droite - gauche
-	private String status_pers; // sol - vol
-	
-	private int posY_avant_saut; // juste test
 	
 	private int compteurDeSaut = 0;	
 	
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	public Personnage() throws SlickException{
+	public Personnage() throws SlickException
+	{
 		image = new Image("res/images/perso.png");
 		
 		graviteY = masse * acc_p;
@@ -51,7 +48,7 @@ public class Personnage {
 		this.x = x;
 		this.y = y;
 		
-		vx = 2 ;
+		vx = 2;
 		vy = 0;
 	}
 
@@ -75,8 +72,7 @@ public class Personnage {
 		return x * 32;
 	}
 	public void setX(float x) {
-		if(x >= 1 && x <= Constantes.MAP_X - 1)
-			this.x = x;
+		this.x = x;
 	}
 	public float getVx() {
 		return vx;
@@ -93,8 +89,7 @@ public class Personnage {
 		return y * 36;
 	}
 	public void setY(float y) {
-		if(y >= 1 && y <= Constantes.MAP_X - 1)
-			this.y = y;
+		this.y = y;
 	}
 	public float getVy() {
 		return vy;
@@ -103,34 +98,11 @@ public class Personnage {
 		this.vy = vy;
 	}
 	
-	// status personnage
-	public String getStatus()
-	{
-		return status_pers;
-	}
-	public void setStatus(String status)
-	{
-		status_pers = status;
-	}
-	public String getDirect()
-	{
-		return direct_pers;
-	}
-	public void setDirect(String direct_pers)
-	{
-		this.direct_pers = direct_pers;
-	}
-	
 	// *********************************************** //
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.drawImage(image, x*32, y*36, x*32+32, y*36+36, 0, 0, image.getWidth(), image.getHeight());
 		g.drawRect(x*32-32, y*36-36, 3*32, 2*36);
-		
-		/*
-		g.setColor(color);
-		g.fillRect(x*32, y*36, 32, 36); // (x,y) en pos de matrice - (largeur,longueur)
-		*/
 	}
 	
 	
@@ -143,11 +115,13 @@ public class Personnage {
 	public void deplacer(GameContainer gc, boolean collisionX) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && collisionX) { //&& x * Constantes.MAP_X + vx <= gc.getWidth() - (Constantes.LARGEUR_PERSO + 32)
-			x += vx / Constantes.MAP_Y;
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && collisionX)
+		{
+			x += vx / Constantes.MAP_X;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX) { //&& x * Constantes.MAP_X - vx >= Constantes.LARGEUR_PERSO
-			x -= vx / Constantes.MAP_Y;
+		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX)
+		{
+			x -= vx / Constantes.MAP_X;
 		}
 		
 		
@@ -169,8 +143,7 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 	public void gravite(int delta, boolean collisionY) {
 		
-		if(y < Constantes.MAP_Y - 2
-				)  // pour la bordure + la hauteur du bonhomme
+		if(y < Constantes.MAP_Y - 2)  // pour la bordure + la hauteur du bonhomme
 			vy += graviteY * delta / 1000f;
 		else {
 			vy = 0;
@@ -188,13 +161,16 @@ public class Personnage {
 			compteurDeSaut = 0;
 		}
 	}
+	
+	
+	
 
 	public void sauter(int delta) {
-		y += (vy * delta / 1000f) / 36;
+		y += (vy * delta / 1000f) / Constantes.HAUTEUR_CASE;
 	}
 
 	public void sauterInversee(int delta) {
-		y -= (vy * delta / 1000f) / 36;
+		y -= (vy * delta / 1000f) / Constantes.HAUTEUR_CASE;
 	}
 
 

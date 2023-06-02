@@ -10,9 +10,13 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class Niveau4 extends BasicGameState {   // niveau glace
 	private Image image_fond;
+	private TiledMap map;
+	private Map mapN4;
+	
 	
 	private Image porteSortie;
 	
@@ -20,10 +24,15 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private OursPolaire ours;
 	
 	private Plateforme p1, p2, p3, p4, p5;
+	
+	
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		image_fond = new Image("res/niveau4/n4_fond.png");
+		
+		map = new TiledMap("res/niveau4/niveau4.tmx");
+		mapN4 = new Map(gc,image_fond,map);
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		
@@ -40,7 +49,9 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		
 		g.drawImage(image_fond,0,0);
+		map.render(0, 0); // dessiner la map a partir du .tmx correspondant 
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
@@ -53,6 +64,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p5.draw(g);
 		
 		g.drawString("c",505 , 10);
+		
+		
 	}
 
 	@Override

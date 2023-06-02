@@ -14,13 +14,11 @@ import main.Constantes;
 
 public class Map {
 	
-	private String nom;
-	
 	private Image image_fond;
 
 	private TiledMap map;
 	
-	private int[][] matrice_map = new int[23][32];	
+	private int[][] matrice_map = new int[23][32];
 	
 	private Objet[] objetsMap;
 	
@@ -28,7 +26,7 @@ public class Map {
 	public Map(GameContainer gc, Image image_fond, TiledMap map){
 		this.image_fond = image_fond;
 		this.map = map;
-		this.genererMatrice(); // 0 vide / 1 bloc bloquant
+		this.genererMatrice(); // 0=vide / 1=bloc bloquant
 		this.genererObjets();
 	}
 	
@@ -92,10 +90,8 @@ public class Map {
 	{
 		return objetsMap.length;
 	}
-
 	
-	
-	public void toArray()
+	public void toArray() // affiche dans la console
 	{
 		for (int y = 0; y < Constantes.MAP_Y; y++) {
 		    for (int x = 0; x < Constantes.MAP_X; x++) {

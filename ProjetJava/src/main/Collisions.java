@@ -20,15 +20,14 @@ public class Collisions {
 		this.objetsMap = map.getObjets();
 	}
 
-	public boolean autoriserDeplacementX(float new_x, float new_y)
+	public boolean autoriserDeplacementX(float x, float y)
 	{
 		for (Objet objet : objetsMap)
 		{
-			
-			if (objet.getx2() >= (new_x-32) || objet.getx1() <= (new_x+64) ||
-				objet.gety2() > (new_y-36) || objet.gety1() < (new_y+36)
-				)
+			System.out.println((x) + " " + y);
+			if (objet.getx2() >= (x) && (x)>=objet.getx1() &&(objet.gety1() <= y) && objet.gety2() >= y+36)
 			{
+				System.out.println(objet);
 				return false;
 			}
 		}

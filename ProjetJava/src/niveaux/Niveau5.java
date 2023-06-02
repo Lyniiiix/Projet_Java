@@ -11,10 +11,13 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 
 public class Niveau5 extends BasicGameState {   // niveau plage
 	private Image image_fond;
+	private TiledMap map;
+	private Map mapN5;
 	
 	private Image porteSortie;
 	
@@ -25,6 +28,8 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		image_fond = new Image("res/niveau5/n5_fond.png");
+		map = new TiledMap("res/niveau5/niveau5.tmx");
+		mapN5 = new Map(gc,image_fond,map);
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		
@@ -35,6 +40,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(image_fond,0,0);
+		map.render(0, 0); // dessiner la map a partir du .tmx correspondant 
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
