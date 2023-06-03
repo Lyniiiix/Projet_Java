@@ -41,7 +41,11 @@ public class Launcher extends BasicGameState {
 		g.drawRect(450, 450, 100, 150);
 		g.drawString("Monde Bonus", 450, 620);
 		
-		g.drawString("u",200 , 800);
+		
+		
+		// permet de faire spawn la derniere lettre de l easter egg si tous les niveaux sont finis avant
+		if(Niveau1.getReussi() && Niveau2.getReussi() && Niveau3.getReussi() && Niveau4.getReussi() && Niveau5.getReussi())  			
+			g.drawString("u",200 , 800);
 	}
 	
 

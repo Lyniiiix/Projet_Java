@@ -37,8 +37,18 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	
 	private int timer = 0;
-	private boolean mort = false;
+	private boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
 	
+	
+	// permet de savoir si le niveau est réussi
+	private static boolean reussi = false;
+	
+	public static boolean getReussi() {
+		return reussi;
+	}
+
+
+
 	private Collisions collisionsN1; // instance Collisions
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -213,8 +223,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		
-		// sortir du niveau mode joueur
+		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
+			reussi=true;
 			sbg.enterState(0);
 		}
 		

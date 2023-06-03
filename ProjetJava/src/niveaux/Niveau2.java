@@ -25,7 +25,18 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	public Map mapN2; // instance d'une map
 	
 	private Collisions collisionsN2; // instance Collisions
+	
+	
+	// permet de savoir si le niveau est réussi
+	private static boolean reussi = false;
+	
+	public static boolean getReussi() {
+		return reussi;
+	}
 
+	
+	
+	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		image_fond = new Image("res/niveau2/n2_fond.png");
@@ -88,8 +99,9 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		}
 		
 		
-		// sortir du niveau mode joueur
+		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
+			reussi = true;
 			sbg.enterState(0);
 		}
 		

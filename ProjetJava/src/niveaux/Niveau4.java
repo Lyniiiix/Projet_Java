@@ -26,6 +26,16 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private Plateforme p1, p2, p3, p4, p5;
 	
 	
+	
+	// permet de savoir si le niveau est réussi
+	private static boolean reussi = false;
+	
+	public static boolean getReussi() {
+		return reussi;
+	}
+
+	
+	
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -98,8 +108,9 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 			joueur.deplacer(gc);
 		}
 		
-		// sortir du niveau mode joueur
+		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
+			reussi = true;
 			sbg.enterState(0);
 		}
 		

@@ -15,6 +15,16 @@ public class Niveau3 extends BasicGameState {
 	private Personnage joueur ;
 	private Image porteSortie;
 	private Laser laser;
+	
+	
+	// permet de savoir si le niveau est réussi
+	private static boolean reussi = false;
+	
+	public static boolean getReussi() {
+		return reussi;
+	}
+	
+		
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -54,8 +64,9 @@ public class Niveau3 extends BasicGameState {
 		
 		
 
-		// sortir du niveau mode joueur
+		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=32 && joueur.getPosX_px()<=32+3*32 && joueur.getPosY_px()>=684 && joueur.getPosY_px()<=684+3*36) {
+			reussi = true;
 			sbg.enterState(0);
 		}
 		
