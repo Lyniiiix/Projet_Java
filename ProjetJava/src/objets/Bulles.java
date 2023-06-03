@@ -9,17 +9,12 @@ public class Bulles {
 	private int diametre;
 	private float vy;
 	
-	
-	
-	public float getY() {
-		return y;
-	}
 
-
-	public Bulles(float x) {
+	public Bulles(float x, float y) {
 		diametre = 40;
-		vy = 10;
-		y = 0;
+		vy = 9.81f;
+		if(y<=0)
+			this.y = y;
 		if(x>=0 && x<=1024) {
 			this.x = x;
 		}
@@ -33,13 +28,21 @@ public class Bulles {
 		y+=vy*delta/100f;
 	}
 	
-	public boolean testCollision(GameContainer gc) {
-		if(this.y >= 580 && this.y <= 640) {
+	public boolean testCollision() {
+		if(this.y >= 580 && this.y <= 620) {
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+	
+	
+	public boolean horsEcran() {
+		if(y>620) 
+			return true;
+		else
+			return false;
 	}
 	
 }
