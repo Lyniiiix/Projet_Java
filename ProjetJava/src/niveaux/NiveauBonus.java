@@ -46,7 +46,7 @@ public class NiveauBonus extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		if(timer<2000) {
+		if(timer<8000) {
 			g.drawString("TIME FOR A MULTIPLAYER GAME", 390, 50);
 			
 			g.drawString("L'écran est séparé en deux parties distinctes", 310, 280);
@@ -56,7 +56,7 @@ public class NiveauBonus extends BasicGameState {
 		}
 		
 		
-		if(timer>=2000) {
+		if(timer>=8000) {
 			// dessiner le terrain
 			g.setColor(Color.darkGray);
 			g.fillRect(0, 0, 1024/2, 720);
@@ -66,10 +66,10 @@ public class NiveauBonus extends BasicGameState {
 			g.setColor(Color.white);
 			
 			
-			g.drawLine(1024/6, 0, 1024/6, 820);
+			g.drawLine(1024/6, 0, 1024/6, 720);
 			g.drawString("Q", 1024/12 - 5, 720-(720-640)/2 - 5);
 			
-			g.drawLine(2*1024/6, 0, 2*1024/6, 820);
+			g.drawLine(2*1024/6, 0, 2*1024/6, 720);
 			g.drawString("Z", 1024/6 + 1024/12 - 5, 720-(720-640)/2 - 5);
 			
 			g.setColor(Color.magenta);
@@ -77,10 +77,10 @@ public class NiveauBonus extends BasicGameState {
 			g.setColor(Color.white);
 			g.drawString("D", 1024/3 + 1024/12 - 5, 720-(720-640)/2 - 5);
 			
-			g.drawLine(4*1024/6, 0, 4*1024/6, 820);
+			g.drawLine(4*1024/6, 0, 4*1024/6, 720);
 			g.drawString("J", 2*1024/3 - 1024/12 - 5, 720-(720-640)/2 - 5);
 			
-			g.drawLine(5*1024/6, 0, 5*1024/6, 820);
+			g.drawLine(5*1024/6, 0, 5*1024/6, 720);
 			g.drawString("I", 2*1024/3 + 1024/12 - 5, 720-(720-640)/2 - 5);
 			
 			g.drawString("L", 1024 - 1024/12 - 5, 720-(720-640)/2 - 5);
@@ -92,8 +92,8 @@ public class NiveauBonus extends BasicGameState {
 			
 			
 			// dessiner les compteurs
-			g.drawString("gauche: "+compteurGauche, 0, 0);
-			g.drawString("droite: "+compteurGauche, 0, 20);
+			g.drawString("gauche: "+compteurGauche, 1024/6 + 1024/12 - 30 , 828-(828-720)/2 - 5);
+			g.drawString("droite: "+compteurGauche, 2*1024/3 + 1024/12 - 30 , 828-(828-720)/2 - 5);
 			
 			
 			
@@ -141,11 +141,11 @@ public class NiveauBonus extends BasicGameState {
 			
 			
 			
-			if(timer<=2000)
+			if(timer<=10000)
 				g.drawString("3", 500, 350);
-			if(timer>2000 && timer<=4000)
+			if(timer>10000 && timer<=12000)
 				g.drawString("2", 500, 350);
-			if(timer>4000 && timer<=6000)
+			if(timer>12000 && timer<=14000)
 				g.drawString("1", 500, 350);
 			// Image géante 1, 2, 3 pour le compte a rebours
 		}
@@ -158,7 +158,7 @@ public class NiveauBonus extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		timer += delta;
 		
-		if(timer>=1000+6000) {
+		if(timer>=14000) {
 			for(int i=0; i<bullesDroite.size(); i++) {
 				bullesDroite.get(i).deplacer(delta);
 				bullesGauche.get(i).deplacer(delta);
@@ -176,21 +176,21 @@ public class NiveauBonus extends BasicGameState {
 		
 		
 		// creer les bulles ecran gauche et droite
-		if(timer>=1000 && bullesGauche.size()<40) {
+		if(timer>=8000 && bullesGauche.size()<40) {
 			for(int i=0; i<40; i++) {
 				int random = (int)(Math.random()*3);
 				
 				if(random==0) {
-					bullesGauche.add(new Bulles(1024/12 - 20 , -50*i));
-					bullesDroite.add(new Bulles(2*1024/3 - 1024/12 - 20 ,-50*i));
+					bullesGauche.add(new Bulles(1024/12 - 20 , -65*i));
+					bullesDroite.add(new Bulles(2*1024/3 - 1024/12 - 20 ,-65*i));
 				}
 				if(random==1) {
-					bullesGauche.add(new Bulles(1024/12 + 1024/6 - 20 , -50*i));
-					bullesDroite.add(new Bulles(2*1024/3 + 1024/12 - 20 ,-50*i));
+					bullesGauche.add(new Bulles(1024/12 + 1024/6 - 20 , -65*i));
+					bullesDroite.add(new Bulles(2*1024/3 + 1024/12 - 20 ,-65*i));
 				}
 				if(random==2) {
-					bullesGauche.add(new Bulles(1024/12 + 1024/3 - 20 , -50*i));
-					bullesDroite.add(new Bulles(1024 - 1024/12 - 20 ,-50*i));
+					bullesGauche.add(new Bulles(1024/12 + 1024/3 - 20 , -65*i));
+					bullesDroite.add(new Bulles(1024 - 1024/12 - 20 ,-65*i));
 				}
 			}				
 		}
@@ -219,42 +219,42 @@ public class NiveauBonus extends BasicGameState {
 		
 		
 		// enlever bulles si touchees
-		if (mvt.isKeyPressed(Input.KEY_Q)) {
+		if (mvt.isKeyPressed(Input.KEY_Q) && timer>=8000) {
 			appuyerQ = true;
 			if(bullesGauche.get(0).testCollision()) {
 				bullesGauche.remove(0);
 				compteurGauche++;
 			}
 		}
-		if (mvt.isKeyPressed(Input.KEY_Z)) {
+		if (mvt.isKeyPressed(Input.KEY_Z) && timer>=8000) {
 			appuyerZ = true;
 			if(bullesGauche.get(1).testCollision()) {
 				bullesGauche.remove(1);
 				compteurGauche++;
 			}
 		}
-		if (mvt.isKeyPressed(Input.KEY_D)) {
+		if (mvt.isKeyPressed(Input.KEY_D) && timer>=8000) {
 			appuyerD = true;
 			if(bullesGauche.get(2).testCollision()) {
 				bullesGauche.remove(2);
 				compteurGauche++;
 			}
 		}
-		if (mvt.isKeyPressed(Input.KEY_J)) {
+		if (mvt.isKeyPressed(Input.KEY_J) && timer>=8000) {
 			appuyerJ = true;
 			if(bullesDroite.get(0).testCollision()) {
 				bullesDroite.remove(0);
 				compteurDroite++;
 			}
 		}
-		if (mvt.isKeyPressed(Input.KEY_I)) {
+		if (mvt.isKeyPressed(Input.KEY_I) && timer>=8000) {
 			appuyerI = true;
 			if(bullesDroite.get(1).testCollision()) {
 				bullesDroite.remove(1);
 				compteurDroite++;
 			}
 		}
-		if (mvt.isKeyPressed(Input.KEY_L)) {
+		if (mvt.isKeyPressed(Input.KEY_L) && timer>=8000) {
 			appuyerL = true;
 			if(bullesDroite.get(2).testCollision()) {
 				bullesDroite.remove(2);
