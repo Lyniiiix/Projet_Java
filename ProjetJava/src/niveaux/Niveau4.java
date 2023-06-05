@@ -73,7 +73,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p4.draw(g);
 		p5.draw(g);
 		
-		g.drawString("c",505 , 10);
+		g.drawString("c",505 , 50);
 		
 		
 	}
