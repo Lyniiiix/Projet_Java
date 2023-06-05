@@ -18,6 +18,7 @@ public class Personnage {
 	private float acc_p = 9.81f; // acceleration de la pesanteur
 	
 	private boolean detection_sol;
+	private Map map;
 	
 	private int compteurDeSaut = 0;	
 	
@@ -37,6 +38,21 @@ public class Personnage {
 		vx = 3; // vitesse horizontale
 		vy = 0;
 	}
+	
+	// CONSTRUCTEUR PAR DEFAUT
+		public Personnage(Map map) throws SlickException
+		{
+			image = new Image("res/images/perso.png");
+			
+			graviteY = masse * acc_p;
+			
+			// on place au debut en bas a gauche
+			this.x = 1;
+			this.y = 18;
+			
+			vx = 3; // vitesse horizontale
+			vy = 0;
+		}
 
 
 	
@@ -143,7 +159,9 @@ public class Personnage {
 	
 	public boolean detecterSol()
 	{
-		if (getPosY_px() < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_PERSO*2)
+		System.out.println(getPosX_px() + " " + getPosY_px() + " - " + 22*36 + " " + 23*36);
+		//if (getPosY_px() < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_PERSO*2)
+		if ((getPosY_px() + 36) >= (22*36) && (getPosY_px() + 36) < (23*36) && (getPosX_px() + 16) > 32 && (getPosX_px() + 16) < 64)
 		{
 			return true;
 		}

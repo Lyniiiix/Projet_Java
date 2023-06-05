@@ -147,7 +147,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			
 			
 			
-		boolean collisionY = collisionsN1.autoriserGraviteY(joueur.getPosX_px(), joueur.getPosY_px());
+		boolean collisionY = true;//collisionsN1.autoriserGraviteY(joueur.getPosX_px(), joueur.getPosY_px());
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta, collisionY);
@@ -190,7 +190,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		//System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
 		
 		
-		boolean collisionX =  collisionsN1.autoriserDeplacementX(joueur.getPosX_px(), joueur.getPosY_px());
+		boolean collisionX = true;//collisionsN1.autoriserDeplacementX(joueur.getPosX_px(), joueur.getPosY_px());
 		
 		Input mvt = gc.getInput();
 		

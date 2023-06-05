@@ -20,7 +20,7 @@ public class Collisions {
 		this.objetsMap = map.getObjets();
 	}
 	
-
+	/*
 	public boolean autoriserDeplacementX(float x, float y)
 	{
 		for (Objet objet : objetsMap)
@@ -34,7 +34,7 @@ public class Collisions {
 		}
 		return true;
 	}
-	
+	*/
 
 	public boolean autoriserGraviteY(float x, float y)
 	{
