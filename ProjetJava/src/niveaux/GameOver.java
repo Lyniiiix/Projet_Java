@@ -56,7 +56,8 @@ public class GameOver extends BasicGameState {
 			//BOUTON POUR RETRY LE NIVEAU
 			if(mvt.getMouseX()>=150 && mvt.getMouseX()<=350 && mvt.getMouseY()>=500 && mvt.getMouseY()<=550){
 				timer=0;
-				//sbg.enterState(retry.getPrecedent());
+				if(Niveau1.getMort() == true)
+					sbg.enterState(1);
 			}
 			
 			// BOUTON POUR REVENIR AU LAUNCHER

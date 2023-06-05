@@ -17,6 +17,8 @@ public class Personnage {
 	private int masse = 70; // masse (varier gravite)
 	private float acc_p = 9.81f; // acceleration de la pesanteur
 	
+	private boolean detection_sol;
+	
 	private int compteurDeSaut = 0;	
 	
 	
@@ -138,13 +140,28 @@ public class Personnage {
 		}
 		
 	}
+	
+	public boolean detecterSol()
+	{
+		if (getPosY_px() < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_PERSO*2)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 	public void gravite(int delta, boolean collisionY) {
-		
-		if(y < Constantes.MAP_Y - 2)  // pour la bordure + la hauteur du bonhomme
+		//System.out.println(x + " " + y);
+		if(detecterSol())  // pour la bordure + la hauteur du bonhomme 
+			{
+			System.out.println(vy);
 			vy += graviteY * delta / 1000f;
+	}
 		else {
 			vy = 0;
 			compteurDeSaut = 0;

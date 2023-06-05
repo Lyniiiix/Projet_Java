@@ -10,9 +10,19 @@ public class Bulles {
 	private float vy;
 	
 
+	
+	public float getVy() {
+		return vy;
+	}
+
+	public void setVy(float vy) {
+		if(vy>=100)
+			this.vy = vy;
+	}
+
 	public Bulles(float x, float y) {
 		diametre = 40;
-		vy = 9.81f;
+		vy = 100;
 		if(y<=0)
 			this.y = y;
 		if(x>=0 && x<=1024) {
@@ -25,7 +35,7 @@ public class Bulles {
 	}
 	
 	public void deplacer(int delta) {
-		y+=vy*delta/100f;
+		y+=vy*delta/1000f;
 	}
 	
 	public boolean testCollision() {
@@ -44,6 +54,7 @@ public class Bulles {
 		else
 			return false;
 	}
+	
 	
 }
 

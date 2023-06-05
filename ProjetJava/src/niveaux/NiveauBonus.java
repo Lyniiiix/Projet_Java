@@ -7,21 +7,22 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class NiveauBonus extends BasicGameState {
-	private Image porteSortie;
-	private Personnage joueur ;
 	private int timer; // en ms
 	private int compteurGauche;
 	private int compteurDroite;
 	
-	private ArrayList <Bulles> bullesGauche = new ArrayList<Bulles>();
-	private ArrayList <Bulles> bullesDroite = new ArrayList<Bulles>();
+	private ArrayList <Bulles> bullesGauche1 = new ArrayList<Bulles>();
+	private ArrayList <Bulles> bullesGauche2 = new ArrayList<Bulles>();
+	private ArrayList <Bulles> bullesGauche3 = new ArrayList<Bulles>();
+	private ArrayList <Bulles> bullesDroite1 = new ArrayList<Bulles>();
+	private ArrayList <Bulles> bullesDroite2 = new ArrayList<Bulles>();
+	private ArrayList <Bulles> bullesDroite3 = new ArrayList<Bulles>();
 	
 	private boolean appuyerQ;
 	private boolean appuyerZ;
@@ -93,16 +94,28 @@ public class NiveauBonus extends BasicGameState {
 			
 			// dessiner les compteurs
 			g.drawString("gauche: "+compteurGauche, 1024/6 + 1024/12 - 30 , 828-(828-720)/2 - 5);
-			g.drawString("droite: "+compteurGauche, 2*1024/3 + 1024/12 - 30 , 828-(828-720)/2 - 5);
+			g.drawString("droite: "+compteurDroite, 2*1024/3 + 1024/12 - 30 , 828-(828-720)/2 - 5);
 			
 			
 			
 			// dessiner les bulles
-			for(int i=0; i<bullesGauche.size(); i++) {
-				bullesGauche.get(i).dessiner(g);
+			for(int i=0; i<bullesGauche1.size(); i++) {
+				bullesGauche1.get(i).dessiner(g);
 			}
-			for(int i=0; i<bullesDroite.size(); i++) {
-				bullesDroite.get(i).dessiner(g);
+			for(int i=0; i<bullesGauche2.size(); i++) {
+				bullesGauche2.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesGauche3.size(); i++) {
+				bullesGauche3.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesDroite1.size(); i++) {
+				bullesDroite1.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesDroite2.size(); i++) {
+				bullesDroite2.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesDroite3.size(); i++) {
+				bullesDroite3.get(i).dessiner(g);
 			}
 			
 			
@@ -159,15 +172,45 @@ public class NiveauBonus extends BasicGameState {
 		timer += delta;
 		
 		if(timer>=14000) {
-			for(int i=0; i<bullesDroite.size(); i++) {
-				bullesDroite.get(i).deplacer(delta);
-				bullesGauche.get(i).deplacer(delta);
+			for(int i=0; i<bullesGauche1.size(); i++) {
+				bullesGauche1.get(i).deplacer(delta);
+			}
+			for(int i=0; i<bullesGauche2.size(); i++) {
+				bullesGauche2.get(i).deplacer(delta);
+			}
+			for(int i=0; i<bullesGauche3.size(); i++) {
+				bullesGauche3.get(i).deplacer(delta);
 			}
 			
-			/*
-			int random = (int)(Math.random()*3);
-			bullesDroite.get(random).deplacer(delta);
-			bullesGauche.get(random).deplacer(delta);*/
+			for(int i=0; i<bullesDroite1.size(); i++) {
+				bullesDroite1.get(i).deplacer(delta);
+			}
+			for(int i=0; i<bullesDroite2.size(); i++) {
+				bullesDroite2.get(i).deplacer(delta);
+			}
+			
+			for(int i=0; i<bullesDroite3.size(); i++) {
+				bullesDroite3.get(i).deplacer(delta);
+			}
+		}
+		
+		
+		
+		// accelerer les bulles au bout d un certain temps
+		if(timer >= 24000) {
+			for(int i=0; i<bullesDroite1.size(); i++) {
+				bullesDroite1.get(i).setVy(bullesDroite1.get(i).getVy()+50);
+				bullesGauche1.get(i).setVy(bullesGauche1.get(i).getVy()+50);
+			}
+			for(int i=0; i<bullesDroite2.size(); i++) {
+				bullesDroite2.get(i).setVy(bullesDroite2.get(i).getVy()+50);
+				bullesGauche2.get(i).setVy(bullesGauche2.get(i).getVy()+50);
+			}
+			for(int i=0; i<bullesDroite3.size(); i++) {
+				bullesDroite3.get(i).setVy(bullesDroite3.get(i).getVy()+50);
+				bullesGauche3.get(i).setVy(bullesGauche3.get(i).getVy()+50);
+			}
+			timer = 14000;
 		}
 		
 		
@@ -176,41 +219,71 @@ public class NiveauBonus extends BasicGameState {
 		
 		
 		// creer les bulles ecran gauche et droite
-		if(timer>=8000 && bullesGauche.size()<40) {
-			for(int i=0; i<40; i++) {
+		if(timer>=8000 && bullesGauche1.size()<10 && bullesGauche2.size()<10 && bullesGauche3.size()<10) {
+			for(int i=0; i<30; i++) {
 				int random = (int)(Math.random()*3);
 				
 				if(random==0) {
-					bullesGauche.add(new Bulles(1024/12 - 20 , -65*i));
-					bullesDroite.add(new Bulles(2*1024/3 - 1024/12 - 20 ,-65*i));
+					bullesGauche1.add(new Bulles(1024/12 - 20 , -50*i));
+					bullesDroite1.add(new Bulles(2*1024/3 - 1024/12 - 20 ,-50*i));
 				}
 				if(random==1) {
-					bullesGauche.add(new Bulles(1024/12 + 1024/6 - 20 , -65*i));
-					bullesDroite.add(new Bulles(2*1024/3 + 1024/12 - 20 ,-65*i));
+					bullesGauche2.add(new Bulles(1024/12 + 1024/6 - 20 , -50*i));
+					bullesDroite2.add(new Bulles(2*1024/3 + 1024/12 - 20 ,-50*i));
 				}
 				if(random==2) {
-					bullesGauche.add(new Bulles(1024/12 + 1024/3 - 20 , -65*i));
-					bullesDroite.add(new Bulles(1024 - 1024/12 - 20 ,-65*i));
+					bullesGauche3.add(new Bulles(1024/12 + 1024/3 - 20 , -50*i));
+					bullesDroite3.add(new Bulles(1024 - 1024/12 - 20 ,-50*i));
 				}
-			}				
+			}						
 		}
 		
 		
 		
 		// enlever les bulles gauche si pas touchees
-		 for(int i=0; i<bullesGauche.size(); i++) {
-			if(bullesGauche.get(i).horsEcran()) {
+		for(int i = 0; i < bullesGauche1.size(); i++) {
+			if(bullesGauche1.get(i).horsEcran()) {
 				compteurGauche--;
-				bullesGauche.remove(i);
+				bullesGauche1.remove(i);
 				i--;
 			}
 		}
+		for(int i = 0; i < bullesGauche2.size(); i++) {
+			if(bullesGauche2.get(i).horsEcran()) {
+				compteurGauche--;
+				bullesGauche2.remove(i);
+				i--;
+			}
+		}
+		for(int i = 0; i < bullesGauche3.size(); i++) {
+			if(bullesGauche3.get(i).horsEcran()) {
+				compteurGauche--;
+				bullesGauche3.remove(i);
+				i--;
+			}
+		}
+		
+		
 		 
 		// enlever les bulles droite si pas touchees
-		for(int i = 0; i < bullesDroite.size(); i++) {
-			if(bullesDroite.get(i).horsEcran()) {
+		for(int i = 0; i < bullesDroite1.size(); i++) {
+			if(bullesDroite1.get(i).horsEcran()) {
 				compteurDroite--;
-				bullesDroite.remove(i);
+				bullesDroite1.remove(i);
+				i--;
+			}
+		}
+		for(int i = 0; i < bullesDroite2.size(); i++) {
+			if(bullesDroite2.get(i).horsEcran()) {
+				compteurDroite--;
+				bullesDroite2.remove(i);
+				i--;
+			}
+		}
+		for(int i = 0; i < bullesDroite3.size(); i++) {
+			if(bullesDroite3.get(i).horsEcran()) {
+				compteurDroite--;
+				bullesDroite3.remove(i);
 				i--;
 			}
 		}
@@ -221,44 +294,59 @@ public class NiveauBonus extends BasicGameState {
 		// enlever bulles si touchees
 		if (mvt.isKeyPressed(Input.KEY_Q) && timer>=8000) {
 			appuyerQ = true;
-			if(bullesGauche.get(0).testCollision()) {
-				bullesGauche.remove(0);
-				compteurGauche++;
+			for(int i = 0; i < bullesGauche1.size(); i++) {
+				if(bullesGauche1.get(i).testCollision()) {
+					bullesGauche1.remove(i);
+					compteurGauche++;
+					i--;
+				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_Z) && timer>=8000) {
 			appuyerZ = true;
-			if(bullesGauche.get(1).testCollision()) {
-				bullesGauche.remove(1);
-				compteurGauche++;
+			for(int i = 0; i < bullesGauche2.size(); i++) {
+				if(bullesGauche2.get(i).testCollision()) {
+					bullesGauche2.remove(i);
+					compteurGauche++;
+					i--;
+				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_D) && timer>=8000) {
 			appuyerD = true;
-			if(bullesGauche.get(2).testCollision()) {
-				bullesGauche.remove(2);
-				compteurGauche++;
+			for(int i = 0; i < bullesGauche3.size(); i++) {
+				if(bullesGauche3.get(i).testCollision()) {
+					bullesGauche3.remove(i);
+					compteurGauche++;
+					i--;
+				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_J) && timer>=8000) {
 			appuyerJ = true;
-			if(bullesDroite.get(0).testCollision()) {
-				bullesDroite.remove(0);
-				compteurDroite++;
+			for(int i = 0; i < bullesDroite1.size(); i++) {
+				if(bullesDroite1.get(i).testCollision()) {
+					bullesDroite1.remove(i);
+					compteurDroite++;
+				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_I) && timer>=8000) {
 			appuyerI = true;
-			if(bullesDroite.get(1).testCollision()) {
-				bullesDroite.remove(1);
-				compteurDroite++;
+			for(int i = 0; i < bullesDroite2.size(); i++) {
+				if(bullesDroite2.get(i).testCollision()) {
+					bullesDroite2.remove(i);
+					compteurDroite++;
+				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_L) && timer>=8000) {
 			appuyerL = true;
-			if(bullesDroite.get(2).testCollision()) {
-				bullesDroite.remove(2);
-				compteurDroite++;
+			for(int i = 0; i < bullesDroite3.size(); i++) {
+				if(bullesDroite3.get(i).testCollision()) {
+					bullesDroite3.remove(i);
+					compteurDroite++;
+				}
 			}
 		}
 		

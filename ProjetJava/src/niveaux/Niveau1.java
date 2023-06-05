@@ -37,8 +37,14 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	
 	private int timer = 0;
-	private boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
 	
+	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
+	
+	// permet de savoir si le perso est mort ds ce niveau
+	public static boolean getMort() {
+		return mort;
+	}
+
 	
 	// permet de savoir si le niveau est réussi
 	private static boolean reussi = false;
@@ -70,7 +76,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		for (int i = 0; i < mapN1.getObjets().length; i++)
 			System.out.println( mapN1.getObjets()[i] );
 		
-		System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
+		//System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
 
 		
 		collisionsN1 = new Collisions(mapN1);
@@ -141,18 +147,17 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			
 			
 			
-		//boolean CollisionY = collisionsN1.autoriserDeplacementY(joueur.getPosX_px(), joueur.getPosY_px());
-		boolean CollisionY = true;
+		boolean collisionY = collisionsN1.autoriserGraviteY(joueur.getPosX_px(), joueur.getPosY_px());
 		
 		joueur.sauter(delta);
-		joueur.gravite(delta, CollisionY);
+		joueur.gravite(delta, collisionY);
 		
 		// chasseur 1 mort
 		if(chasseur1.getXBalle1()+20>=joueur.getPosX_px() && chasseur1.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle1()+20>=joueur.getPosY_px() && chasseur1.getYBalle1()<=joueur.getPosY_px()+36 ||
 				chasseur1.getXBalle2()+20>=joueur.getPosX_px() && chasseur1.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle2()+20>=joueur.getPosY_px() && chasseur1.getYBalle2()<=joueur.getPosY_px()+36 ||
 				chasseur1.getXBalle3()+20>=joueur.getPosX_px() && chasseur1.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle3()+20>=joueur.getPosY_px() && chasseur1.getYBalle3()<=joueur.getPosY_px()+36 ) {
 			mort=true;
-			Personnage.niveauMort(sbg);
+			//Personnage.niveauMort(sbg);
 			sbg.enterState(404);
 		}
 			
@@ -162,7 +167,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 				chasseur2.getXBalle2()+20>=joueur.getPosX_px() && chasseur2.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur2.getYBalle2()+20>=joueur.getPosY_px() && chasseur2.getYBalle2()<=joueur.getPosY_px()+36 ||
 				chasseur2.getXBalle3()+20>=joueur.getPosX_px() && chasseur2.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur2.getYBalle3()+20>=joueur.getPosY_px() && chasseur2.getYBalle3()<=joueur.getPosY_px()+36 ) {
 			mort=true;
-			Personnage.niveauMort(sbg);
+			//Personnage.niveauMort(sbg);
 			sbg.enterState(404);
 		}
 		
@@ -172,7 +177,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 				chasseur3.getXBalle2()+20>=joueur.getPosX_px() && chasseur3.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle2()+20>=joueur.getPosY_px() && chasseur3.getYBalle2()<=joueur.getPosY_px()+36 ||
 				chasseur3.getXBalle3()+20>=joueur.getPosX_px() && chasseur3.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle3()+20>=joueur.getPosY_px() && chasseur3.getYBalle3()<=joueur.getPosY_px()+36 ) {
 			mort=true;
-			Personnage.niveauMort(sbg);
+			//Personnage.niveauMort(sbg);
 			sbg.enterState(404);
 		}
 		
@@ -236,7 +241,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			joueur = new Personnage();
 		}
 	}
-	
+ 	
 
 
 	@Override

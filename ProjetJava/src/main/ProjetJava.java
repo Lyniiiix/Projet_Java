@@ -24,7 +24,6 @@ public class ProjetJava extends StateBasedGame {
 		addState(new GameOver());
 		addState(new NiveauBonus());
 		addState(new EasterEgg());
-		addState(new TrackingNiv());
 		enterState(-2);
 	}
 
