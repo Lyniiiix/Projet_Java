@@ -57,12 +57,14 @@ public class GameOver extends BasicGameState {
 			if(mvt.getMouseX()>=150 && mvt.getMouseX()<=350 && mvt.getMouseY()>=500 && mvt.getMouseY()<=550){
 				timer=0;
 				if(Niveau1.getMort() == true)
-					sbg.enterState(1);
+					sbg.enterState(2);
 			}
 			
 			// BOUTON POUR REVENIR AU LAUNCHER
-			if(mvt.getMouseX()>=650 && mvt.getMouseX()<=850 && mvt.getMouseY()>=500 && mvt.getMouseY()<=550)
+			if(mvt.getMouseX()>=650 && mvt.getMouseX()<=850 && mvt.getMouseY()>=500 && mvt.getMouseY()<=550) {
+				timer=0;
 				sbg.enterState(0);
+			}
 		}
 			
 	}

@@ -39,7 +39,7 @@ public class Bulles {
 	}
 	
 	public boolean testCollision() {
-		if(this.y >= 580 && this.y <= 620) {
+		if(this.y >= 580 && this.y <= 630) {
 			return true;
 		}
 		else {
@@ -49,7 +49,7 @@ public class Bulles {
 	
 	
 	public boolean horsEcran() {
-		if(y>620) 
+		if(y>630) 
 			return true;
 		else
 			return false;

@@ -16,6 +16,7 @@ public class NiveauBonus extends BasicGameState {
 	private int timer; // en ms
 	private int compteurGauche;
 	private int compteurDroite;
+	private boolean resultat;
 	
 	private ArrayList <Bulles> bullesGauche1 = new ArrayList<Bulles>();
 	private ArrayList <Bulles> bullesGauche2 = new ArrayList<Bulles>();
@@ -35,6 +36,7 @@ public class NiveauBonus extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		timer = 0;
+		resultat = false;
 		compteurGauche=0;
 		compteurDroite=0;
 		appuyerQ = false;
@@ -50,10 +52,11 @@ public class NiveauBonus extends BasicGameState {
 		if(timer<8000) {
 			g.drawString("TIME FOR A MULTIPLAYER GAME", 390, 50);
 			
-			g.drawString("L'écran est séparé en deux parties distinctes", 310, 280);
-			g.drawString("Chacun d'entre vous aura des touches attribuées", 310, 340);
-			g.drawString("Le premier avec 40 points gagne", 370, 400);
-			g.drawString("Bonne chance, que le meilleur gagne", 370, 600);
+			g.drawString("L'écran est séparé en deux parties distinctes", 310, 240);
+			g.drawString("Chacun d'entre vous aura des touches attribuées", 310, 300);
+			g.drawString("Le premier avec 20 points gagne", 370, 360);
+			g.drawString("Ou le premier avec -40 points perds ;)", 350, 420);
+			g.drawString("Bonne chance, que le meilleur gagne", 360, 600);
 		}
 		
 		
@@ -98,27 +101,6 @@ public class NiveauBonus extends BasicGameState {
 			
 			
 			
-			// dessiner les bulles
-			for(int i=0; i<bullesGauche1.size(); i++) {
-				bullesGauche1.get(i).dessiner(g);
-			}
-			for(int i=0; i<bullesGauche2.size(); i++) {
-				bullesGauche2.get(i).dessiner(g);
-			}
-			for(int i=0; i<bullesGauche3.size(); i++) {
-				bullesGauche3.get(i).dessiner(g);
-			}
-			for(int i=0; i<bullesDroite1.size(); i++) {
-				bullesDroite1.get(i).dessiner(g);
-			}
-			for(int i=0; i<bullesDroite2.size(); i++) {
-				bullesDroite2.get(i).dessiner(g);
-			}
-			for(int i=0; i<bullesDroite3.size(); i++) {
-				bullesDroite3.get(i).dessiner(g);
-			}
-			
-			
 			
 			// zone touche pressée
 			if(appuyerQ) {
@@ -154,6 +136,30 @@ public class NiveauBonus extends BasicGameState {
 			
 			
 			
+			
+			// dessiner les bulles
+			for(int i=0; i<bullesGauche1.size(); i++) {
+				bullesGauche1.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesGauche2.size(); i++) {
+				bullesGauche2.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesGauche3.size(); i++) {
+				bullesGauche3.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesDroite1.size(); i++) {
+				bullesDroite1.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesDroite2.size(); i++) {
+				bullesDroite2.get(i).dessiner(g);
+			}
+			for(int i=0; i<bullesDroite3.size(); i++) {
+				bullesDroite3.get(i).dessiner(g);
+			}
+			
+			
+			
+			
 			if(timer<=10000)
 				g.drawString("3", 500, 350);
 			if(timer>10000 && timer<=12000)
@@ -161,6 +167,15 @@ public class NiveauBonus extends BasicGameState {
 			if(timer>12000 && timer<=14000)
 				g.drawString("1", 500, 350);
 			// Image géante 1, 2, 3 pour le compte a rebours
+			
+			
+			
+			// dire qui a gagne
+			if(compteurDroite == 20 || compteurGauche == -40)
+				g.drawString("Le joueur de droite a gagné", 400, 350);
+			if(compteurGauche == 20 || compteurDroite == -40)
+				g.drawString("Le joueur de droite a gagné", 400, 350);
+			
 		}
 		
 		
@@ -171,7 +186,7 @@ public class NiveauBonus extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		timer += delta;
 		
-		if(timer>=14000) {
+		if(timer>=14000 && resultat == false) {
 			for(int i=0; i<bullesGauche1.size(); i++) {
 				bullesGauche1.get(i).deplacer(delta);
 			}
@@ -197,7 +212,7 @@ public class NiveauBonus extends BasicGameState {
 		
 		
 		// accelerer les bulles au bout d un certain temps
-		if(timer >= 24000) {
+		if(timer >= 24000 && resultat==false) {
 			for(int i=0; i<bullesDroite1.size(); i++) {
 				bullesDroite1.get(i).setVy(bullesDroite1.get(i).getVy()+50);
 				bullesGauche1.get(i).setVy(bullesGauche1.get(i).getVy()+50);
@@ -349,6 +364,11 @@ public class NiveauBonus extends BasicGameState {
 				}
 			}
 		}
+		
+		
+		// sencer arreter le mouvement des bulles (voir plus haut)
+		if(compteurDroite == 20 || compteurGauche == 20 || compteurDroite == -40 || compteurGauche == -40)
+			resultat = true;
 		
 		
 		
