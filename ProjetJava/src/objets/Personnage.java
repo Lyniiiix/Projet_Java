@@ -161,7 +161,7 @@ public class Personnage {
 	{
 		System.out.println(getPosX_px() + " " + getPosY_px() + " - " + 22*36 + " " + 23*36);
 		//if (getPosY_px() < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_PERSO*2)
-		if ((getPosY_px() + 36) >= (22*36) && (getPosY_px() + 36) < (23*36) && (getPosX_px() + 16) > 32 && (getPosX_px() + 16) < 64)
+		if ((getPosY_px() + 36) >= (22*36) && (getPosY_px() + 36) < (23*36) && (getPosX_px() + 16) >= 32 && (getPosX_px() + 16) <= 64)
 		{
 			return true;
 		}

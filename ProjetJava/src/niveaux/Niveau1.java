@@ -117,7 +117,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		// chasseur 1 tirer
-		if(joueur.getX()*32 >= chasseur1.getX() - chasseur1.getDistanceTir() && joueur.getX()*32 <= chasseur1.getX() + chasseur1.getDistanceTir() +20 && joueur.getY()*36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getY()*36 <= chasseur1.getY() + chasseur1.getDistanceTir() +20) {
+		if(joueur.getX()*32 >= chasseur1.getX() && joueur.getX()*32 <= chasseur1.getX() + chasseur1.getDistanceTir() +20 && joueur.getY()*36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getY()*36 <= chasseur1.getY() + chasseur1.getDistanceTir() +20) {
 			chasseur1.setTimer(delta);
 			chasseur1.tirer();
 		}
@@ -127,7 +127,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			
 			
 		// chasseur 2 tirer
-		if(joueur.getX()*32 >= chasseur2.getX() - chasseur2.getDistanceTir() && joueur.getX()*32 <= chasseur2.getX() + chasseur2.getDistanceTir() +20 && joueur.getY()*36 >= chasseur2.getY() - chasseur2.getDistanceTir() && joueur.getY()*36 <= chasseur2.getY() + chasseur2.getDistanceTir() +20) {
+		if(joueur.getX()*32 >= chasseur2.getX() && joueur.getX()*32 <= chasseur2.getX() + chasseur2.getDistanceTir() +20 && joueur.getY()*36 >= chasseur2.getY() - chasseur2.getDistanceTir() && joueur.getY()*36 <= chasseur2.getY() + chasseur2.getDistanceTir() +20) {
 			chasseur2.setTimer(delta);
 			chasseur2.tirer();
 		}
@@ -137,7 +137,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			
 			
 		// chasseur 3 tirer
-		if(joueur.getX()*32 >= chasseur3.getX() - chasseur3.getDistanceTir() && joueur.getX()*32 <= chasseur3.getX() + chasseur3.getDistanceTir() +20 && joueur.getY()*36 >= chasseur3.getY() - chasseur3.getDistanceTir() && joueur.getY()*36 <= chasseur3.getY() + chasseur3.getDistanceTir() +20) {
+		if(joueur.getX()*32 >= chasseur3.getX() && joueur.getX()*32 <= chasseur3.getX() + chasseur3.getDistanceTir() +20 && joueur.getY()*36 >= chasseur3.getY() - chasseur3.getDistanceTir() && joueur.getY()*36 <= chasseur3.getY() + chasseur3.getDistanceTir() +20) {
 			chasseur3.setTimer(delta);
 			chasseur3.tirer();
 		}
