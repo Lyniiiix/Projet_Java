@@ -42,6 +42,9 @@ public class Personnage {
 	// CONSTRUCTEUR PAR DEFAUT
 		public Personnage(Map map) throws SlickException
 		{
+			
+			this.map = map;
+			
 			image = new Image("res/images/perso.png");
 			
 			graviteY = masse * acc_p;
@@ -157,6 +160,7 @@ public class Personnage {
 		
 	}
 	
+	/*
 	public boolean detecterSol()
 	{
 		System.out.println(getPosX_px() + " " + getPosY_px() + " - " + 22*36 + " " + 23*36);
@@ -169,6 +173,21 @@ public class Personnage {
 		{
 			return false;
 		}
+	}
+	*/
+	
+	public boolean detecterSol()
+	{
+		Objet[] objets = map.getObjets();
+		for (int i = 0; i < objets.length; i++)
+		{
+			System.out.println(objets[i]);
+			if ((getPosY_px() + 36) >= (objets[i].gety1()) && (getPosY_px() + 36) < (objets[i].gety2()) && (getPosX_px()) >= objets[i].getx1() && (getPosX_px()) <= objets[i].getx2())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	

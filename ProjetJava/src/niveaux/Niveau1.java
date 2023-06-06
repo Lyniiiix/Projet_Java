@@ -59,7 +59,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
-		joueur = new Personnage(); 
+		
 		chasseur1 = new Chasseur(4*32, 15*36);
 		chasseur2 = new Chasseur(20*32, 6*36);
 		chasseur3 = new Chasseur(14*32, 14*36);
@@ -71,6 +71,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		mapN1 = new Map(gc, image_fond, map);
 		
+		joueur = new Personnage(mapN1); 
 		
 		// parcour les objets bloquant de la map
 		for (int i = 0; i < mapN1.getObjets().length; i++)
