@@ -8,6 +8,8 @@ public class Plateforme {
 	private int timerChangementDirection, time;
 	private Color c;
 	
+	//private Objet base = new Objet( "base", id_tuile, x, y); 
+	
 	public Plateforme(float x, float y, int timerChangementDirection) {
 		c = Color.white;
 		vx=5;

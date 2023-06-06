@@ -39,12 +39,6 @@ public class NiveauBonus extends BasicGameState {
 		resultat = false;
 		compteurGauche=0;
 		compteurDroite=0;
-		appuyerQ = false;
-		appuyerZ = false;
-		appuyerD = false;
-		appuyerJ = false;
-		appuyerI = false;
-		appuyerL = false;
 	}
 
 	@Override
@@ -98,42 +92,6 @@ public class NiveauBonus extends BasicGameState {
 			// dessiner les compteurs
 			g.drawString("gauche: "+compteurGauche, 1024/6 + 1024/12 - 30 , 828-(828-720)/2 - 5);
 			g.drawString("droite: "+compteurDroite, 2*1024/3 + 1024/12 - 30 , 828-(828-720)/2 - 5);
-			
-			
-			
-			
-			// zone touche pressée
-			if(appuyerQ) {
-				g.setColor(Color.orange);
-				g.fillRect(0, 580, 1024/6, 60);
-				g.setColor(Color.white);
-			}
-			if(appuyerZ) {
-				g.setColor(Color.orange);
-				g.fillRect(1024/6, 580, 1024/6, 60);
-				g.setColor(Color.white);
-			}
-			if(appuyerD) {
-				g.setColor(Color.orange);
-				g.fillRect(1024/3, 580, 1024/6, 60);
-				g.setColor(Color.white);
-			}
-			if(appuyerJ) {
-				g.setColor(Color.orange);
-				g.fillRect(1024/3 + 1024/6, 580, 1024/6, 60);
-				g.setColor(Color.white);
-			}
-			if(appuyerI) {
-				g.setColor(Color.orange);
-				g.fillRect(2*1024/3, 580, 1024/6, 60);
-				g.setColor(Color.white);
-			}
-			if(appuyerL) {
-				g.setColor(Color.orange);
-				g.fillRect(2*1024/3 + 1024/6, 580, 1024/6, 60);
-				g.setColor(Color.white);
-			}
-			
 			
 			
 			
@@ -308,37 +266,31 @@ public class NiveauBonus extends BasicGameState {
 		
 		// enlever bulles si touchees
 		if (mvt.isKeyPressed(Input.KEY_Q) && timer>=8000) {
-			appuyerQ = true;
 			for(int i = 0; i < bullesGauche1.size(); i++) {
 				if(bullesGauche1.get(i).testCollision()) {
 					bullesGauche1.remove(i);
 					compteurGauche++;
-					i--;
 				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_Z) && timer>=8000) {
-			appuyerZ = true;
+
 			for(int i = 0; i < bullesGauche2.size(); i++) {
 				if(bullesGauche2.get(i).testCollision()) {
 					bullesGauche2.remove(i);
 					compteurGauche++;
-					i--;
 				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_D) && timer>=8000) {
-			appuyerD = true;
 			for(int i = 0; i < bullesGauche3.size(); i++) {
 				if(bullesGauche3.get(i).testCollision()) {
 					bullesGauche3.remove(i);
 					compteurGauche++;
-					i--;
 				}
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_J) && timer>=8000) {
-			appuyerJ = true;
 			for(int i = 0; i < bullesDroite1.size(); i++) {
 				if(bullesDroite1.get(i).testCollision()) {
 					bullesDroite1.remove(i);
@@ -347,7 +299,6 @@ public class NiveauBonus extends BasicGameState {
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_I) && timer>=8000) {
-			appuyerI = true;
 			for(int i = 0; i < bullesDroite2.size(); i++) {
 				if(bullesDroite2.get(i).testCollision()) {
 					bullesDroite2.remove(i);
@@ -356,7 +307,6 @@ public class NiveauBonus extends BasicGameState {
 			}
 		}
 		if (mvt.isKeyPressed(Input.KEY_L) && timer>=8000) {
-			appuyerL = true;
 			for(int i = 0; i < bullesDroite3.size(); i++) {
 				if(bullesDroite3.get(i).testCollision()) {
 					bullesDroite3.remove(i);

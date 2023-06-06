@@ -3,6 +3,7 @@ package niveaux;
 import main.*;
 import objets.*;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 
 import org.newdawn.slick.Graphics;
@@ -25,6 +26,9 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	private int timer;
 	
 	
+	private float niveauMer;
+	
+	
 	// permet de savoir si le niveau est réussi
 	private static boolean reussi = false;
 	
@@ -41,6 +45,9 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		porteSortie = new Image("res/images/porte fermee.png");
 		
 		joueur = new Personnage();
+		
+		niveauMer=827;
+		
 		timer =0;
 	}
 
@@ -53,7 +60,15 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		joueur.dessiner(g);
 		
-		g.drawString("o",100 , 100);
+		
+		g.drawString("o",450 , 600);// lettre pour l easter egg
+		
+		
+		// dessiner l eau qui monte (on a pas d image)
+		g.setColor(Color.blue);
+		g.fillRect(0, niveauMer, 1024, 828-niveauMer);
+		g.setColor(Color.white);
+		
 	}
 
 	@Override
@@ -80,6 +95,22 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 			joueur.deplacer(gc);
 		}
 		
+		
+		
+		// faire monter le niveau de l eau
+		if(timer>=2000) 
+		{
+			timer=0;
+			niveauMer-=36;
+		}
+		
+		
+		// faire mourir le perso si mer arrive au dessus de sa tete
+		if(niveauMer<=joueur.getPosY_px()) 
+		{
+			sbg.enterState(404);
+		}
+			
 		
 		
 		// si le perso atteint la porte de sortie

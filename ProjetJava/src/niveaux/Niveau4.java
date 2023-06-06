@@ -33,8 +33,6 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	public static boolean getReussi() {
 		return reussi;
 	}
-
-	
 	
 
 	@Override
@@ -47,9 +45,9 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		porteSortie = new Image("res/images/porte fermee.png");
 		
 		joueur = new Personnage();
-		ours = new OursPolaire(500,400);
+		ours = new OursPolaire(5*32, 21*36);
 		
-		p1= new Plateforme(100, 580, 1000); // la 3 eme cordonnee c le temps pour le changement de direction
+		p1= new Plateforme(100, 580, 1000); // la 3 eme cordonnee c le temps pour le changement de direction en ms
 		p2= new Plateforme(500, 480, 1000);
 		p3= new Plateforme(350, 380, 1000);
 		p4= new Plateforme(200, 280, 1000);
@@ -73,7 +71,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p4.draw(g);
 		p5.draw(g);
 		
-		g.drawString("c",505 , 50);
+		g.drawString("c",505 , 50); // lettre pour l easter egg
 		
 		
 	}
@@ -95,6 +93,13 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p4.deplacement(delta);
 		p5.deplacement(delta);
 		
+		
+		
+		if(ours.getPeutAttaquer() && joueur.getPosX_px() + 32 >= ours.getX()+10-ours.getDistanceAttaque() && joueur.getPosX_px()<= ours.getX()+ours.getDistanceAttaque()+32 && joueur.getPosY_px() + 36 >=  ours.getY()-ours.getDistanceAttaque()  && joueur.getPosY_px()<= ours.getY()+36) 
+		{
+			sbg.enterState(404);
+		}
+			
 		
 		Input mvt = gc.getInput();
 		
