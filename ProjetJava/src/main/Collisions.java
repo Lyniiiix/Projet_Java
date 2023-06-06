@@ -38,6 +38,7 @@ public class Collisions {
 
 	public boolean autoriserGraviteY(float x, float y)
 	{
+		System.out.println(x+" "+y);
 		if (y < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_PERSO*2) {
             return true;
         }

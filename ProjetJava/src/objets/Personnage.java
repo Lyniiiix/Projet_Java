@@ -175,7 +175,7 @@ public class Personnage {
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
 	public void gravite(int delta, boolean collisionY) {
 		//System.out.println(x + " " + y);
-		if(detecterSol())  // pour la bordure + la hauteur du bonhomme 
+		if(!detecterSol())  // pour la bordure + la hauteur du bonhomme 
 			{
 			System.out.println(vy);
 			vy += graviteY * delta / 1000f;
