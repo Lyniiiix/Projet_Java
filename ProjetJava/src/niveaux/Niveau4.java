@@ -44,7 +44,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		
-		joueur = new Personnage();
+		joueur = new Personnage(mapN4);
 		ours = new OursPolaire(5*32, 21*36);
 		
 		p1= new Plateforme(100, 580, 1000); // la 3 eme cordonnee c le temps pour le changement de direction en ms

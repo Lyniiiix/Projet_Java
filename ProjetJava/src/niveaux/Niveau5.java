@@ -44,7 +44,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		
-		joueur = new Personnage();
+		joueur = new Personnage(mapN5);
 		
 		niveauMer=827;
 		
@@ -100,8 +100,8 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		// faire monter le niveau de l eau
 		if(timer>=2000) 
 		{
-			timer=0;
 			niveauMer-=36;
+			timer=0;
 		}
 		
 		

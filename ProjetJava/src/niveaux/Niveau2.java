@@ -42,8 +42,8 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		image_fond = new Image("res/niveau2/n2_fond.png");
 		
 		porteSortie = new Image("res/images/porte fermee.png");
-		joueur = new Personnage();
-		ombre = new Personnage();
+		joueur = new Personnage(mapN2);
+		ombre = new Personnage(mapN2);
 		timer = 0;
 		
 		map = new TiledMap("res/niveau2/niveau2.tmx");

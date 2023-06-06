@@ -52,6 +52,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	public static boolean getReussi() {
 		return reussi;
 	}
+	/*
+	public void boolean setReussi(boolean reussi) {
+		Niveau1.reussi = reussi;
+	}*/
 
 
 
@@ -118,7 +122,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		// chasseur 1 tirer
-		if(joueur.getX()*32 >= chasseur1.getX() && joueur.getX()*32 <= chasseur1.getX() + chasseur1.getDistanceTir() +20 && joueur.getY()*36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getY()*36 <= chasseur1.getY() + chasseur1.getDistanceTir() +20) {
+		if(joueur.getPosX_px() +36 >= chasseur1.getX() && joueur.getPosX_px() <= chasseur1.getX() + chasseur1.getDistanceTir() && joueur.getPosY_px() +36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getPosY_px() <= chasseur1.getY() + chasseur1.getDistanceTir()) {
 			chasseur1.setTimer(delta);
 			chasseur1.tirer();
 		}
@@ -128,7 +132,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			
 			
 		// chasseur 2 tirer
-		if(joueur.getX()*32 >= chasseur2.getX() && joueur.getX()*32 <= chasseur2.getX() + chasseur2.getDistanceTir() +20 && joueur.getY()*36 >= chasseur2.getY() - chasseur2.getDistanceTir() && joueur.getY()*36 <= chasseur2.getY() + chasseur2.getDistanceTir() +20) {
+		if(joueur.getPosX_px()+36 >= chasseur2.getX() && joueur.getPosX_px() <= chasseur2.getX() + chasseur2.getDistanceTir() && joueur.getPosY_px()+36 >= chasseur2.getY() - chasseur2.getDistanceTir() && joueur.getPosY_px() <= chasseur2.getY() + chasseur2.getDistanceTir()) {
 			chasseur2.setTimer(delta);
 			chasseur2.tirer();
 		}
@@ -138,7 +142,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			
 			
 		// chasseur 3 tirer
-		if(joueur.getX()*32 >= chasseur3.getX() && joueur.getX()*32 <= chasseur3.getX() + chasseur3.getDistanceTir() +20 && joueur.getY()*36 >= chasseur3.getY() - chasseur3.getDistanceTir() && joueur.getY()*36 <= chasseur3.getY() + chasseur3.getDistanceTir() +20) {
+		if(joueur.getPosX_px()+36 >= chasseur3.getX() && joueur.getPosX_px() <= chasseur3.getX() + chasseur3.getDistanceTir() && joueur.getPosY_px()+36 >= chasseur3.getY() - chasseur3.getDistanceTir() && joueur.getPosY_px() <= chasseur3.getY() + chasseur3.getDistanceTir()) {
 			chasseur3.setTimer(delta);
 			chasseur3.tirer();
 		}
@@ -232,6 +236,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
 			reussi=true;
+			joueur = new Personnage(mapN1);
 			sbg.enterState(0);
 		}
 		
@@ -239,7 +244,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// refait spawn le perso au début et pas la ou il était
 		if(mort) {
 			mort = false;
-			joueur = new Personnage();
+			joueur = new Personnage(mapN1);
 		}
 	}
  	
