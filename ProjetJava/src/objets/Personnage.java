@@ -25,21 +25,6 @@ public class Personnage {
 	
 	
 	// CONSTRUCTEUR PAR DEFAUT
-	public Personnage() throws SlickException
-	{
-		image = new Image("res/images/perso.png");
-		
-		graviteY = masse * acc_p;
-		
-		// on place au debut en bas a gauche
-		this.x = 1;
-		this.y = 18;
-		
-		vx = 3; // vitesse horizontale
-		vy = 0;
-	}
-	
-	// CONSTRUCTEUR PAR DEFAUT
 		public Personnage(Map map) throws SlickException
 		{
 			
@@ -123,14 +108,10 @@ public class Personnage {
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
 		g.drawImage(image, x*32, y*36, x*32+32, y*36+36, 0, 0, image.getWidth(), image.getHeight());
-		g.drawRect(x*32-32, y*36-36, 3*32, 2*36);
+		//g.drawRect(x*32-32, y*36-36, 3*32, 2*36);
 	}
 	
 	
-	public void deplacer(GameContainer gc)
-	{
-		
-	}
 	
 	// DEPLACER BONHOMME
 	public void deplacer(GameContainer gc, boolean collisionX) {

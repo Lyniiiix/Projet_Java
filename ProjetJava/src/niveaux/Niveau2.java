@@ -92,10 +92,10 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc, CollisionY);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc, CollisionY);
 		}
 		
 		

@@ -82,7 +82,7 @@ public class Chasseur {
 
 		public void dessiner(Graphics g) {
 			g.drawImage(image, x-32, y-36, x+32, y+36, 0, 0, image.getWidth(), image.getHeight());
-			g.drawRect(x, y-distanceTir, distanceTir, distanceTir*2);
+			//g.drawRect(x, y-distanceTir, distanceTir, distanceTir*2);
 		}
 
 		public void dessinerBalles(Graphics g) {

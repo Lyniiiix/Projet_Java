@@ -107,10 +107,10 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc, CollisionY);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc, CollisionY);
 		}
 		
 		// si le perso atteint la porte de sortie

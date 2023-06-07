@@ -34,6 +34,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	private Chasseur chasseur1;
 	private Chasseur chasseur2;
 	private Chasseur chasseur3;
+	private Chasseur chasseur4;
 	
 	
 	private int timer = 0;
@@ -66,7 +67,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		chasseur1 = new Chasseur(4*32, 15*36);
 		chasseur2 = new Chasseur(20*32, 6*36);
-		chasseur3 = new Chasseur(14*32, 14*36);
+		chasseur3 = new Chasseur(15*32, 14*36);
+		chasseur4 = new Chasseur(10*32, 9*36);
 
 		
 		porteSortie = new Image("res/images/porte fermee.png");
@@ -107,10 +109,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		chasseur3.dessinerBalles(g);
 		chasseur3.dessiner(g);
 		
+		chasseur4.dessinerBalles(g);
+		chasseur4.dessiner(g);
+		
 		joueur.dessiner(g);
 		
 		
-		g.drawString(timer/1000f+" s", 100, 100);
+		//g.drawString(timer/1000f+" s", 100, 100);
 		
 		g.drawString("c", 1000, 810);  // 1 ere lettre de l easter egg 
 		
@@ -149,7 +154,17 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		else
 			chasseur3.tirer();  
 			
+		
+		
+		// chasseur 4 tirer
+		if(joueur.getPosX_px()+36 >= chasseur4.getX() && joueur.getPosX_px() <= chasseur4.getX() + chasseur4.getDistanceTir() && joueur.getPosY_px()+36 >= chasseur4.getY() - chasseur4.getDistanceTir() && joueur.getPosY_px() <= chasseur4.getY() + chasseur4.getDistanceTir()) {
+			chasseur4.setTimer(delta);
+			chasseur4.tirer();
+		}
+		else
+			chasseur4.tirer();  
 			
+		
 			
 			
 		boolean collisionY = true;//collisionsN1.autoriserGraviteY(joueur.getPosX_px(), joueur.getPosY_px());
@@ -181,6 +196,16 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		if(chasseur3.getXBalle1()+20>=joueur.getPosX_px() && chasseur3.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle1()+20>=joueur.getPosY_px() && chasseur3.getYBalle1()<=joueur.getPosY_px()+36 ||
 				chasseur3.getXBalle2()+20>=joueur.getPosX_px() && chasseur3.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle2()+20>=joueur.getPosY_px() && chasseur3.getYBalle2()<=joueur.getPosY_px()+36 ||
 				chasseur3.getXBalle3()+20>=joueur.getPosX_px() && chasseur3.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur3.getYBalle3()+20>=joueur.getPosY_px() && chasseur3.getYBalle3()<=joueur.getPosY_px()+36 ) {
+			mort=true;
+			//Personnage.niveauMort(sbg);
+			sbg.enterState(404);
+		}
+		
+		
+		// chasseur 3 mort
+		if(chasseur4.getXBalle1()+20>=joueur.getPosX_px() && chasseur4.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur4.getYBalle1()+20>=joueur.getPosY_px() && chasseur4.getYBalle1()<=joueur.getPosY_px()+36 ||
+				chasseur4.getXBalle2()+20>=joueur.getPosX_px() && chasseur4.getXBalle2()<=(joueur.getPosX_px()+32) && chasseur4.getYBalle2()+20>=joueur.getPosY_px() && chasseur4.getYBalle2()<=joueur.getPosY_px()+36 ||
+				chasseur4.getXBalle3()+20>=joueur.getPosX_px() && chasseur4.getXBalle3()<=(joueur.getPosX_px()+32) && chasseur4.getYBalle3()+20>=joueur.getPosY_px() && chasseur4.getYBalle3()<=joueur.getPosY_px()+36 ) {
 			mort=true;
 			//Personnage.niveauMort(sbg);
 			sbg.enterState(404);

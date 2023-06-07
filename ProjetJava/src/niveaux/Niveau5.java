@@ -26,7 +26,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	private int timer;
 	
 	
-	private float niveauMer;
+	private Mer niveauMer;
 	
 	
 	// permet de savoir si le niveau est réussi
@@ -46,7 +46,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		joueur = new Personnage(mapN5);
 		
-		niveauMer=827;
+		niveauMer = new Mer(45);
 		
 		timer =0;
 	}
@@ -65,9 +65,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		
 		// dessiner l eau qui monte (on a pas d image)
-		g.setColor(Color.blue);
-		g.fillRect(0, niveauMer, 1024, 828-niveauMer);
-		g.setColor(Color.white);
+		niveauMer.draw(g);
 		
 	}
 
@@ -89,10 +87,10 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc, CollisionY);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc);
+			joueur.deplacer(gc, CollisionY);
 		}
 		
 		
@@ -100,13 +98,12 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		// faire monter le niveau de l eau
 		if(timer>=2000) 
 		{
-			niveauMer-=36;
-			timer=0;
+			niveauMer.monter(delta);
 		}
 		
 		
 		// faire mourir le perso si mer arrive au dessus de sa tete
-		if(niveauMer<=joueur.getPosY_px()) 
+		if(niveauMer.getNiveauEau()<=joueur.getPosY_px()) 
 		{
 			sbg.enterState(404);
 		}
@@ -128,7 +125,6 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 5;
 	}
 
