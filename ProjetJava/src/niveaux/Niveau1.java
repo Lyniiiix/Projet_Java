@@ -57,10 +57,6 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	public void boolean setReussi(boolean reussi) {
 		Niveau1.reussi = reussi;
 	}*/
-
-
-
-	private Collisions collisionsN1; // instance Collisions
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
@@ -78,18 +74,9 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		mapN1 = new Map(gc, image_fond, map);
 		
 		joueur = new Personnage(mapN1); 
-		
-		// parcour les objets bloquant de la map
-		for (int i = 0; i < mapN1.getObjets().length; i++)
-			System.out.println( mapN1.getObjets()[i] );
-		
-		//System.out.println(joueur.getPosX_px() + " " + joueur.getPosY_px());
 
 		
-		collisionsN1 = new Collisions(mapN1);
-
-		
-		mapN1.toArray();
+		mapN1.toArray(); // affiche la matrice de la map
 	}
 	
 	
@@ -163,14 +150,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		}
 		else
 			chasseur4.tirer();  
-			
 		
-			
-			
-		boolean collisionY = true;//collisionsN1.autoriserGraviteY(joueur.getPosX_px(), joueur.getPosY_px());
 		
 		joueur.sauter(delta);
-		joueur.gravite(delta, collisionY);
+		joueur.gravite(delta);
 		
 		// chasseur 1 mort
 		if(chasseur1.getXBalle1()+20>=joueur.getPosX_px() && chasseur1.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle1()+20>=joueur.getPosY_px() && chasseur1.getYBalle1()<=joueur.getPosY_px()+36 ||

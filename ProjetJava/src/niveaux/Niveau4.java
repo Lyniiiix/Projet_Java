@@ -82,7 +82,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		
 		boolean CollisionY = true;
 		
-		joueur.gravite(delta, CollisionY);
+		joueur.gravite(delta);
 		
 		ours.deplacer(delta);
 		ours.attaquer(delta);

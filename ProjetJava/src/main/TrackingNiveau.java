@@ -9,8 +9,8 @@ public class TrackingNiveau {
 	public final int IDNiv4 = 4;
 	public final int IDNiv5 = 5;
 	
-	private int actuel =0;
-	private int precedent =0;
+	private int actuel = 0;
+	private int precedent = 0;
 	
 	
 	public int getPrecedent(){

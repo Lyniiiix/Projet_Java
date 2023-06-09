@@ -11,6 +11,10 @@ public class ProjetJava extends StateBasedGame {
 		super(name);
 	}
 
+	
+	// LES DIFFERENTS NIVEAUX
+	
+	
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(new Presentation());

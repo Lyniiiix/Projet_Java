@@ -26,8 +26,6 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	
 	public Map mapN2; // instance d'une map
 	
-	private Collisions collisionsN2; // instance Collisions
-	
 	
 	
 	// permet de savoir si le niveau est réussi
@@ -44,15 +42,13 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		image_fond = new Image("res/niveau2/n2_fond.png");
 		
+		map = new TiledMap("res/niveau2/niveau2.tmx");
+		mapN2 = new Map(gc, image_fond, map);
+		
 		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage(mapN2);
 		ombre = new Personnage(mapN2);
 		timer = 0;
-		
-		map = new TiledMap("res/niveau2/niveau2.tmx");
-		mapN2 = new Map(gc, image_fond, map);
-		
-		collisionsN2 = new Collisions(mapN2);
 		
 	}
 
@@ -79,7 +75,7 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		boolean CollisionY = true;
 		
-		joueur.gravite(delta, CollisionY);
+		joueur.gravite(delta);
 		
 
 		timer+=delta;

@@ -104,6 +104,83 @@ public class Personnage {
 		this.vy = vy;
 	}
 	
+	public boolean detecterSol()
+	{
+		Objet[] objets = map.getObjets();
+		for (int i = 0; i < objets.length; i++)
+		{
+			System.out.println(objets[i]);
+			if ((getPosY_px() + Constantes.HAUTEUR_CASE) >= (objets[i].gety1()) 
+					&& (getPosY_px() + Constantes.HAUTEUR_CASE) < (objets[i].gety2()) 
+					&& (getPosX_px()) >= objets[i].getx1() 
+					&& (getPosX_px()) <= objets[i].getx2()
+				)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	public boolean detecterCoinGauche()
+	{
+	    Objet[] objets = map.getObjets();
+	    float posY_centre = getPosY_px() + (Constantes.HAUTEUR_PERSO / 2);
+
+	    for (int i = 0; i < objets.length; i++)
+	    {
+	        System.out.println(objets[i]);
+
+	        int objetX1 = objets[i].getx1();
+	        int objetX2 = objets[i].getx2();
+	        int objetY1 = objets[i].gety1();
+	        int objetY2 = objets[i].gety2();
+
+	        // Vérification du coin gauche
+	        if (posY_centre >= objetY1 &&
+	            posY_centre < objetY2 &&
+	            getPosX_px() >= objetX1 &&
+	            getPosX_px() <= objetX2)
+	        {
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
+
+	public boolean detecterCoinDroit()
+	{
+	    Objet[] objets = map.getObjets();
+	    float posX_droit = getPosX_px() + (Constantes.LARGEUR_PERSO);
+	    float posY_centre = getPosY_px() + (Constantes.HAUTEUR_PERSO / 2);
+
+	    for (int i = 0; i < objets.length; i++)
+	    {
+	        System.out.println(objets[i]);
+
+	        int objetX1 = objets[i].getx1();
+	        int objetX2 = objets[i].getx2();
+	        int objetY1 = objets[i].gety1();
+	        int objetY2 = objets[i].gety2();
+
+	        // Vérification du coin droit
+	        if (posY_centre >= objetY1 &&
+	            posY_centre < objetY2 &&
+	            posX_droit >= objetX1 &&
+	            posX_droit <= objetX2)
+	        {
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
+
+
+
+	
 	// *********************************************** //
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
@@ -117,11 +194,11 @@ public class Personnage {
 	public void deplacer(GameContainer gc, boolean collisionX) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && collisionX)
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && !detecterCoinDroit())
 		{
 			x += vx / Constantes.MAP_X;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX)
+		if(mvt.isKeyDown(Input.KEY_LEFT) && !detecterCoinGauche())
 		{
 			x -= vx / Constantes.MAP_X;
 		}	
@@ -171,23 +248,12 @@ public class Personnage {
 	}
 	*/
 	
-	public boolean detecterSol()
-	{
-		Objet[] objets = map.getObjets();
-		for (int i = 0; i < objets.length; i++)
-		{
-			System.out.println(objets[i]);
-			if ((getPosY_px() + 36) >= (objets[i].gety1()) && (getPosY_px() + 36) < (objets[i].gety2()) && (getPosX_px()) >= objets[i].getx1() && (getPosX_px()) <= objets[i].getx2())
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+
+
 
 	
 	//PERMET LA GRAVITE ET LES SAUTS DU BONHOMME
-	public void gravite(int delta, boolean collisionY) {
+	public void gravite(int delta) {
 		//System.out.println(x + " " + y);
 		if(!detecterSol())  // pour la bordure + la hauteur du bonhomme 
 			{

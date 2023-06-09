@@ -77,7 +77,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		boolean CollisionY = true;
 		
-		joueur.gravite(delta,CollisionY);
+		joueur.gravite(delta);
 
 		
 		
