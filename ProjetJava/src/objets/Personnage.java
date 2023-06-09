@@ -124,9 +124,23 @@ public class Personnage {
 		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX)
 		{
 			x -= vx / Constantes.MAP_X;
+		}	
+	
+	}
+	
+	
+	public void deplacerInverse(GameContainer gc, boolean collisionX) {
+		Input mvt = gc.getInput();
+		
+		if(mvt.isKeyDown(Input.KEY_RIGHT) && collisionX)
+		{
+			x -= vx / Constantes.MAP_X;
 		}
-		
-		
+		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX)
+		{
+			x += vx / Constantes.MAP_X;
+		}	
+	
 	}
 
 

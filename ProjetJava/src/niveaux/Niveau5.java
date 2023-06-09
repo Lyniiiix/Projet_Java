@@ -96,7 +96,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		
 		// faire monter le niveau de l eau
-		if(timer>=2000) 
+		if(timer>=2000 && timer<17000) 
 		{
 			niveauMer.monter(delta);
 		}

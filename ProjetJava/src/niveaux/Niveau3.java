@@ -65,10 +65,10 @@ public class Niveau3 extends BasicGameState {
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			//joueur.deplacer(gc, CollisionY);
+			//joueur.deplacerInverse(gc, CollisionY);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			//joueur.deplacer(gc, CollisionY);
+			//joueur.deplacerInverse(gc, CollisionY);
 		}
 		
 		

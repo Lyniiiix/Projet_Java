@@ -3,6 +3,8 @@ package niveaux;
 import objets.*;
 import main.*;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -25,6 +27,7 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	public Map mapN2; // instance d'une map
 	
 	private Collisions collisionsN2; // instance Collisions
+	
 	
 	
 	// permet de savoir si le niveau est réussi
