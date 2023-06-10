@@ -13,7 +13,7 @@ public class Chasseur {
 
 		private float xBalle1 = x, yBalle1 = y, xBalle2 = x, yBalle2 = y, xBalle3 = x, yBalle3 = y;
 		private float vitesseBalles = 3;
-		private int cadenceTir = 1000; // en milisecondes
+		private int cadenceTir = 800; // en milisecondes
 		private int distanceTir = 200;
 		private boolean peutTirer = false;
 

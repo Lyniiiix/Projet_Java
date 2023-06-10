@@ -170,7 +170,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		
 		// si perso se prend stalagtite
 		for(int i=0; i<stalagtites.size(); i++)
-			if(joueur.getPosX_px()+32 >= stalagtites.get(i).getX() && joueur.getPosX_px() <= stalagtites.get(i).getX()+(32/3) && joueur.getPosY_px() <= stalagtites.get(i).getY()+2*36)
+			if(stalagtites.get(i).getY()!=0 && joueur.getPosX_px()+32 >= stalagtites.get(i).getX() && joueur.getPosX_px() <= stalagtites.get(i).getX()+(32/3) && joueur.getPosY_px() <= stalagtites.get(i).getY()+2*36 && joueur.getPosY_px()+36 >= stalagtites.get(i).getY()+2*36)
 				{
 					mort = true;
 					sbg.enterState(404);

@@ -40,7 +40,7 @@ public class Niveau3 extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		porteSortie = new Image("res/images/porte fermee.png");
-		joueur = new Personnage(30, 1);
+		joueur = new Personnage(1, 23);
 		laser1 = new Laser(5*32, 7*36);
 		laser2 = new Laser(17*32, 4*36);
 		laser3 = new Laser(10*32, 15*36);
@@ -50,7 +50,7 @@ public class Niveau3 extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		
-		g.drawImage(porteSortie, 32, 684, 32+3*32, 684+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
+		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		laser1.horizontal(g);
 		laser2.horizontal(g);
 		laser3.horizontal(g);
@@ -63,8 +63,8 @@ public class Niveau3 extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		joueur.sauterInversee(delta);
-		joueur.graviteInversee(delta);
+		joueur.sauter(delta);
+		joueur.gravite(delta);
 		
 		
 		Input mvt = gc.getInput();
@@ -127,7 +127,7 @@ public class Niveau3 extends BasicGameState {
 		
 		
 		// si le perso atteint la porte de sortie
-		if(joueur.getPosX_px()>=32 && joueur.getPosX_px()<=32+3*32 && joueur.getPosY_px()>=684 && joueur.getPosY_px()<=684+3*36) {
+		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
 			reussi = true;
 			sbg.enterState(0);
 		}

@@ -21,7 +21,7 @@ public class EasterEgg extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawString("Avez vous trouvez l'easter egg caché dans l'un des différents mondes?", 200, 125);
+		g.drawString("Avez vous trouvez l'easter egg caché dans les différents mondes?", 210, 125);
 		g.drawString("Tapez le nom de l'easter egg", 365, 250);
 		zone.dessiner(g);
 		g.drawString("Appuyez sur ENTREE pour valider", 380, 600);
