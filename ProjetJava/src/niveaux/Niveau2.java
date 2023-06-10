@@ -28,6 +28,15 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	
 	
 	
+	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
+	
+	// permet de savoir si le perso est mort ds ce niveau
+	public static boolean getMort() {
+		return mort;
+	}
+
+	
+	
 	// permet de savoir si le niveau est réussi
 	private static boolean reussi = false;
 	
@@ -103,6 +112,14 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 			reussi = true;
 			sbg.enterState(0);
 		}
+		
+		
+		// refait spawn le perso au début et pas la ou il était
+		if(mort) {
+			mort = false;
+			joueur = new Personnage(mapN2);
+		}
+		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER))

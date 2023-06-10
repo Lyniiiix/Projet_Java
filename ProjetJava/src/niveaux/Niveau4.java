@@ -32,6 +32,14 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private ArrayList<Stalagtite> stalagtites = new ArrayList<>();
 	
 	
+	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
+	
+	// permet de savoir si le perso est mort ds ce niveau
+	public static boolean getMort() {
+		return mort;
+	}
+
+	
 	
 	// permet de savoir si le niveau est réussi
 	private static boolean reussi = false;
@@ -108,9 +116,17 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p4.deplacement(delta);
 		p5.deplacement(delta);
 		
-		if(timer >=2000)
+		// creer 4 stalagtites
+		if(stalagtites.size()<4)
 		{
-			for(int i=0; i<stalagtites.size(); i++)
+			float random = (float)(Math.random()*(1024-32));
+			stalagtites.add(new Stalagtite(random));
+		}
+		
+		
+		for(int i=0; i<stalagtites.size(); i++)
+		{
+			if(timer >=1000) 
 			{
 				stalagtites.get(i).toucherSol();
 				stalagtites.get(i).deplacer(delta);
@@ -118,17 +134,22 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		}
 		
 		
+		// enlever stalagtites qd touchent le sol
 		for(int i=0; i<stalagtites.size(); i++)
 		{
 			if(stalagtites.get(i).toucherSol())
 			{
-				
+				timer = 0;
+				stalagtites.remove(i);
+				i--;
 			}
 		}
 		
 		
+		// si perso et ours fight
 		if(ours.getPeutAttaquer() && joueur.getPosX_px() + 32 >= ours.getX()+10-ours.getDistanceAttaque() && joueur.getPosX_px()<= ours.getX()+ours.getDistanceAttaque()+32 && joueur.getPosY_px() + 36 >=  ours.getY()-ours.getDistanceAttaque()  && joueur.getPosY_px()<= ours.getY()+36) 
 		{
+			mort=true;
 			sbg.enterState(404);
 		}
 			
@@ -145,12 +166,30 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 			joueur.deplacer(gc, CollisionY);
 		}
 		
+		
+		
+		// si perso se prend stalagtite
+		for(int i=0; i<stalagtites.size(); i++)
+			if(joueur.getPosX_px()+32 >= stalagtites.get(i).getX() && joueur.getPosX_px() <= stalagtites.get(i).getX()+(32/3) && joueur.getPosY_px() <= stalagtites.get(i).getY()+2*36)
+				{
+					mort = true;
+					sbg.enterState(404);
+				}
+		
+		
+		
 		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
 			reussi = true;
 			sbg.enterState(0);
 		}
 		
+		
+		// refait spawn le perso au début et pas la ou il était
+		if(mort) {
+			mort = false;
+			joueur = new Personnage(mapN4);
+		}
 		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)

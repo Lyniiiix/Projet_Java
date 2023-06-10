@@ -8,7 +8,7 @@ public class Stalagtite {
 	private int masse;
 	
 	public Stalagtite(float x) {
-		if(x>=0 && x<1020)
+		if(x>=32 && x<1024-32)
 			this.x=x;
 		y=0;
 		masse = 50;
@@ -16,6 +16,18 @@ public class Stalagtite {
 	}
 	
 	
+	
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+
+
+
 	public void deplacer(int delta) {
 		y+=vy*delta/1000f;
 	}
