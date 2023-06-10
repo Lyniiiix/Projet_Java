@@ -27,9 +27,11 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private Personnage joueur ;
 	private OursPolaire ours;
 	
-	private Plateforme p1, p2, p3, p4, p5;
+	/*
+	private Plateforme p1, p2, p3, p4, p5;*/
 	
 	private ArrayList<Stalagtite> stalagtites = new ArrayList<>();
+	private int difficulte; // nmbre de stalagtites qui tombent
 	
 	
 	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
@@ -63,12 +65,15 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		joueur = new Personnage(mapN4);
 		ours = new OursPolaire(5*32, 21*36);
 		
+		difficulte = 3;
+		
+		/*
 		p1= new Plateforme(100, 580, 1000); // la 3 eme cordonnee c le temps pour le changement de direction en ms
 		p2= new Plateforme(500, 480, 1000);
 		p3= new Plateforme(350, 380, 1000);
 		p4= new Plateforme(200, 280, 1000);
 		p5= new Plateforme(600, 80, 1000);
-
+		*/
 	}
 
 	@Override
@@ -86,11 +91,13 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		for(int i=0; i<stalagtites.size(); i++)
 			stalagtites.get(i).dessin(g);
 		
+		/*
 		p1.draw(g);
 		p2.draw(g);
 		p3.draw(g);
 		p4.draw(g);
 		p5.draw(g);
+		*/
 		
 		g.drawString("c",505 , 50); // lettre pour l easter egg
 		
@@ -99,7 +106,15 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		// permet de rajouter des stalagtites à chaque fois qu elles respawn
+		if(timer == 0)
+			difficulte++;
+		
+		if(difficulte == 9)  // permet de mettre au max 8 stalagtites
+			difficulte--;
+		
 		timer+=delta;
+		
 		
 		joueur.sauter(delta);
 		
@@ -109,15 +124,18 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		
 		ours.deplacer(delta);
 		ours.attaquer(delta);
-
+		
+		/*
 		p1.deplacement(delta);
 		p2.deplacement(delta);
 		p3.deplacement(delta);
 		p4.deplacement(delta);
 		p5.deplacement(delta);
+		*/
 		
-		// creer 4 stalagtites
-		if(stalagtites.size()<4)
+		
+		// creer les stalagtites
+		if(stalagtites.size()<difficulte)
 		{
 			float random = (float)(Math.random()*(1024-32));
 			stalagtites.add(new Stalagtite(random));

@@ -60,8 +60,9 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage(mapN2);
+		/*
 		ombre = new Personnage(mapN2);
-		timerOmbre = 0;
+		timerOmbre = 0;*/
 		
 		timer=0;
 		nuit = false;
@@ -80,10 +81,14 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		
 		joueur.dessiner(g);
-
-		// UN 2 EME PERSO SPAWN AU BOUT DE 2S 
+		
+		
+		
+		/*      !!!!!!!!!  UN 2 EME PERSO SPAWN AU BOUT DE 2S  !!!!!!!!!!!
 		if(timerOmbre>=2000) 
 			ombre.dessiner(g);
+		*/
+		
 		
 		if(!nuit) 
 			g.drawString("o", 90, 100);  // 2 eme lettre de l easter egg que qd c jour
@@ -111,13 +116,13 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		joueur.gravite(delta);
 		
-
+		/*
 		timerOmbre+=delta;
 		if(timerOmbre>=2000) {
 			Personnage.suivre(ombre, joueur);
-			/*ombre.sauter(delta);
-			ombre.gravite(delta);*/
-		}
+			ombre.sauter(delta);
+			ombre.gravite(delta);
+		}*/
 		
 		Input mvt = gc.getInput();
 		
