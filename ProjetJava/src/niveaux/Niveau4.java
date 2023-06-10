@@ -3,6 +3,8 @@ package niveaux;
 import main.*;
 import objets.*;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -17,6 +19,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private TiledMap map;
 	private Map mapN4;
 	
+	private int timer;
+	
 	
 	private Image porteSortie;
 	
@@ -24,6 +28,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 	private OursPolaire ours;
 	
 	private Plateforme p1, p2, p3, p4, p5;
+	
+	private ArrayList<Stalagtite> stalagtites = new ArrayList<>();
 	
 	
 	
@@ -42,6 +48,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		map = new TiledMap("res/niveau4/niveau4.tmx");
 		mapN4 = new Map(gc,image_fond,map);
 		
+		timer =0;
+		
 		porteSortie = new Image("res/images/porte fermee.png");
 		
 		joueur = new Personnage(mapN4);
@@ -52,7 +60,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p3= new Plateforme(350, 380, 1000);
 		p4= new Plateforme(200, 280, 1000);
 		p5= new Plateforme(600, 80, 1000);
-		
+
 	}
 
 	@Override
@@ -64,7 +72,12 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
 		ours.dessiner(g);
+		
 		joueur.dessiner(g);
+		
+		for(int i=0; i<stalagtites.size(); i++)
+			stalagtites.get(i).dessin(g);
+		
 		p1.draw(g);
 		p2.draw(g);
 		p3.draw(g);
@@ -78,6 +91,8 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		timer+=delta;
+		
 		joueur.sauter(delta);
 		
 		boolean CollisionY = true;
@@ -93,6 +108,23 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		p4.deplacement(delta);
 		p5.deplacement(delta);
 		
+		if(timer >=2000)
+		{
+			for(int i=0; i<stalagtites.size(); i++)
+			{
+				stalagtites.get(i).toucherSol();
+				stalagtites.get(i).deplacer(delta);
+			}
+		}
+		
+		
+		for(int i=0; i<stalagtites.size(); i++)
+		{
+			if(stalagtites.get(i).toucherSol())
+			{
+				
+			}
+		}
 		
 		
 		if(ours.getPeutAttaquer() && joueur.getPosX_px() + 32 >= ours.getX()+10-ours.getDistanceAttaque() && joueur.getPosX_px()<= ours.getX()+ours.getDistanceAttaque()+32 && joueur.getPosY_px() + 36 >=  ours.getY()-ours.getDistanceAttaque()  && joueur.getPosY_px()<= ours.getY()+36) 
