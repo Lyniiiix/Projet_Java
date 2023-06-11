@@ -20,32 +20,27 @@ import main.*;
 
 public class Niveau1 extends BasicGameState {    // niveau foret
 	
-	private Image image_fond; // image fond map
-	private Image porteSortie; // porte de fin du niveau
-	
+	private Image image_fond; // image fond map	
 	private TiledMap map; // schéma TMX map
-	
 	public Map mapN1; // instance d'une map
 	
-	//private Sound son;
-	
+	private Image porteSortie; // porte de fin du niveau
 	
 	private Personnage joueur;
+	
 	private Chasseur chasseur1;
 	private Chasseur chasseur2;
 	private Chasseur chasseur3;
 	private Chasseur chasseur4;
 	
-	
 	private int timer = 0;
 	
 	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
-	
+
 	// permet de savoir si le perso est mort ds ce niveau
 	public static boolean getMort() {
 		return mort;
 	}
-
 	
 	// permet de savoir si le niveau est réussi
 	private static boolean reussi = false;
@@ -59,24 +54,20 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	}*/
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		
-		
 		chasseur1 = new Chasseur(4*32, 15*36);
 		chasseur2 = new Chasseur(20*32, 6*36);
 		chasseur3 = new Chasseur(15*32, 14*36);
 		chasseur4 = new Chasseur(10*32, 9*36);
-
 		
 		porteSortie = new Image("res/images/porte fermee.png");
+		
 		image_fond = new Image("res/niveau1/n1_fond.png");
 		map = new TiledMap("res/niveau1/niveau1.tmx");
-		
 		mapN1 = new Map(gc, image_fond, map);
 		
 		joueur = new Personnage(mapN1); 
 
-		
-		mapN1.toArray(); // affiche la matrice de la map
+		mapN1.toArray(); // affiche la matrice de la map dans la console
 	}
 	
 	
