@@ -3,6 +3,7 @@ package niveaux;
 import main.*;
 import objets.*;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -10,8 +11,13 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class Niveau3 extends BasicGameState {   
+	private Image image_fond;
+	private TiledMap map;
+	private Map mapN3;
+	
 	private Personnage joueur ;
 	private Image porteSortie;
 	private Laser laser1;
@@ -39,19 +45,24 @@ public class Niveau3 extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		
+		image_fond = new Image("res/niveau3/n3_fond.png");
+		map = new TiledMap("res/niveau3/niveau3.tmx");
+		mapN3 = new Map(gc,image_fond,map);
+		
 		porteSortie = new Image("res/images/porte fermee.png");
-		joueur = new Personnage(1, 23);
-		laser1 = new Laser(5*32, 7*36);
-		laser2 = new Laser(17*32, 4*36);
-		laser3 = new Laser(10*32, 15*36);
-		laser4 = new Laser(20*32, 14*36);
+		joueur = new Personnage(mapN3);
+		laser1 = new Laser(7*32, 7*36);
+		laser2 = new Laser(15*32, 6*36);
+		laser3 = new Laser(10*32, 13*36);
+		laser4 = new Laser(23*32, 16*36);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
-		laser1.horizontal(g);
+		laser1.vertical(g);
 		laser2.horizontal(g);
 		laser3.horizontal(g);
 		laser4.vertical(g);
@@ -88,16 +99,9 @@ public class Niveau3 extends BasicGameState {
 		
 		
 		/* --------   HORIZONTAL   ---------*/
-		// si le perso touche le laser 1 qd actif
-		if(laser1.getActif() && joueur.getPosX_px()+32>=laser1.getX()+20 && joueur.getPosX_px()<=laser1.getX()+70 && joueur.getPosY_px()+36>=laser1.getY()+5 && joueur.getPosY_px()<=laser1.getY()+15)
-		{
-			mort = true;
-			sbg.enterState(404);
-		}
-		
 		
 		// si le perso touche le laser 2 qd actif
-		else if(laser2.getActif() && joueur.getPosX_px()+32>=laser2.getX()+20 && joueur.getPosX_px()<=laser2.getX()+70 && joueur.getPosY_px()+36>=laser2.getY()+5 && joueur.getPosY_px()<=laser2.getY()+15)
+		if(laser2.getActif() && joueur.getPosX_px()+32>=laser2.getX()+20 && joueur.getPosX_px()<=laser2.getX()+70 && joueur.getPosY_px()+36>=laser2.getY()+5 && joueur.getPosY_px()<=laser2.getY()+15)
 		{
 			mort = true;
 			sbg.enterState(404);
@@ -105,7 +109,7 @@ public class Niveau3 extends BasicGameState {
 				
 				
 		// si le perso touche le laser 3 qd actif
-		else if(laser3.getActif() && joueur.getPosX_px()+32>=laser3.getX()+20 && joueur.getPosX_px()<=laser3.getX()+70 && joueur.getPosY_px()+36>=laser3.getY()+5 && joueur.getPosY_px()<=laser3.getY()+15)
+		if(laser3.getActif() && joueur.getPosX_px()+32>=laser3.getX()+20 && joueur.getPosX_px()<=laser3.getX()+70 && joueur.getPosY_px()+36>=laser3.getY()+5 && joueur.getPosY_px()<=laser3.getY()+15)
 		{
 			mort = true;
 			sbg.enterState(404);
@@ -115,8 +119,15 @@ public class Niveau3 extends BasicGameState {
 		
 		/* --------   VERTICAL   ---------*/
 		
+		// si le perso touche le laser 1 qd actif
+		if(laser1.getActif() && joueur.getPosX_px()+32>=laser1.getX() && joueur.getPosX_px()<=laser1.getX()+20 && joueur.getPosY_px()+36>=laser1.getY()+20 && joueur.getPosY_px()<=laser1.getY()+70)
+		{
+			mort = true;
+			sbg.enterState(404);
+		}
+		
 		// si le perso touche le laser 4 qd actif
-		else if(laser4.getActif() && joueur.getPosX_px()+32>=laser4.getX() && joueur.getPosX_px()<=laser4.getX()+20 && joueur.getPosY_px()+36>=laser4.getY()+20 && joueur.getPosY_px()<=laser4.getY()+70)
+		if(laser4.getActif() && joueur.getPosX_px()+32>=laser4.getX() && joueur.getPosX_px()<=laser4.getX()+20 && joueur.getPosY_px()+36>=laser4.getY()+20 && joueur.getPosY_px()<=laser4.getY()+70)
 		{
 			mort = true;
 			sbg.enterState(404);

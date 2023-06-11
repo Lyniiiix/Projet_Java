@@ -73,10 +73,10 @@ public class OursPolaire {
 	public void deplacer(int delta) {
 		tempsDeplacement += delta;
 		
-		if(tempsDeplacement < 5000) {
+		if(tempsDeplacement < 2500) {
 			x+=vitesse*delta/1000f;
 		}
-		else if(tempsDeplacement >= 5000 && tempsDeplacement <= 10000) {
+		else if(tempsDeplacement >= 2500 && tempsDeplacement <= 5000) {
 			x-=vitesse*delta/1000f;
 		}
 		else

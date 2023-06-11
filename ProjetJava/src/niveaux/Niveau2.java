@@ -25,6 +25,7 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	
 	private int timer;
 	private boolean nuit;
+	private Eclair eclair;
 	
 	private TiledMap map; // schéma TMX map
 	
@@ -66,6 +67,7 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		timer=0;
 		nuit = false;
+		eclair = new Eclair(joueur.getPosX_px(), joueur.getPosY_px());
 	}
 
 	@Override
@@ -75,6 +77,9 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 			g.drawImage(image_fond,0,0,1024,828,0,0,image_fond.getWidth(), image_fond.getHeight());
 			map.render(0, 0); // dessiner la map a partir du .tmx correspondant 
 		}
+		
+		if(eclair.getFlash())
+			eclair.dessiner(g);
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
@@ -106,8 +111,20 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		{
 			nuit = false;
 			timer = 0;
+			eclair.setFlash(false);
 		}
 		
+		
+		// permet de dire ou vas frapper l eclair
+		if(timer>=3000 && timer<=4000)
+		{
+			eclair = new Eclair(joueur.getPosX_px(), joueur.getPosY_px());
+		}
+		
+		
+		// permet de faire spawn l eclair
+		if(timer>=5000 && timer<=6000)
+			eclair.setFlash(true);
 		
 		
 		joueur.sauter(delta);
@@ -135,6 +152,12 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc, CollisionY);
 		}
+		
+		
+		
+		// si l eclair touche le perso
+		if(eclair.getFlash() && joueur.getPosX_px()+32 >= eclair.getXdepart()+32/2 && joueur.getPosX_px() <= eclair.getXdepart()+32/2 && joueur.getPosY_px() <= eclair.getYarrive()+36)
+			sbg.enterState(404);
 		
 		
 		// si le perso atteint la porte de sortie

@@ -63,7 +63,7 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		porteSortie = new Image("res/images/porte fermee.png");
 		
 		joueur = new Personnage(mapN4);
-		ours = new OursPolaire(5*32, 21*36);
+		ours = new OursPolaire(5*32, 9*36);
 		
 		difficulte = 3;
 		
