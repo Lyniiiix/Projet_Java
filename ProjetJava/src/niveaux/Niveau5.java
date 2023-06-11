@@ -29,6 +29,14 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 	private Mer niveauMer;
 	
 	
+	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
+	
+	// permet de savoir si le perso est mort ds ce niveau
+	public static boolean getMort() {
+		return mort;
+	}
+
+	
 	// permet de savoir si le niveau est réussi
 	private static boolean reussi = false;
 	
@@ -105,6 +113,8 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		// faire mourir le perso si mer arrive au dessus de sa tete
 		if(niveauMer.getNiveauEau()<=joueur.getPosY_px()) 
 		{
+			niveauMer.setNiveauEau(827);
+			mort = true;
 			sbg.enterState(404);
 		}
 			
@@ -114,6 +124,14 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
 			reussi = true;
 			sbg.enterState(0);
+		}
+		
+		
+		
+		// refait spawn le perso au début et pas la ou il était
+		if(mort) {
+			mort = false;
+			joueur = new Personnage(mapN5);
 		}
 		
 		

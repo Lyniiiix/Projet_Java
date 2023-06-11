@@ -25,13 +25,6 @@ public class NiveauBonus extends BasicGameState {
 	private ArrayList <Bulles> bullesDroite2 = new ArrayList<Bulles>();
 	private ArrayList <Bulles> bullesDroite3 = new ArrayList<Bulles>();
 	
-	private boolean appuyerQ;
-	private boolean appuyerZ;
-	private boolean appuyerD;
-	private boolean appuyerJ;
-	private boolean appuyerI;
-	private boolean appuyerL;
-	
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -48,7 +41,7 @@ public class NiveauBonus extends BasicGameState {
 			
 			g.drawString("L'écran est séparé en deux parties distinctes", 310, 240);
 			g.drawString("Chacun d'entre vous aura des touches attribuées", 310, 300);
-			g.drawString("Le premier avec 20 points gagne", 370, 360);
+			g.drawString("Le premier avec 30 points gagne", 370, 360);
 			g.drawString("Ou le premier avec -40 points perds ;)", 350, 420);
 			g.drawString("Bonne chance, que le meilleur gagne", 360, 600);
 		}
@@ -129,9 +122,9 @@ public class NiveauBonus extends BasicGameState {
 			
 			
 			// dire qui a gagne
-			if(compteurDroite == 20 || compteurGauche == -40)
+			if(compteurDroite == 30 || compteurGauche == -40)
 				g.drawString("Le joueur de droite a gagné", 400, 350);
-			if(compteurGauche == 20 || compteurDroite == -40)
+			if(compteurGauche == 30 || compteurDroite == -40)
 				g.drawString("Le joueur de droite a gagné", 400, 350);
 			
 		}
@@ -143,6 +136,31 @@ public class NiveauBonus extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		timer += delta;
+		
+		Input mvt = gc.getInput();
+		
+	
+		
+		// creer les bulles ecran gauche et droite
+		if(timer>=8000 && bullesGauche1.size()<10 && bullesGauche2.size()<10 && bullesGauche3.size()<10) {
+			for(int i=0; i<30; i++) {
+				int random = (int)(Math.random()*3);
+				
+				if(random==0) {
+					bullesGauche1.add(new Bulles(1024/12 - 20 , -50*i));
+					bullesDroite1.add(new Bulles(2*1024/3 - 1024/12 - 20 ,-50*i));
+				}
+				if(random==1) {
+					bullesGauche2.add(new Bulles(1024/12 + 1024/6 - 20 , -50*i));
+					bullesDroite2.add(new Bulles(2*1024/3 + 1024/12 - 20 ,-50*i));
+				}
+				if(random==2) {
+					bullesGauche3.add(new Bulles(1024/12 + 1024/3 - 20 , -50*i));
+					bullesDroite3.add(new Bulles(1024 - 1024/12 - 20 ,-50*i));
+				}
+			}						
+		}
+		
 		
 		if(timer>=14000 && resultat == false) {
 			for(int i=0; i<bullesGauche1.size(); i++) {
@@ -168,7 +186,6 @@ public class NiveauBonus extends BasicGameState {
 		}
 		
 		
-		
 		// accelerer les bulles au bout d un certain temps
 		if(timer >= 24000 && resultat==false) {
 			for(int i=0; i<bullesDroite1.size(); i++) {
@@ -187,30 +204,7 @@ public class NiveauBonus extends BasicGameState {
 		}
 		
 		
-		
-		Input mvt = gc.getInput();
-		
-		
-		// creer les bulles ecran gauche et droite
-		if(timer>=8000 && bullesGauche1.size()<10 && bullesGauche2.size()<10 && bullesGauche3.size()<10) {
-			for(int i=0; i<30; i++) {
-				int random = (int)(Math.random()*3);
-				
-				if(random==0) {
-					bullesGauche1.add(new Bulles(1024/12 - 20 , -50*i));
-					bullesDroite1.add(new Bulles(2*1024/3 - 1024/12 - 20 ,-50*i));
-				}
-				if(random==1) {
-					bullesGauche2.add(new Bulles(1024/12 + 1024/6 - 20 , -50*i));
-					bullesDroite2.add(new Bulles(2*1024/3 + 1024/12 - 20 ,-50*i));
-				}
-				if(random==2) {
-					bullesGauche3.add(new Bulles(1024/12 + 1024/3 - 20 , -50*i));
-					bullesDroite3.add(new Bulles(1024 - 1024/12 - 20 ,-50*i));
-				}
-			}						
-		}
-		
+
 		
 		
 		// enlever les bulles gauche si pas touchees
@@ -317,7 +311,7 @@ public class NiveauBonus extends BasicGameState {
 		
 		
 		// sencer arreter le mouvement des bulles (voir plus haut)
-		if(compteurDroite == 20 || compteurGauche == 20 || compteurDroite == -40 || compteurGauche == -40)
+		if(compteurDroite == 30 || compteurGauche == 30 || compteurDroite == -40 || compteurGauche == -40)
 			resultat = true;
 		
 		

@@ -5,6 +5,7 @@ import main.*;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -20,12 +21,24 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	private Image porteSortie;
 	private Personnage joueur ;
 	private Personnage ombre;
+	private int timerOmbre;
+	
 	private int timer;
+	private boolean nuit;
 	
 	private TiledMap map; // schéma TMX map
 	
 	public Map mapN2; // instance d'une map
 	
+	
+	
+	private static boolean mort = false;  // permet si le perso est mort de refaire spawn le perso au debut et non pas la ou il est mort
+	
+	// permet de savoir si le perso est mort ds ce niveau
+	public static boolean getMort() {
+		return mort;
+	}
+
 	
 	
 	// permet de savoir si le niveau est réussi
@@ -47,43 +60,69 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage(mapN2);
+		/*
 		ombre = new Personnage(mapN2);
-		timer = 0;
+		timerOmbre = 0;*/
 		
+		timer=0;
+		nuit = false;
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(image_fond,0,0,1024,828,0,0,image_fond.getWidth(), image_fond.getHeight());
+		if(!nuit) 
+		{
+			g.drawImage(image_fond,0,0,1024,828,0,0,image_fond.getWidth(), image_fond.getHeight());
+			map.render(0, 0); // dessiner la map a partir du .tmx correspondant 
+		}
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
 		
-		map.render(0, 0); // dessiner la map a partir du .tmx correspondant 
+		
 		
 		joueur.dessiner(g);
-
-		// UN 2 EME PERSO SPAWN AU BOUT DE 2S 
-		if(timer>=2000) 
-			ombre.dessiner(g);
 		
-		g.drawString("o", 90, 100);  // 2 eme lettre de l easter egg
+		
+		
+		/*      !!!!!!!!!  UN 2 EME PERSO SPAWN AU BOUT DE 2S  !!!!!!!!!!!
+		if(timerOmbre>=2000) 
+			ombre.dessiner(g);
+		*/
+		
+		
+		if(!nuit) 
+			g.drawString("o", 90, 100);  // 2 eme lettre de l easter egg que qd c jour
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		timer+=delta;
+		
+		// permet de mettre un fond noir toute les 3 secondes
+		if(timer>=3000 && timer<=6000)
+			nuit = true;
+		
+		if(timer>6000)
+		{
+			nuit = false;
+			timer = 0;
+		}
+		
+		
+		
 		joueur.sauter(delta);
 		
 		boolean CollisionY = true;
 		
 		joueur.gravite(delta);
 		
-
-		timer+=delta;
-		if(timer>=2000) {
+		/*
+		timerOmbre+=delta;
+		if(timerOmbre>=2000) {
 			Personnage.suivre(ombre, joueur);
-			/*ombre.sauter(delta);
-			ombre.gravite(delta);*/
-		}
+			ombre.sauter(delta);
+			ombre.gravite(delta);
+		}*/
 		
 		Input mvt = gc.getInput();
 		
@@ -103,6 +142,14 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 			reussi = true;
 			sbg.enterState(0);
 		}
+		
+		
+		// refait spawn le perso au début et pas la ou il était
+		if(mort) {
+			mort = false;
+			joueur = new Personnage(mapN2);
+		}
+		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)
 		if(mvt.isKeyPressed(Input.KEY_ENTER))

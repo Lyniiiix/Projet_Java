@@ -101,9 +101,6 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		joueur.dessiner(g);
 		
-		
-		//g.drawString(timer/1000f+" s", 100, 100);
-		
 		g.drawString("c", 1000, 810);  // 1 ere lettre de l easter egg 
 		
 	}
@@ -111,7 +108,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		
+		// timer
+		timer = timer + delta;
 		
 		// chasseur 1 tirer
 		if(joueur.getPosX_px() +36 >= chasseur1.getX() && joueur.getPosX_px() <= chasseur1.getX() + chasseur1.getDistanceTir() && joueur.getPosY_px() +36 >= chasseur1.getY() - chasseur1.getDistanceTir() && joueur.getPosY_px() <= chasseur1.getY() + chasseur1.getDistanceTir()) {
@@ -152,8 +150,12 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			chasseur4.tirer();  
 		
 		
+		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
+		
+		
+		
 		
 		// chasseur 1 mort
 		if(chasseur1.getXBalle1()+20>=joueur.getPosX_px() && chasseur1.getXBalle1()<=(joueur.getPosX_px()+32) && chasseur1.getYBalle1()+20>=joueur.getPosY_px() && chasseur1.getYBalle1()<=joueur.getPosY_px()+36 ||
@@ -228,8 +230,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		
-		// timer
-		timer = timer + delta;
+		
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
 		if(timer >= 300000) { //augmenter pour test
 			timer = 0;

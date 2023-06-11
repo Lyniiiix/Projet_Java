@@ -13,6 +13,12 @@ public class Mer {
 		return niveauEau;
 	}
 	
+	public void setNiveauEau(float niveauEau) {
+		if(niveauEau == 827)
+			this.niveauEau=niveauEau;
+	}
+	
+	
 	public Mer(float vitesseMontee) {
 		niveauEau=827;
 		if(vitesseMontee>=0)
