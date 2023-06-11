@@ -3,9 +3,12 @@
  <tileset firstgid="1" name="ts_n1" tilewidth="32" tileheight="36" tilecount="4" columns="2">
   <image source="test tileset.png" width="64" height="72"/>
  </tileset>
+ <tileset firstgid="5" name="Tileset 32x36 n3" tilewidth="32" tileheight="36" tilecount="4" columns="2">
+  <image source="Tileset 32x36 n3.png" width="64" height="72"/>
+ </tileset>
  <layer id="1" name="bloc" width="32" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACt2WSw6AMAhEsd7/zm5cEALMCG01TkJMap2HkH6GiAwQhwo0l/XRfm/pj3xb86f8am/F8ULaUf8o1138TJaP6huJ6Q3D362v8FGdqn3Jvtd8b+4qIT7rkXl39h/Px45380T8rrr/H3my/qyn5md9Y8a9cwCtm5X1189IiF9d7zaPKp/x7+S3cv9l7gzs/cN7P5MfxXkH41WNC8LDiiWACwAA
+   H4sIAAAAAAAACt2VOw4AIAhDnbj/kV0cMcjHUm3CJn2CojL6JCuY+aIEkp/xtfyZ+p/tcSSXqX4US+t5xqtiT13a8W/N+ykfpSp+9G79Uj+Cr/1DL81f5ftTJVZ+9Iy9eZ21s/CtsNZ7vLSY+UrGnIALAAA=
   </data>
  </layer>
 </map>

@@ -8,7 +8,7 @@
  </tileset>
  <layer id="1" name="bloc" width="32" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2VsQoAIAhEm/z/T25pkko9PG3oQAhSn5WVjD7Jss+3fU6+eh4xKx9L3jVV82+1ZNaE5oycJ4OP1Ob1rVLWHjLYyL2NsvUYlTd+V3f1Xp/mWDwrfxYf7QmUn3VXIvHMt8rDY/Sp9fexVfnevsrvtglak+IwgAsAAA==
+   H4sIAAAAAAAACs2UQQ4AIQgDOfH/J5tNPBHiArYIiSeRKVVUeRe61wR+VMuNZns2UovpEaq2miXC9xIRk/is9+fdTbVWlonKY8WJf/Ktgx89m/1PUHxEWI+7tWSYFZ1/uVP8z+55eZU+JvfP4HjzmtGEnpWX3rP4NzPd/Q99nAUNuvKOgAsAAA==
   </data>
  </layer>
 </map>
