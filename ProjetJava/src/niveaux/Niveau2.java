@@ -20,8 +20,10 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 	
 	private Image porteSortie;
 	private Personnage joueur ;
-	private Personnage ombre;
-	private int timerOmbre;
+	
+	/*private Personnage ombre;
+	private int timerOmbre;*/
+	
 	
 	private int timer;
 	private boolean nuit;
@@ -61,8 +63,9 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		porteSortie = new Image("res/images/porte fermee.png");
 		joueur = new Personnage(mapN2);
+		
 		/*
-		ombre = new Personnage(mapN2);
+		ombre = new Personnage(1,18);
 		timerOmbre = 0;*/
 		
 		timer=0;
@@ -89,8 +92,8 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		
 		
-		/*      !!!!!!!!!  UN 2 EME PERSO SPAWN AU BOUT DE 2S  !!!!!!!!!!!
-		if(timerOmbre>=2000) 
+		//      !!!!!!!!!  UN 2 EME PERSO SPAWN AU BOUT DE 2S  !!!!!!!!!!!
+		/*if(timerOmbre>=2000) 
 			ombre.dessiner(g);
 		*/
 		
@@ -135,11 +138,11 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		/*
 		timerOmbre+=delta;
+		
 		if(timerOmbre>=2000) {
-			Personnage.suivre(ombre, joueur);
-			ombre.sauter(delta);
-			ombre.gravite(delta);
+			ombre = new Personnage(joueur.getX()-2, joueur.getY());
 		}*/
+		
 		
 		Input mvt = gc.getInput();
 		

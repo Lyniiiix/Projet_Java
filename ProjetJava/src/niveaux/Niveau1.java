@@ -225,8 +225,6 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		// PERMET DE REINITIALISER LE NIVEAU AU BOUT D UN CERTAIN TEMPS
 		if(timer >= 300000) { //augmenter pour test
 			timer = 0;
-			//son.stop(); // marche pas
-			
 			mort = true;
 			sbg.enterState(404);
 		}
