@@ -1,3 +1,5 @@
+// NIVEAU 5
+
 package niveaux;
 
 import main.*;
@@ -95,10 +97,10 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		
 		

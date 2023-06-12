@@ -1,3 +1,5 @@
+// PERMET DE GENERER DES CHASSEURS
+
 package objets;
 
 import org.newdawn.slick.Color;

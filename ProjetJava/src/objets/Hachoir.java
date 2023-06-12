@@ -1,3 +1,5 @@
+// CREER UN HACHOIR
+
 package objets;
 
 import org.newdawn.slick.Color;

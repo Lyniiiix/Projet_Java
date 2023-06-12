@@ -1,3 +1,5 @@
+// PERMET DE CREER UN LASER
+
 package objets;
 
 import org.newdawn.slick.Color;

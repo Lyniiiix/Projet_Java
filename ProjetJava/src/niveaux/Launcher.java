@@ -1,3 +1,5 @@
+// PAGE AVEC LE CHOIX DU NIVEAU
+
 package niveaux;
 
 import org.newdawn.slick.GameContainer;

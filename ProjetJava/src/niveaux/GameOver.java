@@ -1,3 +1,5 @@
+// ECRAN GAME OVER
+
 package niveaux;
 
 import main.*;

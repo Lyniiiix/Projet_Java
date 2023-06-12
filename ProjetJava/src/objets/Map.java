@@ -1,3 +1,5 @@
+// PERMET DE CREER/GENERER UNE ENTITE MAP AVEC .TMX & IMAGE DE FOND
+
 package objets;
 
 import org.newdawn.slick.Image;

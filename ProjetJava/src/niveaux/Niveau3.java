@@ -1,3 +1,5 @@
+// NIVEAU 3
+
 package niveaux;
 
 import main.*;
@@ -84,10 +86,10 @@ public class Niveau3 extends BasicGameState {
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			//joueur.deplacerInverse(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			//joueur.deplacerInverse(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		
 		

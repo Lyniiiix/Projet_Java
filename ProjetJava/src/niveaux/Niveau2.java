@@ -1,3 +1,5 @@
+// NIVEAU 2
+
 package niveaux;
 
 import objets.*;
@@ -150,10 +152,10 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		
 		

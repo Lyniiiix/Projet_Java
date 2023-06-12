@@ -1,3 +1,5 @@
+// PERMET DE CREER UNE ZONE DE TEXTE
+
 package main;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;

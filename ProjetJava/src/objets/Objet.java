@@ -1,3 +1,5 @@
+// PERMET DE CREER UN OBJET
+
 package objets;
 
 public class Objet {

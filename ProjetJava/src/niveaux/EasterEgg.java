@@ -1,3 +1,5 @@
+// NIVEAU OU ON DEMANDE LE MOT SECRET
+
 package niveaux;
 
 import javax.swing.DefaultBoundedRangeModel;

@@ -1,3 +1,5 @@
+// CONSTANTES UTILES POUR LE JEU
+
 package main;
 
 public class Constantes {

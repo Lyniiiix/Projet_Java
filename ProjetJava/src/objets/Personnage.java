@@ -1,3 +1,5 @@
+// PERMET DE CREER UN PERSONNAGE
+
 package objets;
 
 import org.newdawn.slick.SlickException;
@@ -11,7 +13,8 @@ import org.newdawn.slick.Graphics;
 import main.*;
 
 public class Personnage {
-	private Image image;
+	private Image image_d;
+	private Image image_g;
 	
 	private float x,y, vx, vy, graviteY;
 	private int masse = 70; // masse (varier gravite)
@@ -21,6 +24,7 @@ public class Personnage {
 	private Map map;
 	
 	private int compteurDeSaut = 0;	
+	private String orientation;
 	
 	
 	
@@ -30,7 +34,8 @@ public class Personnage {
 			
 			this.map = map;
 			
-			image = new Image("res/images/perso.png");
+			image_d = new Image("res/images/perso.png");
+			image_g = new Image("res/images/perso g.png");
 			
 			graviteY = masse * acc_p;
 			
@@ -40,6 +45,8 @@ public class Personnage {
 			
 			vx = 3; // vitesse horizontale
 			vy = 0;
+			
+			this.orientation = "droite";
 		}
 
 
@@ -47,7 +54,8 @@ public class Personnage {
 	// creer un perso aux cooordonnées voulues
 	public Personnage(float x, float y) throws SlickException
 	{
-		image = new Image("res/images/perso.png");
+		image_d = new Image("res/images/perso.png");
+		image_g = new Image("res/images/perso g.png");
 		
 		graviteY = masse * acc_p;
 		
@@ -104,7 +112,7 @@ public class Personnage {
 		this.vy = vy;
 	}
 	
-	public boolean detecterSol()
+	private boolean detecterSol()
 	{
 		Objet[] objets = map.getObjets();
 		for (int i = 0; i < objets.length; i++)
@@ -123,7 +131,7 @@ public class Personnage {
 	}
 
 	
-	public boolean detecterCoinGauche()
+	private boolean detecterCoinGauche()
 	{
 	    Objet[] objets = map.getObjets();
 	    float posY_centre = getPosY_px() + (Constantes.HAUTEUR_PERSO / 2);
@@ -150,7 +158,7 @@ public class Personnage {
 	    return false;
 	}
 
-	public boolean detecterCoinDroit()
+	private boolean detecterCoinDroit()
 	{
 	    Objet[] objets = map.getObjets();
 	    float posX_droit = getPosX_px() + (Constantes.LARGEUR_PERSO);
@@ -177,6 +185,11 @@ public class Personnage {
 
 	    return false;
 	}
+	/*
+	public detecterPlafond()
+	{
+		
+	}*/
 
 
 
@@ -184,22 +197,31 @@ public class Personnage {
 	// *********************************************** //
 	// DESSINER BONHOMME
 	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
-		g.drawImage(image, x*32, y*36, x*32+32, y*36+36, 0, 0, image.getWidth(), image.getHeight());
 		//g.drawRect(x*32-32, y*36-36, 3*32, 2*36);
+		if (this.orientation == "droite")
+		{
+			g.drawImage(image_d, x*32, y*36, x*32+32, y*36+36, 0, 0, image_d.getWidth(), image_d.getHeight());
+
+		} else {
+			g.drawImage(image_g, x*32, y*36, x*32+32, y*36+36, 0, 0, image_g.getWidth(), image_g.getHeight());
+
+		}
 	}
 	
 	
 	
 	// DEPLACER BONHOMME
-	public void deplacer(GameContainer gc, boolean collisionX) {
+	public void deplacer(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyDown(Input.KEY_RIGHT) && !detecterCoinDroit())
 		{
+			this.orientation = "droite";
 			x += vx / Constantes.MAP_X;
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT) && !detecterCoinGauche())
 		{
+			this.orientation = "gauche";
 			x -= vx / Constantes.MAP_X;
 		}	
 	

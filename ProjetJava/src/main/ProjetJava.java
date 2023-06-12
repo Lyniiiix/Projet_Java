@@ -1,4 +1,7 @@
+// MAIN SLICk
+
 package main;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;

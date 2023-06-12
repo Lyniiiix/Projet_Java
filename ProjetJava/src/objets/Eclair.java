@@ -1,3 +1,5 @@
+// CREER DES ECLAIRS
+
 package objets;
 
 import org.newdawn.slick.Color;

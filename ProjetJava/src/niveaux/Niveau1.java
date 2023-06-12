@@ -1,3 +1,5 @@
+// NIVEAU 1
+
 package niveaux;
 
 import org.newdawn.slick.Color;
@@ -196,7 +198,6 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		//System.out.println(String.format("Coord. perso : posX : %s , poxY : %s",joueur.getX(),joueur.getY()));
 		
 		
-		boolean collisionX = true;//collisionsN1.autoriserDeplacementX(joueur.getPosX_px(), joueur.getPosY_px());
 		
 		Input mvt = gc.getInput();
 		
@@ -204,10 +205,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc,collisionX);
+			joueur.deplacer(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc,collisionX);
+			joueur.deplacer(gc);
 		}
 		
 		

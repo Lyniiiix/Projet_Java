@@ -1,3 +1,5 @@
+// PERMET DE CREER DES PLATEFORMES
+
 package objets;
 
 import org.newdawn.slick.Color;

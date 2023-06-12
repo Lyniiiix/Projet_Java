@@ -1,3 +1,5 @@
+// PERMET DE CREER DES STALAGTITE : NIVEAU 4
+
 package objets;
 
 import org.newdawn.slick.Color;

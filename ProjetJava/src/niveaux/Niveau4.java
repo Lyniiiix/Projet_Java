@@ -1,3 +1,5 @@
+// NIVEAU 4
+
 package niveaux;
 
 import main.*;
@@ -178,10 +180,10 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 			joueur.sautNormal(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_RIGHT)) {
-			joueur.deplacer(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
-			joueur.deplacer(gc, CollisionY);
+			joueur.deplacer(gc);
 		}
 		
 		

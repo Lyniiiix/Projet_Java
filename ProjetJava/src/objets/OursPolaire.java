@@ -1,3 +1,5 @@
+// PERMET DE CREER UN OURS POLAIRE
+
 package objets;
 
 import org.newdawn.slick.Color;

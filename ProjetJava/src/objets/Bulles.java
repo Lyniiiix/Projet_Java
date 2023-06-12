@@ -1,3 +1,5 @@
+// PERMET DE CREER DES BULLES POUR LE NIVEAU BONUS
+
 package objets;
 
 import org.newdawn.slick.GameContainer;
