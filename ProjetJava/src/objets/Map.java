@@ -12,45 +12,43 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import main.Constantes;
 
-// initialise une Map
 
 public class Map {
 	
-	private Image image_fond;
+	private Image image_fond; // image de fond de la map
 
-	private TiledMap map;
+	private TiledMap map; // .tmx de map
 	
-	private int[][] matrice_map = new int[23][32];
+	private int[][] matrice_map = new int[23][32]; // matrice de 0 et de 1 de la map
 	
-	private Objet[] objetsMap;
-	
+	private Objet[] objetsMap; // tableau contenant les objets bloquant de la map
 	
 	public Map(GameContainer gc, Image image_fond, TiledMap map){
 		this.image_fond = image_fond;
 		this.map = map;
-		this.genererMatrice(); // 0=vide / 1=bloc bloquant
-		this.genererObjets();
+		this.genererMatrice(); // genere la matrice a partir du tmx 0=vide/1=objet bloquant
+		this.genererObjets(); // genere le tableau d'objets bloquant
 	}
 	
 	
-	public int[][] getMatrice()
+	public int[][] getMatrice() // retourne la matrice de 0 et de 1
 	{
 		return matrice_map;
 	}
-	public TiledMap getMapTMX()
+	public TiledMap getMapTMX() // retourne le .tmx
 	{
 		return map;
 	}
-	public Image getFond()
+	public Image getFond() // retourne l'image de fond
 	{
 		return image_fond;
 	}
-	public Objet[] getObjets()
+	public Objet[] getObjets() // retourne le tableau d'objets bloquant
 	{
 		return objetsMap;
 	}
 	
-	public void genererMatrice()
+	public void genererMatrice() // genere la matrice a partir du .tmx
 	{
 		for (int y = 0; y < 23; y++) {
 		    for (int x = 0; x < 32; x++) {
@@ -64,7 +62,8 @@ public class Map {
 		}
 	}
 	
-	public void genererObjets() {
+	public void genererObjets() // creer une instance d'Objet pour chaque objet bloquant
+	{
 	    int count = 0;
 	    for (int y = 0; y < 23; y++) {
 	        for (int x = 0; x < 32; x++) {
@@ -88,12 +87,12 @@ public class Map {
 	    }
 	}
 	
-	public int getNbObjets()
+	public int getNbObjets() // recup le nb d'Objet pour debug
 	{
 		return objetsMap.length;
 	}
 	
-	public void toArray() // affiche dans la console
+	public void toArray() // affiche dans la console la map de 0 et de 1
 	{
 		for (int y = 0; y < Constantes.MAP_Y; y++) {
 		    for (int x = 0; x < Constantes.MAP_X; x++) {

@@ -1,4 +1,4 @@
-// CREER DES ECLAIRS
+// PERMET DE CREER DES ECLAIRS
 
 package objets;
 

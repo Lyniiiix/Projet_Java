@@ -1,4 +1,4 @@
-// CREER UN HACHOIR
+// PERMET DE CREER UN HACHOIR
 
 package objets;
 

@@ -1,4 +1,4 @@
-// PERMET DE CREER UN OBJET
+// PERMET DE CREER UN OBJET (BLOC) BLOQUANT
 
 package objets;
 
@@ -7,10 +7,8 @@ public class Objet {
 	
 	private String nom;
 	
-	private int id_tuile;
-	
 	private int x1; // pt x (px) de depart
-	private int y1; // pt y (px) d'arrivee
+	private int y1; // pt y (px) de depart
  	private int x2;
 	private int y2;
 	
@@ -23,6 +21,8 @@ public class Objet {
 		this.x2 = x1 + 32;
 		this.y2 = y1 + 36;
 	}
+	
+	// GETTEURS & SETTEURS : coordonnées de l'Objet
 	
 	public int getx1()
 	{
@@ -44,7 +44,7 @@ public class Objet {
 		return y2;
 	}
 	
-	public String toString()
+	public String toString() // permet d'afficher les instances d'Objet en detail pour debug
 	{
 		return String.format("Objet %s : %s , x1: %s , x2: %s | y1: %s , y2: %s",id_objet,nom,x1,x2,y1,y2);
 	}

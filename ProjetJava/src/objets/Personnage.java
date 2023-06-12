@@ -1,4 +1,4 @@
-// PERMET DE CREER UN PERSONNAGE
+// PERMET DE CREER LE PERSONNAGE
 
 package objets;
 
@@ -10,21 +10,22 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+
 import main.*;
 
 public class Personnage {
-	private Image image_d;
-	private Image image_g;
+	private Image image_d; // image perso profil droit
+	private Image image_g; // image perso profil gauche
 	
-	private float x,y, vx, vy, graviteY;
-	private int masse = 70; // masse (varier gravite)
+	private float x,y, vx, vy, graviteY; // variables de positions et de vitesses
+	private int masse = 70; // masse (pour modifier la gravite)
 	private float acc_p = 9.81f; // acceleration de la pesanteur
 	
-	private boolean detection_sol;
-	private Map map;
+	private boolean detection_sol; // pour les collisions avec le sol
+	private Map map; // map sur laquelle est le personnage
 	
-	private int compteurDeSaut = 0;	
-	private String orientation;
+	private int compteurDeSaut = 0; // permet de limiter le saut
+	private String orientation; // orientation 
 	
 	
 	
@@ -117,7 +118,6 @@ public class Personnage {
 		Objet[] objets = map.getObjets();
 		for (int i = 0; i < objets.length; i++)
 		{
-			System.out.println(objets[i]);
 			if ((getPosY_px() + Constantes.HAUTEUR_CASE) >= (objets[i].gety1()) 
 					&& (getPosY_px() + Constantes.HAUTEUR_CASE) < (objets[i].gety2()) 
 					&& (getPosX_px()) >= objets[i].getx1() 
@@ -138,7 +138,6 @@ public class Personnage {
 
 	    for (int i = 0; i < objets.length; i++)
 	    {
-	        System.out.println(objets[i]);
 
 	        int objetX1 = objets[i].getx1();
 	        int objetX2 = objets[i].getx2();
@@ -166,7 +165,6 @@ public class Personnage {
 
 	    for (int i = 0; i < objets.length; i++)
 	    {
-	        System.out.println(objets[i]);
 
 	        int objetX1 = objets[i].getx1();
 	        int objetX2 = objets[i].getx2();
@@ -185,11 +183,34 @@ public class Personnage {
 
 	    return false;
 	}
-	/*
-	public detecterPlafond()
+	
+	public void detecterPlafond()
 	{
+		int count = 0;
 		
-	}*/
+	    Objet[] objets = map.getObjets();
+	    float posY = getPosY_px();
+	    float posX = getPosX_px();
+	    float posX_droite = posX + Constantes.LARGEUR_PERSO;
+
+	    for (int i = 0; i < objets.length; i++)
+	    {
+	        int objetX1 = objets[i].getx1();
+	        int objetX2 = objets[i].getx2();
+	        int objetY2 = objets[i].gety2();
+
+	        // Vérification du plafond
+	        if (posY < objetY2 &&
+	        	posX >= objetX1 &&
+	            posX_droite <= objetX2)
+	        {
+	        	count ++;
+	        	System.out.println("yes" + " " + count);
+	        }
+	    }
+	}
+
+
 
 
 
@@ -228,14 +249,14 @@ public class Personnage {
 	}
 	
 	
-	public void deplacerInverse(GameContainer gc, boolean collisionX) {
+	public void deplacerInverse(GameContainer gc) {
 		Input mvt = gc.getInput();
 		
-		if(mvt.isKeyDown(Input.KEY_RIGHT) && collisionX)
+		if(mvt.isKeyDown(Input.KEY_RIGHT))
 		{
 			x -= vx / Constantes.MAP_X;
 		}
-		if(mvt.isKeyDown(Input.KEY_LEFT) && collisionX)
+		if(mvt.isKeyDown(Input.KEY_LEFT))
 		{
 			x += vx / Constantes.MAP_X;
 		}	
@@ -254,22 +275,6 @@ public class Personnage {
 		
 	}
 	
-	/*
-	public boolean detecterSol()
-	{
-		System.out.println(getPosX_px() + " " + getPosY_px() + " - " + 22*36 + " " + 23*36);
-		//if (getPosY_px() < Constantes.HAUTEUR_ECRAN - Constantes.HAUTEUR_PERSO*2)
-		if ((getPosY_px() + 36) >= (22*36) && (getPosY_px() + 36) < (23*36))// && (getPosX_px() + 16) >= 32 && (getPosX_px() + 16) <= 64)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	*/
-	
 
 
 
@@ -279,7 +284,6 @@ public class Personnage {
 		//System.out.println(x + " " + y);
 		if(!detecterSol())  // pour la bordure + la hauteur du bonhomme 
 			{
-			System.out.println(vy);
 			vy += graviteY * delta / 1000f;
 	}
 		else {
@@ -304,6 +308,7 @@ public class Personnage {
 
 	public void sauter(int delta) {
 		y += (vy * delta / 1000f) / Constantes.HAUTEUR_CASE;
+		
 	}
 
 	public void sauterInversee(int delta) {

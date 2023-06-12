@@ -55,6 +55,8 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		Niveau1.reussi = reussi;
 	}*/
 	
+	
+	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		chasseur1 = new Chasseur(4*32, 15*36);
 		chasseur2 = new Chasseur(20*32, 6*36);
@@ -69,7 +71,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		joueur = new Personnage(mapN1); 
 
+		System.out.println("Niveau 1 :");
 		mapN1.toArray(); // affiche la matrice de la map dans la console
+		for (Objet objet : mapN1.getObjets())
+		{
+			System.out.println(objet);
+		}
+		System.out.println();
 	}
 	
 	
@@ -142,7 +150,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		else
 			chasseur4.tirer();  
 		
-		
+		joueur.detecterPlafond();
 		
 		joueur.sauter(delta);
 		joueur.gravite(delta);
@@ -187,6 +195,13 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			mort=true;
 			//Personnage.niveauMort(sbg);
 			sbg.enterState(404);
+		}
+		
+		
+		
+		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
+		{
+			mort = true;
 		}
 		
 		

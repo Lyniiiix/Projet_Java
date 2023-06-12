@@ -1,4 +1,4 @@
-// PERMET DE CREER UN LASER
+// PERMET DE CREER UN LASER : NIVEAU 2
 
 package objets;
 

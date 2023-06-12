@@ -134,8 +134,6 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		joueur.sauter(delta);
 		
-		boolean CollisionY = true;
-		
 		joueur.gravite(delta);
 		
 		/*
