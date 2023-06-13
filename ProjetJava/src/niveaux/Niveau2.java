@@ -160,12 +160,16 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 		
 		// si l eclair touche le perso
 		if(eclair.getFlash() && joueur.getPosX_px()+32 >= eclair.getXdepart()+32/2 && joueur.getPosX_px() <= eclair.getXdepart()+32/2 && joueur.getPosY_px() <= eclair.getYarrive()+36)
+		{
+			mort=true;
 			sbg.enterState(404);
+		}
 		
 		
 		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
 			reussi = true;
+			joueur = new Personnage(mapN2);
 			sbg.enterState(0);
 		}
 		

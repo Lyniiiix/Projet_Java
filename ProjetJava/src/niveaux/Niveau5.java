@@ -115,6 +115,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		// faire mourir le perso si mer arrive au dessus de sa tete
 		if(niveauMer.getNiveauEau()<=joueur.getPosY_px()) 
 		{
+			timer =0;
 			niveauMer.setNiveauEau(827);
 			mort = true;
 			sbg.enterState(404);
@@ -124,6 +125,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		// si le perso atteint la porte de sortie
 		if(joueur.getPosX_px()>=896 && joueur.getPosX_px()<=896+3*32 && joueur.getPosY_px()>=36 && joueur.getPosY_px()<=36+3*36) {
+			joueur = new Personnage(mapN5);
 			reussi = true;
 			sbg.enterState(0);
 		}
