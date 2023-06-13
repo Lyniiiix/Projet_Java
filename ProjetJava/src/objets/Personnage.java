@@ -14,6 +14,7 @@ import org.newdawn.slick.Graphics;
 import main.*;
 
 public class Personnage {
+	
 	private Image image_d; // image perso profil droit
 	private Image image_g; // image perso profil gauche
 	
@@ -28,11 +29,9 @@ public class Personnage {
 	private String orientation; // orientation 
 	
 	
-	
 	// CONSTRUCTEUR PAR DEFAUT
 		public Personnage(Map map) throws SlickException
 		{
-			
 			this.map = map;
 			
 			image_d = new Image("res/images/perso.png");
@@ -47,7 +46,7 @@ public class Personnage {
 			vx = 3; // vitesse horizontale
 			vy = 0;
 			
-			this.orientation = "droite";
+			this.orientation = "droite"; // orientation du perso au début
 		}
 
 
@@ -78,7 +77,7 @@ public class Personnage {
 		this.graviteY = sautY;
 	}
 	
-	// Coordonnées float
+	// Coordonnées X
 	public float getX() {
 		return x;
 	}
@@ -95,7 +94,7 @@ public class Personnage {
 	public void setVx(float vx) {
 		this.vx = vx;
 	}
-
+	// Coordonnées Y
 	public float getY() {
 		return y;
 	}
@@ -113,6 +112,7 @@ public class Personnage {
 		this.vy = vy;
 	}
 	
+	// Collision du Personnage
 	private boolean detecterSol()
 	{
 		Objet[] objets = map.getObjets();
@@ -120,7 +120,7 @@ public class Personnage {
 		{
 			if ((getPosY_px() + Constantes.HAUTEUR_CASE) >= (objets[i].gety1()) 
 					&& (getPosY_px() + Constantes.HAUTEUR_CASE) < (objets[i].gety2()) 
-					&& (getPosX_px()) >= objets[i].getx1() 
+					&& (getPosX_px()) >= objets[i].getx1()-16
 					&& (getPosX_px()) <= objets[i].getx2()
 				)
 			{
@@ -129,7 +129,6 @@ public class Personnage {
 		}
 		return false;
 	}
-
 	
 	private boolean detecterCoinGauche()
 	{
@@ -147,7 +146,7 @@ public class Personnage {
 	        // Vérification du coin gauche
 	        if (posY_centre >= objetY1 &&
 	            posY_centre < objetY2 &&
-	            getPosX_px() >= objetX1 &&
+	            getPosX_px() > objetX1 &&
 	            getPosX_px() <= objetX2)
 	        {
 	            return true;
@@ -184,41 +183,44 @@ public class Personnage {
 	    return false;
 	}
 	
-	public void detecterPlafond()
+	public boolean detecterPlafond()
 	{
-		int count = 0;
 		
 	    Objet[] objets = map.getObjets();
 	    float posY = getPosY_px();
 	    float posX = getPosX_px();
-	    float posX_droite = posX + Constantes.LARGEUR_PERSO;
+
+	    /*
+	    (getPosY_px() + Constantes.HAUTEUR_CASE) >= (objets[i].gety1()) 
+		&& (getPosY_px() + Constantes.HAUTEUR_CASE) < (objets[i].gety2()) 
+		&& (getPosX_px()) >= objets[i].getx1()-16
+		&& (getPosX_px()) <= objets[i].getx2()
+		*/
 
 	    for (int i = 0; i < objets.length; i++)
 	    {
-	        int objetX1 = objets[i].getx1();
+	        int objetX1 = objets[i].getx1()-16;
 	        int objetX2 = objets[i].getx2();
+	        int objetY1 = objets[i].gety1();
 	        int objetY2 = objets[i].gety2();
 
 	        // Vérification du plafond
-	        if (posY < objetY2 &&
+	        if (posY <= objetY2 &&
+	        	posY > objetY1 &&
 	        	posX >= objetX1 &&
-	            posX_droite <= objetX2)
+	            posX <= objetX2)
 	        {
-	        	count ++;
-	        	System.out.println("yes" + " " + count);
+	        	return true;
 	        }
 	    }
+	    return false;
 	}
-
-
-
-
 
 	
 	// *********************************************** //
 	// DESSINER BONHOMME
-	public void dessiner(Graphics g) {  // qd on aura l image y aura plus besoin de graphics g
-		//g.drawRect(x*32-32, y*36-36, 3*32, 2*36);
+	public void dessiner(Graphics g)
+	{
 		if (this.orientation == "droite")
 		{
 			g.drawImage(image_d, x*32, y*36, x*32+32, y*36+36, 0, 0, image_d.getWidth(), image_d.getHeight());
@@ -266,6 +268,7 @@ public class Personnage {
 
 	// PERMET DE FAIRE DES SAUTS EN APPUYANTS UNE FOIS SUR LA BARRE ESPACE
 	public void sautNormal(GameContainer gc) {
+		
 		Input mvt = gc.getInput();
 		
 		if(mvt.isKeyPressed(Input.KEY_SPACE) && compteurDeSaut <1 ) {	
@@ -292,7 +295,6 @@ public class Personnage {
 		}
 	}
 
-
 	public void graviteInversee(int delta) {
 		if(y > 1) {
 			vy += graviteY * delta / 1000f;
@@ -303,23 +305,23 @@ public class Personnage {
 		}
 	}
 	
-	
-	
+	public void rebond()
+	{
+		vy = - vy;
+	}
 
-	public void sauter(int delta) {
+	public void sauter(int delta)
+	{
+		if (detecterPlafond())
+		{
+			rebond();
+		}
 		y += (vy * delta / 1000f) / Constantes.HAUTEUR_CASE;
 		
 	}
-
-	public void sauterInversee(int delta) {
+	
+	public void sauterInversee(int delta)
+	{
 		y -= (vy * delta / 1000f) / Constantes.HAUTEUR_CASE;
-	}
-
-
-	
-	
-	
-	public static int niveauMort(StateBasedGame sbg){
-		return sbg.getCurrentStateID();
 	}
 }

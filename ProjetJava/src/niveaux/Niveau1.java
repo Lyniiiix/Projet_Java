@@ -199,10 +199,7 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 		
 		
 		
-		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
-		{
-			mort = true;
-		}
+
 		
 		
 		/*!!!!! COLLISION !!!!!*/
@@ -254,6 +251,10 @@ public class Niveau1 extends BasicGameState {    // niveau foret
 			sbg.enterState(0);
 		}
 		
+		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
+		{
+			mort = true;
+		}
 		
 		// refait spawn le perso au début et pas la ou il était
 		if(mort) {

@@ -117,7 +117,6 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 		
 		timer+=delta;
 		
-		
 		joueur.sauter(delta);
 		
 		boolean CollisionY = true;
@@ -204,6 +203,10 @@ public class Niveau4 extends BasicGameState {   // niveau glace
 			sbg.enterState(0);
 		}
 		
+		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
+		{
+			mort = true;
+		}
 		
 		// refait spawn le perso au début et pas la ou il était
 		if(mort) {

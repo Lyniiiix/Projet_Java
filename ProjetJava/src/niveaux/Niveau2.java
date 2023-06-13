@@ -173,12 +173,18 @@ public class Niveau2 extends BasicGameState {  // niveau chateau abandonne
 			sbg.enterState(0);
 		}
 		
+		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
+		{
+			mort = true;
+		}
 		
 		// refait spawn le perso au début et pas la ou il était
 		if(mort) {
 			mort = false;
 			joueur = new Personnage(mapN2);
 		}
+		
+
 		
 		
 		// Permet de retourner au Launcher (pour plus de rapidite)

@@ -2,6 +2,7 @@
 
 package niveaux;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -22,6 +23,8 @@ public class Launcher extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		//g.setBackground(Color.black);
+		
 		g.drawString("Choisissez maintenant votre niveau", 360, 50);
 		// BOUTONS POUR ACCEDER AUX DIFF NIVEAUX
 		g.drawRect(50, 200, 100, 150);

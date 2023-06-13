@@ -56,7 +56,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		joueur = new Personnage(mapN5);
 		
-		niveauMer = new Mer(45);
+		niveauMer = new Mer(40);
 		
 		timer =0;
 	}
@@ -106,7 +106,7 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 		
 		
 		// faire monter le niveau de l eau
-		if(timer>=2000 && timer<17000) 
+		if(timer>=3000 && timer<30000) 
 		{
 			niveauMer.monter(delta);
 		}
@@ -130,6 +130,10 @@ public class Niveau5 extends BasicGameState {   // niveau plage
 			sbg.enterState(0);
 		}
 		
+		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
+		{
+			mort = true;
+		}
 		
 		
 		// refait spawn le perso au début et pas la ou il était

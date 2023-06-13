@@ -56,13 +56,13 @@ public class Niveau3 extends BasicGameState {
 		joueur = new Personnage(mapN3);
 		laser1 = new Laser(7*32, 7*36);
 		laser2 = new Laser(15*32, 6*36);
-		laser3 = new Laser(10*32, 13*36);
+		laser3 = new Laser(10*32, 15*36);
 		laser4 = new Laser(23*32, 16*36);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.setBackground(Color.darkGray);
+		g.setBackground(new Color(2,2,2));
 		map.render(0, 0);
 		
 		g.drawImage(porteSortie, 896, 36, 896+3*32, 36+3*36, 0,0, porteSortie.getWidth(), porteSortie.getHeight());
@@ -73,7 +73,9 @@ public class Niveau3 extends BasicGameState {
 		
 		joueur.dessiner(g);
 		
+		g.setColor(Color.black);
 		g.drawString("u",100 , 100);  // 3 eme lettre de l easter egg
+		g.setColor(Color.white);
 	}
 
 	@Override
@@ -93,6 +95,8 @@ public class Niveau3 extends BasicGameState {
 		if(mvt.isKeyDown(Input.KEY_LEFT)) {
 			joueur.deplacer(gc);
 		}
+		
+
 		
 		
 		
@@ -147,11 +151,15 @@ public class Niveau3 extends BasicGameState {
 			sbg.enterState(0);
 		}
 		
+		if (joueur.getPosY_px() > Constantes.HAUTEUR_ECRAN)
+		{
+			mort = true;
+		}
 		
 		// refait spawn le perso au début et pas la ou il était
 		if(mort) {
 			mort = false;
-			//joueur = new Personnage(mapN3);
+			joueur = new Personnage(mapN3);
 		}
 		
 		
